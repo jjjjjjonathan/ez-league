@@ -1,8 +1,32 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import Image from 'next/image';
+import styles from '../styles/Home.module.css';
+import prisma from '../lib/prisma.ts';
+import { useEffect, useState } from 'react';
 
-export default function Home() {
+export const getStaticProps = async () => {
+  const user = await prisma.user.findUnique({
+    where: { id: 1 }
+  });
+  return { props: { email: user.email } };
+};
+
+
+export default function Home(props) {
+
+  // const [email, setEmail] = useState(':)');
+
+
+  // const userEmail = prisma.user.findUnique({
+  //   where: {
+  //     id: 1
+  //   }
+  // }).then(user => {
+  //   console.log(user);
+  //   return user.email;
+  // });
+  const { email } = props;
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,7 +37,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Welcome to <a className='text-3xl font-bold underline' href="https://nextjs.org">Next.js, {email}!</a>
         </h1>
 
         <p className={styles.description}>
@@ -65,5 +89,5 @@ export default function Home() {
         </a>
       </footer>
     </div>
-  )
+  );
 }
