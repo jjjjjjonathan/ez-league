@@ -14,12 +14,23 @@ module.exports = db => {
 
   router.get('/:id', (req, res) => {
     return db.query(`SELECT teams.*,
-    teams.wins + teams.draws + teams.losses AS matches_played
+    teams.wins + teams.draws + teams.losses AS matches_played,
     teams.wins * 3 + teams.draws AS points,
     teams.goals_for - teams.goals_against AS goal_difference
     FROM teams
     WHERE league_id = $1
     ORDER BY points DESC, goal_difference DESC;`, [req.params.id])
+      .then(data => {
+        res.json(data.rows);
+      });
+  });
+
+  // Get the schedule for the league from earliest to soonest http://localhost:8001/api/leagues/:id/schedule
+  router.get('/:id/fixtures', (req, res) => {
+    return db.query(`SELECT fixtures.*
+    FROM fixtures
+    WHERE league_id = $1
+    ORDER BY fixtures.scheduled_time;`, [req.params.id])
       .then(data => {
         res.json(data.rows);
       });
