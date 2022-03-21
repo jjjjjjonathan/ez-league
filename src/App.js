@@ -1,7 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function App() {
+
+  const [state, setState] = useState({});
+
+  useEffect(() => {
+    Promise.all([
+      axios.get('/api/leagues'),
+      axios.get('/api/leagues/1')
+    ]).then((all) => {
+      const [leagues, teams] = all;
+      setState(prev => ({ ...prev, leagues, teams }));
+    });
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
