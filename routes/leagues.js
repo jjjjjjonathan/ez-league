@@ -25,7 +25,8 @@ module.exports = db => {
       });
   });
 
-  // Get the schedule for the league from earliest to soonest http://localhost:8001/api/leagues/:id/schedule
+  // Get the schedule for the league from earliest to soonest http://localhost:8001/api/leagues/:id/fixtures
+
   router.get('/:id/fixtures', (req, res) => {
     return db.query(`SELECT fixtures.*
     FROM fixtures
