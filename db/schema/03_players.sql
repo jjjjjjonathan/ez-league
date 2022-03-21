@@ -10,6 +10,5 @@ CREATE TABLE players (
   goals INTEGER DEFAULT 0,
   assists INTEGER DEFAULT 0,
   yellow_cards INTEGER DEFAULT 0,
-  red_cards INTEGER DEFAULT 0,
-  saves INTEGER DEFAULT 0
+  red_cards INTEGER DEFAULT 0
 )

@@ -10,7 +10,7 @@ module.exports = db => {
       });
   });
 
-  // Get all the teams from one league in order of league standings, basically points descending, then goal difference descending... http://localhost:8001/api/leagues/
+  // Get all the teams from one league in order of league standings, basically points descending, then goal difference descending... http://localhost:8001/api/leagues/:id
 
   router.get('/:id', (req, res) => {
     return db.query(`SELECT teams.*,
