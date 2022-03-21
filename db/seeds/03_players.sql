@@ -1,0 +1,16 @@
+INSERT INTO players (name, team_id, shirt_number, appearances, minutes, goals, assists, yellow_cards, red_cards, photo_url)
+VALUES ('Petr Cech', 1, 1, 34, 3060, 0, 0, 0, 0, 'https://fbref.com/req/202005121/images/headshots/71672fa0_2018.jpg'),
+('John Terry', 1, 26, 31, 2790, 6, 1, 8, 0, 'https://fbref.com/req/202005121/images/headshots/68517cfd_2018.jpg'),
+('Ashley Cole', 1, 3, 32, 2786, 0, 6, 8, 1, 'https://fbref.com/req/202005121/images/headshots/be091289_2018.jpg'),
+('Juan Mata', 1, 10, 34, 2515, 6, 13, 2, 0, 'https://fbref.com/req/202005121/images/headshots/29733c72_2018.jpg'),
+('Ramires', 1, 7, 30, 2471, 5, 1, 4, 0, 'https://fbref.com/req/202005121/images/headshots/4cce2c67_2018.jpg'),
+('Daniel Sturridge', 1, 23, 30, 2251, 11, 3, 3, 0, 'https://fbref.com/req/202005121/images/headshots/1b7ec703_2018.jpg'),
+('Branislav Ivanovic', 1, 2, 29, 2265, 3, 1, 6, 0, 'https://fbref.com/req/202005121/images/headshots/85f8571a_2018.jpg'),
+('Frank Lampard', 1, 8, 30, 2248, 11, 5, 5, 0, 'https://fbref.com/req/202005121/images/headshots/268df6b1_2018.jpg'),
+('Jose Bosingwa', 1, 17, 27, 2114, 1, 2, 5, 1, 'https://fbref.com/req/202005121/images/headshots/13dd442f_2018.jpg'),
+('Raul Meireles', 1, 16, 28, 1928, 2, 3, 8, 0, 'https://fbref.com/req/202005121/images/headshots/e767cd27_2018.jpg'),
+('Fernando Torres', 1, 9, 32, 1913, 6, 4, 4, 1, 'https://fbref.com/req/202005121/images/headshots/bdf7b97d_2018.jpg'),
+('David Luiz', 1, 4, 19, 1619, 2, 1, 5, 0, 'https://fbref.com/req/202005121/images/headshots/c0e27d1a_2018.jpg'),
+('Didier Drogba', 1, 11, 24, 1480, 5, 1, 1, 1, 'https://fbref.com/req/202005121/images/headshots/945dea33_2018.jpg'),
+('John Obi Mikel', 1, 12, 22, 1325, 0, 0, 4, 0, 'https://fbref.com/req/202005121/images/headshots/424d5f72_2018.jpg'),
+('Florent Malouda', 1, 15, 26, 1163, 2, 3, 3, 0, 'https://fbref.com/req/202005121/images/headshots/6fe6d820_2018.jpg');
