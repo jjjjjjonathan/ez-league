@@ -1,28 +1,9 @@
-const team = [
-  {
-    id: 2,
-    league_id: 1,
-    name: "Manchester City",
-    thumbnail_logo:
-      "https://resources.premierleague.com/premierleague/badges/25/t43.png",
-    goals_for: 93,
-    goals_against: 29,
-    wins: 28,
-    draws: 5,
-    losses: 5,
-    points: 89,
-    goal_difference: 64,
-  },
-];
-
 const TableListItem = (props) => {
   return (
     <tr>
       <td>{props.rank}</td>
       <td>
-        <img src={props.thumbnail_logo} alt="team-logo">
-          {props.name}
-        </img>
+        <img src={props.thumbnail_logo} alt="team-logo" />
       </td>
       <td>{props.name}</td>
       <td>{props.wins + props.draws + props.losses}</td>

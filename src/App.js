@@ -36,7 +36,10 @@ const team = [
 ];
 
 function App() {
-  const [state, setState] = useState({});
+  const [state, setState] = useState({
+    leagues: [],
+    teams: [],
+  });
 
   useEffect(() => {
     Promise.all([axios.get("/api/leagues"), axios.get("/api/leagues/1")]).then(
@@ -47,7 +50,7 @@ function App() {
     );
   }, []);
 
-  // console.log("this is state", state.teams);
+  // console.log("this is state", state.teams.data);
   // console.log("this is state JSON parse", JSON.parse(state.teams.data));
   return <TableList teams={team} />;
   // return <h1>Hello</h1>;
