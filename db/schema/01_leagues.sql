@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS leagues CASCADE;
+CREATE TABLE leagues (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  year VARCHAR(255),
+  logo VARCHAR(255),
+  cover_photo VARCHAR(255)
+);
