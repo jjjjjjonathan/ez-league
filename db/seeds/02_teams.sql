@@ -7,4 +7,6 @@ VALUES ('Chelsea', 1, 65, 46, 18, 10, 10, 'https://resources.premierleague.com/p
 ('Newcastle United', 1, 56, 51, 19, 8, 11, 'https://resources.premierleague.com/premierleague/badges/25/t4.png'),
 ('Everton', 1, 50, 40, 15, 11, 12, 'https://resources.premierleague.com/premierleague/badges/25/t11.png'),
 ('Liverpool', 1, 47, 40, 14, 10, 14, 'https://resources.premierleague.com/premierleague/badges/25/t14.png'),
-('Fulham', 1, 48, 51, 14, 10, 14, 'https://resources.premierleague.com/premierleague/badges/25/t54.png');
+('Fulham', 1, 48, 51, 14, 10, 14, 'https://resources.premierleague.com/premierleague/badges/25/t54.png'),
+('Sunderland', 1, 45, 46, 11, 12, 15, 'https://resources.premierleague.com/premierleague/badges/25/t56.png'),
+('Queens Park Rangers', 1, 43, 66, 10, 7, 21, 'https://resources.premierleague.com/premierleague/badges/25/t52.png');
