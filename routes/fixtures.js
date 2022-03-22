@@ -18,7 +18,7 @@ module.exports = db => {
   });
   // Get all fixture event types
   router.get('/types', (req, res) => {
-    return db.query('SELECT * FROM event_types;')
+    return db.query('SELECT * FROM fixture_event_types;')
       .then(data => {
         res.json(data.rows);
       });
