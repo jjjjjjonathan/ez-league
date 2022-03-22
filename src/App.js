@@ -1,43 +1,29 @@
+import logo from "./logo.svg";
 import "./App.css";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Navbar from "./component/Navbar";
-import Standing from "./page/Standing";
-import Home from "./page/Home";
+import useApplicationData from "./hooks/useApplicationData";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import TestRoute from "./components/TestRoute";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Standing from "./pages/Standing";
 
 function App() {
-  const [state, setState] = useState({
-    leagues: [],
-    teams: [],
-  });
-
-  useEffect(() => {
-    Promise.all([axios.get("/api/leagues"), axios.get("/api/leagues/1")]).then(
-      (all) => {
-        const [leagues, teams] = all;
-        setState((prev) => ({
-          ...prev,
-          leagues: leagues.data,
-          teams: teams.data,
-        }));
-      }
-    );
-  }, []);
+  const { state } = useApplicationData();
 
   return (
     <Router>
-      <div className="App">
-        <Navbar />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/standing">
-            <Standing teams={state.teams} />
-          </Route>
-        </Switch>
-      </div>
+      <Navbar />
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/routes">
+          <TestRoute />
+        </Route>
+        <Route exact path="/standing">
+          <Standing teams={state.teams} />
+        </Route>
+      </Switch>
     </Router>
   );
 }
