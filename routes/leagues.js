@@ -1,3 +1,4 @@
+const { response } = require("express");
 const express = require("express");
 const router = express.Router();
 
@@ -8,6 +9,16 @@ module.exports = db => {
       .then(data => {
         res.json(data.rows);
       });
+  });
+
+  // Add new leagues
+  router.post('/', (req, res) => {
+    const { name, logo } = req.body.newTeam;
+    return db.query(`INSERT INTO leagues (name, logo) VALUES ($1, $2)`, [name, logo])
+      .then(() => {
+        response.status(204).json({});
+      })
+      .catch(error => console.log(error));
   });
 
   // Get all the teams from one league in order of league standings, basically points descending, then goal difference descending... http://localhost:8001/api/leagues/:id
