@@ -11,7 +11,8 @@ const TableList = (props) => {
     <table>
       <thead>
         <tr>
-          <th>Club</th>
+          <th scope="col">Rank</th>
+          <th scope="col">Club</th>
           <th scope="col">MP</th>
           <th scope="col">W</th>
           <th scope="col">D</th>
