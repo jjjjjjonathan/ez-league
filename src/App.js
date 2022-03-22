@@ -9,7 +9,7 @@ import TeamForm from "./components/TeamForm";
 
 function App() {
   const { state } = useApplicationData();
-
+  console.log(state);
   return (
     <Router>
       <Navbar />
