@@ -11,7 +11,7 @@ function App() {
   const { state } = useApplicationData();
   console.log(state);
   return (
-    <div className="h-screen bg-gradient-to-b from-gray-50 to-gray-200">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-200">
       <Router>
         <Navbar />
         <Switch>
