@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Standing from "./pages/Standing";
 import TeamForm from "./components/TeamForm";
+import CSVReader from "./components/CSVReader";
 
 function App() {
   const { state } = useApplicationData();
@@ -25,6 +26,9 @@ function App() {
         </Route>
         <Route exact path="/teamform">
           <TeamForm />
+        </Route>
+        <Route exact path="/parse">
+          <CSVReader />
         </Route>
       </Switch>
     </Router>
