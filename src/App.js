@@ -1,37 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+// import { useEffect, useState } from 'react';
+// import axios from 'axios';
+import useApplicationData from './hooks/useApplicationData';
 
 function App() {
 
-  const [state, setState] = useState({
-    leagues: [],
-    teams: [],
-    players: [],
-    fixtures: [],
-    fixtureEvents: []
-  });
-
-  useEffect(() => {
-    Promise.all([
-      axios.get('/api/leagues'),
-      axios.get('/api/teams'),
-      axios.get('/api/players'),
-      axios.get('/api/fixtures'),
-      axios.get('/api/fixtures/events')
-    ]).then((all) => {
-      const [leagues, teams, players, fixtures, fixtureEvents] = all;
-      setState(prev => ({ ...prev, leagues: leagues.data, teams: teams.data, players: players.data, fixtures: fixtures.data, fixtureEvents: fixtureEvents.data }));
-    });
-  }, []);
+  const { state } = useApplicationData();
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Testing state in ez-league
         </p>
         <a
           className="App-link"
