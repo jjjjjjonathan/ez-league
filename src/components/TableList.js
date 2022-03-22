@@ -1,29 +1,54 @@
-import { Fragment } from "react";
 import TableListItem from "./TableListItem";
 
 const TableList = (props) => {
   const { teams } = props;
   const teamList = teams.map((team, index) => (
-    <TableListItem key={team.id} rank={index + 1} {...team} />
+    <TableListItem
+      key={team.id}
+      rank={index + 1}
+      {...team}
+      points={team.wins * 3 + team.draws * 1}
+      goal_difference={team.goals_for - team.goals_against}
+    />
   ));
 
   return (
-    <table>
-      <thead>
+    <table className="shadow-2x1 font-[Poppins] border-1 border-gray-200 w-6/12 overflow-hidden content-center mx-auto">
+      <thead className="bg-gray-100  border-gray-200 gap-4">
         <tr>
-          <th scope="col">Rank</th>
-          <th scope="col">Club</th>
-          <th scope="col">MP</th>
-          <th scope="col">W</th>
-          <th scope="col">D</th>
-          <th scope="col">L</th>
-          <th scope="col">GF</th>
-          <th scope="col">GA</th>
-          <th scope="col">GD</th>
-          <th scope="col">pts</th>
+          <th className="p-3 text-sm font-semibold tracking-wide text-center">
+            Rank
+          </th>
+          <th className="p-3 text-sm font-semibold tracking-wide text-center">
+            Club
+          </th>
+          <th className="p-3 text-sm font-semibold tracking-wide text-center">
+            MP
+          </th>
+          <th className="p-3 text-sm font-semibold tracking-wide text-center">
+            W
+          </th>
+          <th className="p-3 text-sm font-semibold tracking-wide text-center">
+            D
+          </th>
+          <th className="p-3 text-sm font-semibold tracking-wide text-center">
+            L
+          </th>
+          <th className="p-3 text-sm font-semibold tracking-wide text-center">
+            GF
+          </th>
+          <th className="p-3 text-sm font-semibold tracking-wide text-center">
+            GA
+          </th>
+          <th className="p-3 text-sm font-semibold tracking-wide text-center">
+            GD
+          </th>
+          <th className="p-3 text-sm font-semibold tracking-wide text-center">
+            pts
+          </th>
         </tr>
       </thead>
-      {teamList}
+      <tbody className="text-center">{teamList}</tbody>
     </table>
   );
 };

@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import useApplicationData from "./hooks/useApplicationData";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -9,7 +8,7 @@ import Standing from "./pages/Standing";
 
 function App() {
   const { state } = useApplicationData();
-
+  console.log(state);
   return (
     <Router>
       <Navbar />
