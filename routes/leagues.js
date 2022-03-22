@@ -14,7 +14,7 @@ module.exports = db => {
   // Add new leagues
   router.post('/', (req, res) => {
     const { name, logo } = req.body.newTeam;
-    return db.query(`INSERT INTO leagues (name, logo) VALUES ($1, $2)`, [name, logo])
+    return db.query(`INSERT INTO leagues (name, logo) VALUES ($1, $2);`, [name, logo])
       .then(() => {
         response.status(204).json({});
       })
