@@ -28,6 +28,7 @@ const fixtureRoutes = require("./routes/fixtures");
 // Mount all resource routes and pass in db
 app.use("/api/leagues", leagueRoutes(db));
 app.use("/api/teams", teamRoutes(db));
+app.use("/api/fixtures", fixtureRoutes(db));
 
 // Home/index page
 app.get("/", (req, res) => {
