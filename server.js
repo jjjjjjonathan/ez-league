@@ -24,11 +24,13 @@ app.use(express.json());
 const leagueRoutes = require("./routes/leagues");
 const teamRoutes = require("./routes/teams");
 const fixtureRoutes = require("./routes/fixtures");
+const playerRoutes = require("./routes/players");
 
 // Mount all resource routes and pass in db
 app.use("/api/leagues", leagueRoutes(db));
 app.use("/api/teams", teamRoutes(db));
 app.use("/api/fixtures", fixtureRoutes(db));
+app.use("/api/players", playerRoutes(db));
 
 // Home/index page
 app.get("/", (req, res) => {

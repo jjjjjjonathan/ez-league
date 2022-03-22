@@ -27,6 +27,8 @@ module.exports = db => {
 
   // Get the schedule for the league from earliest to soonest http://localhost:8001/api/leagues/:id/fixtures
 
+  // NEEDS TO BE DELETED
+
   router.get('/:id/fixtures', (req, res) => {
     return db.query(`SELECT fixtures.*
     FROM fixtures

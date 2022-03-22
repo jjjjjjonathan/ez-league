@@ -4,7 +4,7 @@ const router = express.Router();
 module.exports = db => {
   // Get whole schedule of all leagues to put into state
   router.get('/', (req, res) => {
-    return db.query('SELECT * FROM fixtures;')
+    return db.query('SELECT * FROM fixtures ORDER BY scheduled_time;')
       .then(data => {
         res.json(data.rows);
       });

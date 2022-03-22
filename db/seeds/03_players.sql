@@ -40,5 +40,5 @@ VALUES ('Petr Cech', 1, 1, 34, 3060, 0, 0, 0, 0, 'https://fbref.com/req/20200512
 ('Antonio Valencia', 3, 25, 27, 2124, 4, 13, 3, 0, 'https://fbref.com/req/202005121/images/headshots/08aa17d0_2018.jpg'),
 ('Ashley Young', 3, 18, 25, 1565, 6, 7, 3, 0, 'https://fbref.com/req/202005121/images/headshots/be927d03_2018.jpg'),
 ('Javier Hernandez', 3, 14, 28, 1477, 10, 2, 0, 0, 'https://fbref.com/req/202005121/images/headshots/189cee7b_2018.jpg'),
-('Park Ji-sung', 3, 13, 17, 932, 2, 1, 0, 0, ''),
+('Park Ji-sung', 3, 13, 17, 932, 2, 1, 0, 0, null),
 ('Chris Smalling', 3, 12, 19, 1297, 1, 0, 1, 0, 'https://fbref.com/req/202005121/images/headshots/b6964eb6_2018.jpg');
