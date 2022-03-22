@@ -1,4 +1,3 @@
-const { response } = require("express");
 const express = require("express");
 const router = express.Router();
 
@@ -13,15 +12,15 @@ module.exports = db => {
 
   // Add new leagues
   router.post('/', (req, res) => {
-    const { name, logo } = req.body.newTeam;
-    return db.query(`INSERT INTO leagues (name, logo) VALUES ($1, $2);`, [name, logo])
+    const { name, logo, sport_type_id } = req.body.newTeam;
+    return db.query(`INSERT INTO leagues (name, logo, sport_type_id) VALUES ($1, $2, $3);`, [name, logo, sport_type_id])
       .then(() => {
-        response.status(204).json({});
+        res.status(204).json({});
       })
       .catch(error => console.log(error));
   });
 
-  // Get all the teams from one league in order of league standings, basically points descending, then goal difference descending... http://localhost:8001/api/leagues/:id
+  // Get all the teams from one league in order of league standings, basically points descending, then goal difference descending... http://localhost:8001/api/leagues/:id NEEDS TO BE DELETED
 
   router.get('/:id', (req, res) => {
     return db.query(`SELECT teams.*,
