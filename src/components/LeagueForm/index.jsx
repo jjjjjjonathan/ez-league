@@ -4,6 +4,7 @@ import Start from './Start';
 import SelectSport from './SelectSport';
 import Summary from './Summary';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 const LeagueForm2 = (props) => {
   const { state } = props;
@@ -24,8 +25,16 @@ const LeagueForm2 = (props) => {
   const submit = (leagueName, sport) => {
     axios
       .put('/api/leagues', { leagueName, sport })
-      .then(() => {
-        return;
+      .then((data) => {
+        const id = data.data[0].id;
+        console.log(data.data[0]);
+        return (
+          <Redirect
+            to={`/leagues/${id.toString()}`}
+            leagueId={id}
+            state={state}
+          />
+        );
       })
       .catch((error) => {
         console.log(error);

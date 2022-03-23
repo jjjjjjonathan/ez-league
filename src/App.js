@@ -1,13 +1,13 @@
 import "./App.css";
 import useApplicationData from "./hooks/useApplicationData";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import TestRoute from "./components/TestRoute";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Standing from "./pages/Standing";
 import TeamForm from "./components/TeamForm";
 import CSVReader from "./components/CSVReader";
 import LeagueForm2 from "./components/LeagueForm/index";
+import LeagueHome from "./pages/LeagueHome";
 
 function App() {
   const { state } = useApplicationData();
@@ -20,9 +20,7 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/routes">
-            <TestRoute />
-          </Route>
+          <Route path="/leagues/:id" children={<LeagueHome />} />
           <Route exact path="/standing">
             <Standing teams={state.teams} />
           </Route>
