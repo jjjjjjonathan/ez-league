@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Standing from "./pages/Standing";
 import TeamForm from "./components/TeamForm";
 import CSVReader from "./components/CSVReader";
+import LeagueForm from "./components/LeagueForm";
 
 function App() {
   const { state } = useApplicationData();
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route exact path="/parse">
             <CSVReader />
+          </Route>
+          <Route exact path="/leagueform">
+            <LeagueForm />
           </Route>
         </Switch>
       </Router>
