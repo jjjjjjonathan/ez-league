@@ -11,7 +11,6 @@ import AdminGame from "./pages/AdminGame";
 
 function App() {
   const { state } = useApplicationData();
-  console.log("this is fixtures1", state);
   return (
     <div className="h-screen bg-gradient-to-b from-gray-50 to-gray-200">
       <Router>

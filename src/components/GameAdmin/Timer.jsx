@@ -3,7 +3,7 @@ import { BsPlayBtnFill, BsStopCircle } from "react-icons/bs";
 const Timer = (props) => {
   console.log("this is props from timer", props);
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from indigo-500 to indigo-800">
+    <section className="min-h-screen flex flex-col justify-center items-center ">
       <section className="border-8 border-gray-500 rounded shadow-2xl text-8xl text-white font-mono grid grid-cols-2 gap-x-px">
         <h1 className="bg-black p-2">
           {("0" + Math.floor((props.timer / 60000) % 60)).slice(-2)}

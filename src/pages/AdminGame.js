@@ -1,4 +1,3 @@
-import Team from "../components/GameAdmin/Team";
 import { useEffect, useState } from "react";
 import ScoreBoard from "../components/GameAdmin/ScoreBoard";
 import Timer from "../components/GameAdmin/Timer";
