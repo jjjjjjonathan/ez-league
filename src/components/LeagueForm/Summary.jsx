@@ -12,7 +12,9 @@ const Summary = (props) => {
         Correct?
       </p>
       <button onClick={() => startOver()}>Start Over</button>
-      <button onClick={() => onSubmit(leagueName, selectedSport)}></button>
+      <button onClick={() => onSubmit(leagueName, selectedSport)}>
+        Submit
+      </button>
     </Fragment>
   );
 };
