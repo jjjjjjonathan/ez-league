@@ -1,63 +1,23 @@
 import { useState } from 'react';
-import classNames from 'classnames';
 import { parse } from 'papaparse';
 
 const save = (list) => {
-  list.length <= 0 ? console.log('list is empty') : console.log(list);
+  list.length <= 0 ? console.log('list is empty') : console.log(list[0].data);
 };
 
 const CSVReader = () => {
-  const [highlighted, setHighlighted] = useState(false);
   const [list, setList] = useState([]);
-  const dropZoneClasses = classNames(
-    'p-6',
-    'my-2',
-    'mx-auto',
-    'max-w-md',
-    'border-2',
-    { 'border-green-600': highlighted },
-    { 'bg-green-100': highlighted }
-  );
 
   return (
     <div className="  mb-6 shadow-md bg-white rounded px-8 pt-6 pb-8 mb-4 m-20 ">
-      {/* <h1 className="text-center text-4xl">Import Player</h1>
-      <div
-        className={classNames(dropZoneClasses)}
-        onDragEnter={() => setHighlighted(true)}
-        onDragLeave={() => setHighlighted(false)}
-        onDragOver={(e) => {
-          e.preventDefault();
-        }}
-        onDrop={(e) => {
-          e.preventDefault();
-          setHighlighted(false);
-          Array.from(e.dataTransfer.files)
-            .filter(
-              (file) =>
-                file.type === "application/vnd.ms-excel" ||
-                file.type === "text/csv"
-            )
-            .forEach(async (file) => {
-              const text = await file.text();
-              setList([parse(text, { header: true })]);
-            });
-        }}
-      >
-        DROP HERE
-      </div>
-      <div className="md:flex md:justify-center mb-6">
-        <button
-          onClick={() => save(list)}
-          className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded md:items-center"
-        >
-          Submit
-        </button>
-      </div> */}
-
-      {/* onDrop={(e) => {
+      <div className="max-w-xl">
+        <label
+          className="flex justify-center w-full h-32 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none"
+          onDragOver={(e) => {
             e.preventDefault();
-            setHighlighted(false);
+          }}
+          onDrop={(e) => {
+            e.preventDefault();
             Array.from(e.dataTransfer.files)
               .filter(
                 (file) =>
@@ -68,10 +28,8 @@ const CSVReader = () => {
                 const text = await file.text();
                 setList([parse(text, { header: true })]);
               });
-          }} */}
-
-      <div className="max-w-xl">
-        <label className="flex justify-center w-full h-32 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
+          }}
+        >
           <span className="flex items-center space-x-2">
             <svg
               xmlns=""
