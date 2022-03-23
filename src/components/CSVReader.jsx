@@ -63,7 +63,6 @@ const CSVReader = () => {
             name="file_upload"
             className="hidden"
             onChange={(e) => {
-              console.log(e);
               e.preventDefault();
               Array.from(e.target.files)
                 .filter(
