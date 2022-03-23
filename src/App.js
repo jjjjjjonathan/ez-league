@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 import Standing from "./pages/Standing";
 import TeamForm from "./components/TeamForm";
 import CSVReader from "./components/CSVReader";
-import LeagueForm from "./components/LeagueForm";
+import LeagueForm2 from "./components/LeagueForm/index";
 
 function App() {
   const { state } = useApplicationData();
@@ -33,7 +33,7 @@ function App() {
             <CSVReader />
           </Route>
           <Route exact path="/leagueform">
-            <LeagueForm />
+            <LeagueForm2 state={state} />
           </Route>
         </Switch>
       </Router>
