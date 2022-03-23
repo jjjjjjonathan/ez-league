@@ -36,14 +36,6 @@ const LeagueForm = (props) => {
           <option value="soccer">Soccer</option>
           <option value="basketball">Basketball</option>
         </select>
-        <div className="dropdown">
-          <button class="dropbtn">Select Sport</button>
-          <div className="dropdown-content">
-            <a href="Soccer">Soccer</a>
-            <a href="Basketball">Basketball</a>
-            <a href="Football">Football</a>
-          </div>
-        </div>
       </form>
       <button onClick={() => validate(leagueName, sport)}>Submit</button>
     </Fragment>
