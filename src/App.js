@@ -7,10 +7,11 @@ import Home from "./pages/Home";
 import Standing from "./pages/Standing";
 import TeamForm from "./components/TeamForm";
 import CSVReader from "./components/CSVReader";
+import AdminGame from "./pages/AdminGame";
 
 function App() {
   const { state } = useApplicationData();
-  console.log(state);
+  console.log("this is fixtures1", state);
   return (
     <div className="h-screen bg-gradient-to-b from-gray-50 to-gray-200">
       <Router>
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route exact path="/parse">
             <CSVReader />
+          </Route>
+          <Route exact path="/admin/game">
+            <AdminGame />
           </Route>
         </Switch>
       </Router>
