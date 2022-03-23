@@ -1,6 +1,7 @@
 import Team from "../components/GameAdmin/Team";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ScoreBoard from "../components/GameAdmin/ScoreBoard";
+import Timer from "../components/GameAdmin/Timer";
 
 const AdminGame = (props) => {
   const [home, setHome] = useState({
@@ -21,8 +22,39 @@ const AdminGame = (props) => {
     score: 0,
   });
 
-  const [timer, setTimer] = useState({ minutes: 0, seconds: 0 });
-  return <ScoreBoard home={home} away={away} timer={timer} />;
+  const [timer, setTimer] = useState(0);
+  const [timerOn, setTimerOn] = useState(false);
+
+  useEffect(() => {
+    let interval = null;
+
+    if (timerOn) {
+      interval = setInterval(() => {
+        setTimer((prev) => prev + 10);
+      }, 10);
+    } else {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [timerOn]);
+
+  const startTimer = () => {
+    setTimerOn(true);
+  };
+  const stopTimer = () => {
+    setTimerOn(false);
+  };
+  return (
+    <main>
+      <section>
+        <ScoreBoard home={home} away={away} />
+      </section>
+
+      <section>
+        <Timer timer={timer} onStart={startTimer} onStop={stopTimer} />
+      </section>
+    </main>
+  );
 };
 
 export default AdminGame;
