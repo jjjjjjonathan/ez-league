@@ -1,6 +1,10 @@
 const SelectSportItem = (props) => {
-  const { value, name } = props;
-  return <option value={value}>{name}</option>;
+  const { value, name, onClick } = props;
+  return (
+    <button value={value} onClick={() => onClick(value)}>
+      {name}
+    </button>
+  );
 };
 
 export default SelectSportItem;

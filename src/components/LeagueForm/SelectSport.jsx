@@ -2,15 +2,20 @@ import SelectSportItem from './SelectSportItem';
 import { Fragment } from 'react';
 
 const SelectSport = (props) => {
-  const { sports } = props;
+  const { sports, onClick } = props;
 
   const parsedSports = sports.map((sport) => (
-    <SelectSportItem key={sport.id} value={sport.id} name={sport.name} />
+    <SelectSportItem
+      key={sport.id}
+      value={sport.id}
+      name={sport.name}
+      onClick={onClick}
+    />
   ));
   return (
     <Fragment>
-      <select>{parsedSports}</select>
-      <button>Submit</button>
+      <h1>What sport is your league for?</h1>
+      {parsedSports}
     </Fragment>
   );
 };
