@@ -19,7 +19,12 @@ const useLeagueVisualMode = (initial) => {
       });
     }
   };
-  return { mode, transition, back };
+
+  const reset = () => {
+    setMode(history[0]);
+    setHistory([]);
+  };
+  return { mode, transition, back, reset };
 };
 
 export default useLeagueVisualMode;

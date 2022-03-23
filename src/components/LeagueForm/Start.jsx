@@ -1,10 +1,11 @@
 import { Fragment } from 'react';
 
 const Start = (props) => {
-  const { setLeagueName, onClick } = props;
+  const { setLeagueName, onClick, value } = props;
   return (
     <Fragment>
       <input
+        value={value}
         type="text"
         name="name"
         placeholder="Enter League Name"
