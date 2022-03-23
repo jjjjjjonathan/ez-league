@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ScoreBoard from "../components/GameAdmin/ScoreBoard";
 import Timer from "../components/GameAdmin/Timer";
+import GameConsole from "../components/GameAdmin/GameConsole";
 
 const AdminGame = (props) => {
   const [home, setHome] = useState({
@@ -48,7 +49,9 @@ const AdminGame = (props) => {
       <section>
         <ScoreBoard home={home} away={away} />
       </section>
-
+      <section>
+        <GameConsole home={home} away={away} />
+      </section>
       <section>
         <Timer timer={timer} onStart={startTimer} onStop={stopTimer} />
       </section>

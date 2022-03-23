@@ -12,7 +12,7 @@ import AdminGame from "./pages/AdminGame";
 function App() {
   const { state } = useApplicationData();
   return (
-    <div className="h-screen bg-gradient-to-b from-gray-50 to-gray-200">
+    <main className="h-screen bg-gradient-to-b from-gray-50 to-gray-200">
       <Router>
         <Navbar />
         <Switch>
@@ -36,7 +36,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
-    </div>
+    </main>
   );
 }
 
