@@ -32,9 +32,12 @@ const LeagueForm = (props) => {
           placeholder="Select a sport from the dropdown menu for your league"
           onChange={(event) => setSport(event.target.value)}
         />
-        <div class="dropdown">
+        <select><option value='soccer'>Soccer</option>
+        <option value='basketball'>Basketball</option>
+          </select>
+        <div className="dropdown">
           <button class="dropbtn">Select Sport</button>
-          <div class="dropdown-content">
+          <div className="dropdown-content">
             <a href="Soccer">Soccer</a>
             <a href="Basketball">Basketball</a>
             <a href="Football">Football</a>
