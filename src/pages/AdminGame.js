@@ -44,13 +44,31 @@ const AdminGame = (props) => {
   const stopTimer = () => {
     setTimerOn(false);
   };
+
+  const updateHome = () => {
+    setHome((prev) => {
+      return { ...prev, score: prev.score + 1 };
+    });
+  };
+
+  const updateAway = () => {
+    setAway((prev) => {
+      return { ...prev, score: prev.score + 1 };
+    });
+  };
+
   return (
     <main>
       <section>
         <ScoreBoard home={home} away={away} />
       </section>
       <section>
-        <GameConsole home={home} away={away} />
+        <GameConsole
+          home={home}
+          away={away}
+          updateHome={updateHome}
+          updateAway={updateAway}
+        />
       </section>
       <section>
         <Timer timer={timer} onStart={startTimer} onStop={stopTimer} />

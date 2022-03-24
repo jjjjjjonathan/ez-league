@@ -1,4 +1,5 @@
 const ScoreBoard = (props) => {
+  console.log("this is props from my scorboard", props);
   return (
     <article className="flex flex-row justify-center items-center text-2xl font-mono border-2  border-gray-200 rounded py-10 bg-black text-white ">
       <section></section>
@@ -15,7 +16,7 @@ const ScoreBoard = (props) => {
       <section className="bg-black flex flex-row border-2 text-white border-gray-500 rounded shadow-2xl font-mono  gap-x-px">
         <h1>{props.home.score}</h1>
         <h1>:</h1>
-        <h1>{props.home.score}</h1>
+        <h1>{props.away.score}</h1>
       </section>
       <section className="py-3 px-2 flex flex-row  font-mono">
         <img
