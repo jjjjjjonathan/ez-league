@@ -20,7 +20,7 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/leagues/:id" children={<LeagueHome />} />
+          <Route path="/leagues/:id" children={<LeagueHome state={state} setState={setState} />} />
           <Route exact path="/standing">
             <Standing teams={state.teams} />
           </Route>
