@@ -13,7 +13,7 @@ const TableList = (props) => {
   ));
 
   return (
-    <table className="shadow-2x1 font-[Poppins] border-1 border-gray-200 w-6/12 overflow-hidden content-center mx-auto">
+    <table className="shadow-2x1 font-[Poppins] border-1 border-gray-200 w-6/12 overflow-hidden content-center mx-auto ">
       <thead className="bg-gray-100  border-gray-200 gap-4">
         <tr>
           <th className="p-3 text-sm font-semibold tracking-wide text-center">
