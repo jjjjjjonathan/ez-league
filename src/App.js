@@ -31,7 +31,7 @@ function App() {
           <Route exact path="/parse">
             <CSVReader />
           </Route>
-          <Route exact path="/admin/game">
+          <Route exact path="/admin/game/:fixture_id">
             <AdminGame />
           </Route>
         </Switch>
