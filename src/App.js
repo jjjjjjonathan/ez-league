@@ -10,7 +10,7 @@ import LeagueForm2 from "./components/LeagueForm/index";
 import LeagueHome from "./pages/LeagueHome";
 
 function App() {
-  const { state } = useApplicationData();
+  const { state, setState } = useApplicationData();
   console.log(state);
   return (
     <div className="h-screen bg-gradient-to-b from-gray-50 to-gray-200">
@@ -31,7 +31,7 @@ function App() {
             <CSVReader />
           </Route>
           <Route exact path="/leagueform">
-            <LeagueForm2 state={state} />
+            <LeagueForm2 state={state} setState={setState} />
           </Route>
         </Switch>
       </Router>

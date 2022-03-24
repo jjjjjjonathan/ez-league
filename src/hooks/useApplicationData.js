@@ -34,7 +34,7 @@ const useApplicationData = () => {
     });
   }, []);
 
-  return { state };
+  return { state, setState };
 };
 
 export default useApplicationData;
