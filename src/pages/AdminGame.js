@@ -5,18 +5,19 @@ import GameConsole from "../components/GameAdmin/GameConsole";
 import EventTable from "../components/GameAdmin/EventTable";
 import Players from "../components/GameAdmin/Players";
 import { useParams } from "react-router-dom";
-import useApplicationData from "../hooks/useApplicationData";
+import axios from "axios";
+// import useApplicationData from "../hooks/useApplicationData";
 
 const AdminGame = (props) => {
   //fetch fixture data and store it into a state
-  const state = props.state;
+  const { state } = props;
 
   //param to check fixture_id
   let { fixture_id } = useParams();
 
   //set home and away state team
-  const [home, setHome] = useState({});
-  const [away, setAway] = useState({});
+  const [home, setHome] = useState({ score: 0, players: [] });
+  const [away, setAway] = useState({ score: 0, players: [] });
 
   //set state for timer
   const [timer, setTimer] = useState(0);
@@ -62,11 +63,15 @@ const AdminGame = (props) => {
     //need to fix
 
     //update state for home and away team data
-    setHome({
-      ...homeTeam,
-      score: fixture.home_team_score,
-      players: homePlayers,
-    });
+    if (homePlayers) {
+      setHome({
+        ...homeTeam,
+        score: fixture.home_team_score,
+        players: homePlayers,
+      });
+    }
+    if (awayPlayers) {
+    }
     setAway({
       ...awayTeam,
       score: fixture.home_team_score,
@@ -129,20 +134,23 @@ const AdminGame = (props) => {
     ]);
   };
 
-  const updateAway = () => {
-    setAway((prev) => {
+  const updateGoalHome = (string, score, fixtureId) => {
+    setHome((prev) => {
       return { ...prev, score: prev.score + 1 };
     });
-    setEvent((prev) => [
-      ...prev,
 
-      {
-        team: away.name,
-        time: Math.floor(timer / 60000),
-        event: "GOAL",
-        player: "jesus",
-      },
-    ]);
+    return axios.put("/api/fixtures/goals", { string, score, fixtureId });
+
+    // setEvent((prev) => [
+    //   ...prev,
+
+    //   {
+    //     team: away.name,
+    //     time: Math.floor(timer / 60000),
+    //     event: "GOAL",
+    //     player: "jesus",
+    //   },
+    // ]);
   };
 
   return (
@@ -154,8 +162,9 @@ const AdminGame = (props) => {
         <GameConsole
           home={home}
           away={away}
-          updateHome={updateHome}
-          updateAway={updateAway}
+          updateGoalHome={updateGoalHome}
+          // updateGoalAway={updateAway}
+          fixtureId={fixture.id}
         />
       </section>
       <section>
