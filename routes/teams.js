@@ -14,8 +14,10 @@ module.exports = db => {
 
   router.put('/', (req, res) => {
     const { queryString, queryParams } = req.body;
-    console.log(queryString, queryParams);
-    return db.query(queryString, queryParams);
+    return db.query(queryString, queryParams)
+      .then(data => {
+        res.status(201).json(data.rows);
+      });
   });
 
   // Select players from team of given id NEEDS TO BE DELETED
