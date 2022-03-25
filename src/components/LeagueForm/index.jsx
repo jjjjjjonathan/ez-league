@@ -28,7 +28,6 @@ const LeagueForm2 = (props) => {
       .put('/api/leagues', { leagueName, sport })
       .then((data) => {
         const id = data.data[0].id;
-        console.log(data.data[0]);
         setState((prev) => {
           const updatedLeagues = [
             ...prev.leagues,
@@ -47,7 +46,7 @@ const LeagueForm2 = (props) => {
           };
         });
         history.push({
-          pathname: `leagues/${id}`,
+          pathname: `leagues/${id}/admin`,
           newLeague: true,
         });
       })

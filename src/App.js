@@ -9,9 +9,10 @@ import CSVReader from "./components/CSVReader";
 import LeagueForm2 from "./components/LeagueForm/index";
 import LeagueHome from "./pages/LeagueHome";
 import Loading from "./components/Loading";
+import AdminLeague from "./pages/AdminLeague";
 
 function App() {
-  const { state, setState } = useApplicationData();
+  const { state, setState, setMultipleTeams } = useApplicationData();
   return !state.isReady ? <Loading /> : (
     <div className="h-screen bg-gradient-to-b from-gray-50 to-gray-200">
       <Router>
@@ -20,6 +21,9 @@ function App() {
           <Switch>
             <Route exact path="/">
               <Home />
+            </Route>
+            <Route exact path="/leagues/:id/admin">
+              <AdminLeague teams={state.teams} fixtures={state.fixtures} leagues={state.leagues} setMultipleTeams={setMultipleTeams} />
             </Route>
             <Route path="/leagues/:id" children={<LeagueHome state={state} setState={setState} />} />
             <Route exact path="/standing">

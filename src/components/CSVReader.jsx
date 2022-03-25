@@ -1,12 +1,17 @@
 import { useState } from 'react';
 import { parse } from 'papaparse';
+import { addBulkTeams } from '../helpers/csvParsers';
+import axios from 'axios';
 
-const save = (list) => {
-  list.length <= 0 ? console.log('list is empty') : console.log(list[0].data);
+const save = (list, id, teams, callback) => {
+  return axios.put('/api/teams', addBulkTeams(list, id)).then((data) => {
+    callback(data.data, teams);
+  });
 };
 
-const CSVReader = () => {
+const CSVReader = (props) => {
   const [list, setList] = useState([]);
+  const { id, setMultipleTeams, teams } = props;
 
   return (
     <div className="  mb-6 shadow-md bg-white rounded px-8 pt-6 pb-8 mb-4 m-20 ">
@@ -79,7 +84,7 @@ const CSVReader = () => {
         </label>
       </div>
       <button
-        onClick={() => save(list)}
+        onClick={() => save(list[0].data, id, teams, setMultipleTeams)}
         className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded md:items-center"
       >
         Submit

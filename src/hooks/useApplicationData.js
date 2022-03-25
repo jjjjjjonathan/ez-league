@@ -13,12 +13,16 @@ const useApplicationData = () => {
     isReady: false
   });
 
-  const setLeagues = (leagues) => setState(prev => {
-    return {
-      ...prev,
-      leagues
-    };
-  });
+  const setMultipleTeams = (teamsState, teamsArray) => {
+    const newTeams = [...teamsState];
+    teamsArray.forEach(newTeam => newTeams.push(newTeam));
+    setState(prev => {
+      return {
+        ...prev,
+        teams: newTeams
+      };
+    });
+  };
 
   useEffect(() => {
     Promise.all([
@@ -45,7 +49,7 @@ const useApplicationData = () => {
     });
   }, []);
 
-  return { state, setState };
+  return { state, setState, setMultipleTeams };
 };
 
 export default useApplicationData;
