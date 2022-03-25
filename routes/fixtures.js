@@ -29,7 +29,6 @@ module.exports = db => {
       WHERE fixtures.id = $1
       ORDER BY scheduled_time;`
     const values = [fixtureId]
-
     // :id = game 2 --> in game 2 ==> home vs away ==> man u v man c
     return db.query(sqlquery, values)
       .then(data => {
