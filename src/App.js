@@ -5,16 +5,18 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Standing from "./pages/Standing";
 import TeamForm from "./components/TeamForm";
+import MatchPage from "./components/MatchPage";
 import CSVReader from "./components/CSVReader";
 import LeagueForm2 from "./components/LeagueForm/index";
 import LeagueHome from "./pages/LeagueHome";
 import Loading from "./components/Loading";
 import AdminLeague from "./pages/AdminLeague";
+import AdminGame from "./pages/AdminGame";
 
 function App() {
   const { state, setState, setMultipleTeams } = useApplicationData();
   return !state.isReady ? <Loading /> : (
-    <div className="h-screen bg-gradient-to-b from-gray-50 to-gray-200">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-200">
       <Router>
         <Navbar />
         <div className="container mx-auto">
@@ -32,11 +34,17 @@ function App() {
             <Route exact path="/teamform">
               <TeamForm />
             </Route>
+            <Route exact path="/matchpage">
+              <MatchPage />
+            </Route>
             <Route exact path="/parse">
               <CSVReader />
             </Route>
             <Route exact path="/leagueform">
               <LeagueForm2 state={state} setState={setState} />
+            </Route>
+            <Route exact path="/admin/game">
+              <AdminGame />
             </Route>
           </Switch>
         </div>
