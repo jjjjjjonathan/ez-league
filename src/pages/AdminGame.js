@@ -19,8 +19,10 @@ const AdminGame = (props) => {
   const [away, setAway] = useState({});
 
   //set state for timer
-  const [timer, setTimer] = useState(0);
+  const [timer, setTimer] = useState({ minutes: 0, seconds: 0 });
   const [timerOn, setTimerOn] = useState(false);
+  const [timeMinutes, setTimeMinutes] = useState(0);
+  const [timeSeconds, setTimeSeconds] = useState(0);
 
   //set state for every event
   const [event, setEvent] = useState([
@@ -33,15 +35,18 @@ const AdminGame = (props) => {
     },
   ]);
 
+  const fixture = state.fixtures.find(
+    (fixture) => fixture.id === parseInt(fixture_id)
+  );
+
   useEffect(() => {
     //find the fixture that match with fixture_id
-    const fixture = state.fixtures.find(
-      (fixture) => fixture.id === parseInt(fixture_id)
-    );
 
     const gameEvents = state.fixtureEvents.filter(
       (fixtureEvent) => fixtureEvent.fixture_id === parseInt(fixture_id)
     );
+
+    console.log("this is game event ****", gameEvents);
 
     //find team id that match with team id in fixtures and set it for home and away
     const homeTeam = state.teams.find(
@@ -71,28 +76,65 @@ const AdminGame = (props) => {
     });
     setEvent([...gameEvents]);
 
+    // const parseTime = Math.floor(
+    //   (Date.now() - Date.parse(fixture.scheduled_time)) / (1000 * 60)
+    // );
+
     const parseTime = Math.floor(
-      (Date.now() - Date.parse(fixture.scheduled_time)) / (1000 * 60)
+      (Date.now() - Date.parse(fixture.scheduled_time)) / 1000
     );
-    console.log("this is a parse time", parseTime);
+
+    const eventTime = Math.floor(
+      (Date.parse(gameEvents.time) - Date.parse(fixture.scheduled_time)) /
+        (1000 * 60)
+    );
     // }
 
-    console.log("this is fixtures", fixture);
     //timer set initial interval to null
-    let interval = null;
+
+    // const countUpDate = new Date().getTime();
+
+    // interval = setInterval(() => {
+    //   const now = new Date().getTime();
+    //   const distance = countUpDate + now;
+    //   const minutes = Math.floor((distance % (60 * 60 * 1000)) / (1000 * 60));
+    //   const seconds = Math.floor((distance % (60 * 1000)) / (1000 * 60));
+    // });
 
     //check if state is true and set timer to run and else timer to stop
+    // if (timerOn) {
+    //   interval = setInterval(() => {
+    //     setTimer((prev) => prev + 10);
+    //     // setTimer((prev) => prev + parseTime);
+    //   }, 1000);
+    // } else {
+    //   clearInterval(interval);
+    // }
+    timeRun();
+
+    //clean up the state and set the watch for everytime change the state and time
+    // return () => clearInterval(interval, state);
+    // state, timerOn, fixture_id
+  }, [timerOn]);
+
+  const timeRun = () => {
+    let interval = null;
+    const countUpDate = new Date().getTime();
+    console.log("countUpdate*****", countUpDate);
     if (timerOn) {
       interval = setInterval(() => {
-        // setTimer((prev) => prev + 10);
-        setTimer();
-      }, 10);
+        const now = new Date().getTime();
+        const distance = countUpDate + now;
+        const minutes = Math.floor((distance % (60 * 60 * 1000)) / (1000 * 60));
+        const seconds = Math.floor((distance % (60 * 1000)) / (1000 * 60));
+        setTimeMinutes(minutes);
+        setTimeSeconds(seconds);
+        // setTimer({ minutes: minutes, seconds: seconds });
+      }, 1000);
     } else {
       clearInterval(interval);
     }
-    //clean up the state and set the watch for everytime change the state and time
-    return () => clearInterval(interval, state);
-  }, [state, timerOn, fixture_id]);
+  };
 
   //function to set timer to true and false
   const startTimer = () => {
@@ -149,13 +191,19 @@ const AdminGame = (props) => {
         />
       </section>
       <section>
-        <EventTable event={event} />
+        <EventTable event={event} fixture={fixture} />
       </section>
       <section>
         <Players home={home} away={away} event={event} />
       </section>
       <section>
-        <Timer timer={timer} onStart={startTimer} onStop={stopTimer} />
+        <Timer
+          timer={timer}
+          onStart={startTimer}
+          onStop={stopTimer}
+          minutes={timeMinutes}
+          seconds={timeSeconds}
+        />
       </section>
     </main>
   );
