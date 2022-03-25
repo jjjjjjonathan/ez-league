@@ -1,6 +1,7 @@
 import { GiSoccerBall, GiCardPlay } from "react-icons/gi";
 
 const GameConsole = (props) => {
+  console.log("this props gameconsole", props);
   return (
     <table className="mx-auto justify-center items-center text-2xl border-4 border-gray-200 rounded py-10 ">
       <thead>
@@ -13,13 +14,23 @@ const GameConsole = (props) => {
       <tbody>
         <tr>
           <td>
-            <button onClick={props.updateHome}> Goal</button>
+            <button
+              onClick={() =>
+                props.updateGoalHome(
+                  "home_team_score",
+                  props.home.score,
+                  props.fixtureId
+                )
+              }
+            >
+              Goal
+            </button>
           </td>
           <td>
             <GiSoccerBall />
           </td>
           <td>
-            <button onClick={props.updateAway}> Goal</button>
+            <button onClick={props.updateGoalAway}> Goal</button>
           </td>
         </tr>
         <tr>
