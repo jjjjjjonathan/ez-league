@@ -13,6 +13,9 @@ const Navbar = () => {
         <li className="md:mx-4 hover:text-gray-400">
           <Link to="/teamform">Team Form</Link>
         </li>
+        <li className="md:mx-4 hover:text-gray-400">
+          <Link to="/parse">Add Player</Link>
+        </li>
       </ul>
     </nav>
   );

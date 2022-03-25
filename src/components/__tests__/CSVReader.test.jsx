@@ -1,9 +1,9 @@
 import { render, cleanup } from '@testing-library/react';
 
-import TeamForm from '../TeamForm';
+import CSVReader from '../CSVReader';
 
 afterEach(cleanup);
 
 it('renders without crashing', () => {
-  render(<TeamForm />);
+  render(<CSVReader />);
 });

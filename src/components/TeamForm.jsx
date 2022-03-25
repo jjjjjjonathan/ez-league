@@ -54,10 +54,10 @@ const TeamForm = (props) => {
               />
             </div>
           </form>
-          <div className=" md:flex md:justify-center mb-6">
+          <div className="md:flex md:justify-center mb-6">
             <button
               onClick={() => validate(teamName, logo)}
-              class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded md:items-center"
+              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded md:items-center"
             >
               Submit
             </button>
