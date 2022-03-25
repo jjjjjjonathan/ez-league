@@ -34,8 +34,8 @@ function App() {
             <Route exact path="/teamform">
               <TeamForm />
             </Route>
-            <Route exact path="/matchpage">
-              <MatchPage />
+            <Route exact path="/matchpage/:id">
+              <MatchPage fixtures={state.fixtures} teams={state.teams} players={state.players} />
             </Route>
             <Route exact path="/parse">
               <CSVReader />

@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
-const MatchPage = () => {
-  const [timer, setTimer] = useState(0)
-  const [timerRef, setTimerRef] = useState()
+const MatchPage = (props) => {
+  const { id } = useParams();
+  const { fixtures, teams, players } = props;
+  const [timer, setTimer] = useState(0);
+  const [timerRef, setTimerRef] = useState();
   const startTimer = () => {
     const seconds = setInterval(() => {
-      setTimer(timer => timer + 1)
-    }, 1000)
-    setTimerRef(seconds)
-  }
+      setTimer(timer => timer + 1);
+    }, 1000);
+    setTimerRef(seconds);
+  };
 
   useEffect(() => {
     const matchId = 6; // FOR TEST PURPOSES WILL HAVE TO CHANGE DYNAMICALLY LATER 
-    const route = `/api/fixtures/${matchId}`
+    const route = `/api/fixtures/${matchId}`;
     Promise.all([
       axios.get(route)
     ]).then(all => {
-      console.log("----", all)
+      console.log("----", all);
       // setState(prev => ({
       //   ...prev,
       //   days: all[0].data,
@@ -25,13 +28,13 @@ const MatchPage = () => {
       //   interviewers: all[2].data
       // }));
     });
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (timer === 10) {
-      clearInterval(timerRef)
+      clearInterval(timerRef);
     }
-  }, [timer])
+  }, [timer]);
 
   //fetching the data
   fetch("DYNAMIC URL GOES HERE", {
@@ -43,7 +46,7 @@ const MatchPage = () => {
     }
   })
     .then(response => response.json().then(data => {
-      console.log(response.body)
+      console.log(response.body);
     }))
     .catch(err => {
       console.log(err);
@@ -77,7 +80,7 @@ const MatchPage = () => {
     </div>
 
   );
-}
+};
 
 
 export default MatchPage;
