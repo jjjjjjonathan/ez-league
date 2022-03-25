@@ -3,6 +3,7 @@ import ScoreBoard from "../components/GameAdmin/ScoreBoard";
 import Timer from "../components/GameAdmin/Timer";
 import GameConsole from "../components/GameAdmin/GameConsole";
 import EventTable from "../components/GameAdmin/EventTable";
+import Players from "../components/GameAdmin/Players";
 import { useParams } from "react-router-dom";
 import useApplicationData from "../hooks/useApplicationData";
 
@@ -37,6 +38,10 @@ const AdminGame = (props) => {
       (fixture) => fixture.id === parseInt(fixture_id)
     );
 
+    const gameEvents = state.fixtureEvents.filter(
+      (fixtureEvent) => fixtureEvent.fixture_id === parseInt(fixture_id)
+    );
+
     //update state for home and away team data
     if (fixture) {
       //find team id that match with team id in fixtures and set it for home and away
@@ -46,19 +51,32 @@ const AdminGame = (props) => {
       const awayTeam = state.teams.find(
         (team) => team.id === fixture.away_team_id
       );
-
-      const gameEvents = state.fixtureEvents.filter(
-        (fixtureEvent) => fixtureEvent.fixture_id === parseInt(fixture_id)
+      const homePlayers = state.players.filter(
+        (player) => player.team_id === fixture.home_team_id
       );
-
-      setHome({ ...homeTeam, score: fixture.home_team_score });
-      setAway({ ...awayTeam, score: fixture.home_team_score });
-
-      if (gameEvents) {
-        setEvent([...gameEvents]);
+      const awayPlayers = state.players.filter(
+        (player) => player.team_id === fixture.away_team_id
+      );
+      //need to fix
+      if (homePlayers) {
+        setHome({
+          ...homeTeam,
+          score: fixture.home_team_score,
+          players: homePlayers,
+        });
       }
 
-      console.log("this is gameEvents *****", gameEvents);
+      if (awayPlayers) {
+        setAway({
+          ...awayTeam,
+          score: fixture.home_team_score,
+          players: awayPlayers,
+        });
+      }
+    }
+
+    if (gameEvents) {
+      setEvent([...gameEvents]);
     }
 
     //timer set initial interval to null
@@ -131,6 +149,9 @@ const AdminGame = (props) => {
       </section>
       <section>
         <EventTable event={event} />
+      </section>
+      <section>
+        <Players home={home} away={away} event={event} />
       </section>
       <section>
         <Timer timer={timer} onStart={startTimer} onStop={stopTimer} />

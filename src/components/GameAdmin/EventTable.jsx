@@ -1,5 +1,4 @@
 const EventTable = (props) => {
-  console.log("this is props from eventTable****", props);
   const events = props.event.map((event) => {
     return (
       <tr keys={event.id}>
