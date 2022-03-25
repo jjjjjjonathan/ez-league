@@ -7,7 +7,17 @@ const useApplicationData = () => {
     teams: [],
     players: [],
     fixtures: [],
-    fixtureEvents: []
+    fixtureEvents: [],
+    fixtureTypes: [],
+    sports: [],
+    isReady: false
+  });
+
+  const setLeagues = (leagues) => setState(prev => {
+    return {
+      ...prev,
+      leagues
+    };
   });
 
   useEffect(() => {
@@ -29,7 +39,8 @@ const useApplicationData = () => {
         players: players.data,
         fixtures: fixtures.data,
         fixtureEvents: fixtureEvents.data,
-        fixtureTypes: fixtureTypes.data
+        fixtureTypes: fixtureTypes.data,
+        isReady: true
       }));
     });
   }, []);

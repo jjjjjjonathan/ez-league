@@ -30,15 +30,17 @@ const LeagueForm2 = (props) => {
         const id = data.data[0].id;
         console.log(data.data[0]);
         setState((prev) => {
-          const updatedLeagues = [...prev.leagues];
-          updatedLeagues.push({
-            id: id,
-            cover_photo: null,
-            logo: null,
-            name: leagueName,
-            sport_type_id: sport,
-            year: null,
-          });
+          const updatedLeagues = [
+            ...prev.leagues,
+            {
+              id: id,
+              cover_photo: null,
+              logo: null,
+              name: leagueName,
+              sport_type_id: sport,
+              year: null,
+            },
+          ];
           return {
             ...prev,
             leagues: updatedLeagues,
@@ -46,7 +48,6 @@ const LeagueForm2 = (props) => {
         });
         history.push({
           pathname: `leagues/${id}`,
-          state: state,
           newLeague: true,
         });
       })

@@ -1,14 +1,12 @@
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const LeagueHome = (props) => {
+  const { state } = props;
   let { id } = useParams();
-  const location = useLocation();
-  console.log(location);
 
-  const league = location.state.leagues.find((league) => league.id === id);
-  console.log(league);
+  const league = state.leagues.find((league) => league.id === parseInt(id, 10));
 
-  return <h1>Welcome to League {id}</h1>;
+  return <h1>Welcome to League {league.name}</h1>;
 };
 
 export default LeagueHome;
