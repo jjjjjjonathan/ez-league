@@ -14,7 +14,7 @@ const Navbar = () => {
           <Link to="/teamform">Team Form</Link>
         </li>
         <li className="md:mx-4 hover:text-gray-400">
-          <Link to="/parse">Add Player</Link>
+          <Link to="/leagueform">Create a New League</Link>
         </li>
       </ul>
     </nav>

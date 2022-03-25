@@ -7,8 +7,22 @@ const useApplicationData = () => {
     teams: [],
     players: [],
     fixtures: [],
-    fixtureEvents: []
+    fixtureEvents: [],
+    fixtureTypes: [],
+    sports: [],
+    isReady: false
   });
+
+  const setMultipleTeams = (teamsState, teamsArray) => {
+    const newTeams = [...teamsState];
+    teamsArray.forEach(newTeam => newTeams.push(newTeam));
+    setState(prev => {
+      return {
+        ...prev,
+        teams: newTeams
+      };
+    });
+  };
 
   useEffect(() => {
     Promise.all([
@@ -29,12 +43,13 @@ const useApplicationData = () => {
         players: players.data,
         fixtures: fixtures.data,
         fixtureEvents: fixtureEvents.data,
-        fixtureTypes: fixtureTypes.data
+        fixtureTypes: fixtureTypes.data,
+        isReady: true
       }));
     });
   }, []);
 
-  return { state };
+  return { state, setState, setMultipleTeams };
 };
 
 export default useApplicationData;
