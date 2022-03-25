@@ -6,6 +6,7 @@ import EventTable from "../components/GameAdmin/EventTable";
 import Players from "../components/GameAdmin/Players";
 import { useParams } from "react-router-dom";
 import useApplicationData from "../hooks/useApplicationData";
+import PlayerLists from "../components/GameAdmin/PlayerLists";
 
 const AdminGame = (props) => {
   //fetch fixture data and store it into a state
@@ -162,7 +163,8 @@ const AdminGame = (props) => {
         <EventTable event={event} fixture={fixture} />
       </section>
       <section>
-        <Players home={home} away={away} event={event} />
+        {/* <Players home={home} away={away} event={event} /> */}
+        <PlayerLists home={home} away={away} event={event} />
       </section>
       <section>
         <Timer timer={timer} onStart={startTimer} onStop={stopTimer} />
