@@ -92,7 +92,7 @@ const AdminGame = (props) => {
       ...prev,
 
       {
-        team: "HOME",
+        team: home.name,
         time: Math.floor(timer / 60000),
         event: "GOAL",
         player: "Werner",
@@ -104,6 +104,16 @@ const AdminGame = (props) => {
     setAway((prev) => {
       return { ...prev, score: prev.score + 1 };
     });
+    setEvent((prev) => [
+      ...prev,
+
+      {
+        team: away.name,
+        time: Math.floor(timer / 60000),
+        event: "GOAL",
+        player: "jesus",
+      },
+    ]);
   };
 
   return (
