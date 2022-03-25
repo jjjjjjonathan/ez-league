@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const MatchPage = () => {
   const [timer, setTimer] = useState(0)
@@ -9,6 +10,22 @@ const MatchPage = () => {
     }, 1000)
     setTimerRef(seconds)
   }
+
+  useEffect(() => {
+    const matchId = 6; // FOR TEST PURPOSES WILL HAVE TO CHANGE DYNAMICALLY LATER 
+    const route = `/api/fixtures/${matchId}`
+    Promise.all([
+      axios.get(route)
+    ]).then(all => {
+      console.log("----", all)
+      // setState(prev => ({
+      //   ...prev,
+      //   days: all[0].data,
+      //   appointments: all[1].data,
+      //   interviewers: all[2].data
+      // }));
+    });
+  }, [])
 
   useEffect(() => {
     if (timer === 10) {
@@ -43,7 +60,7 @@ const MatchPage = () => {
           <p>Visitor Team</p>
         </div>
         <div className="title-box flex flex-row flex-no-wrap justify-around items-center w-full">
-          <div class="team w-24">
+          <div clasName="team w-24">
             {/* <img  id="homeLogo" > */}
             <p id="homeName">Team name</p>
           </div>
