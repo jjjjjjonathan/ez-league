@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Standing from "./pages/Standing";
 import TeamForm from "./components/TeamForm";
+import MatchPage from "./components/MatchPage";
 import CSVReader from "./components/CSVReader";
 import AdminGame from "./pages/AdminGame";
 
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <Route exact path="/teamform">
             <TeamForm />
+          </Route>
+          <Route exact path="/matchpage">
+            <MatchPage />
           </Route>
           <Route exact path="/parse">
             <CSVReader />
