@@ -11,11 +11,13 @@ module.exports = db => {
   });
 
   // Add new leagues
-  router.post('/', (req, res) => {
-    const { name, logo, sport_type_id } = req.body.newTeam;
-    return db.query(`INSERT INTO leagues (name, logo, sport_type_id) VALUES ($1, $2, $3);`, [name, logo, sport_type_id])
-      .then(() => {
-        res.status(204).json({});
+  router.put('/', (req, res) => {
+    console.log(req.body);
+    const { leagueName, sport } = req.body;
+    return db.query(`INSERT INTO leagues (name, sport_type_id) VALUES ($1, $2) RETURNING *;`, [leagueName, sport.toString(10)])
+      .then((data) => {
+        console.log(data.rows);
+        res.status(201).json(data.rows);
       })
       .catch(error => console.log(error));
   });
