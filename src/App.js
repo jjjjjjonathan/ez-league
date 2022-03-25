@@ -15,7 +15,9 @@ import AdminGame from "./pages/AdminGame";
 
 function App() {
   const { state, setState, setMultipleTeams } = useApplicationData();
-  return !state.isReady ? <Loading /> : (
+  return !state.isReady ? (
+    <Loading />
+  ) : (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-200">
       <Router>
         <Navbar />
@@ -25,9 +27,17 @@ function App() {
               <Home />
             </Route>
             <Route exact path="/leagues/:id/admin">
-              <AdminLeague teams={state.teams} fixtures={state.fixtures} leagues={state.leagues} setMultipleTeams={setMultipleTeams} />
+              <AdminLeague
+                teams={state.teams}
+                fixtures={state.fixtures}
+                leagues={state.leagues}
+                setMultipleTeams={setMultipleTeams}
+              />
             </Route>
-            <Route path="/leagues/:id" children={<LeagueHome state={state} setState={setState} />} />
+            <Route
+              path="/leagues/:id"
+              children={<LeagueHome state={state} setState={setState} />}
+            />
             <Route exact path="/standing">
               <Standing teams={state.teams} />
             </Route>
@@ -44,7 +54,7 @@ function App() {
               <LeagueForm2 state={state} setState={setState} />
             </Route>
             <Route exact path="/admin/game/:fixture_id">
-              <AdminGame />
+              <AdminGame state={state} />
             </Route>
           </Switch>
         </div>
