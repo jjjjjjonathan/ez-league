@@ -9,7 +9,8 @@ import useApplicationData from "../hooks/useApplicationData";
 
 const AdminGame = (props) => {
   //fetch fixture data and store it into a state
-  const { state } = useApplicationData();
+  const state = props.state;
+
   //param to check fixture_id
   let { fixture_id } = useParams();
 
@@ -42,49 +43,49 @@ const AdminGame = (props) => {
       (fixtureEvent) => fixtureEvent.fixture_id === parseInt(fixture_id)
     );
 
+    //find team id that match with team id in fixtures and set it for home and away
+    const homeTeam = state.teams.find(
+      (team) => team.id === fixture.home_team_id
+    );
+    const awayTeam = state.teams.find(
+      (team) => team.id === fixture.away_team_id
+    );
+    const homePlayers = state.players.filter(
+      (player) => player.team_id === fixture.home_team_id
+    );
+    const awayPlayers = state.players.filter(
+      (player) => player.team_id === fixture.away_team_id
+    );
+    //need to fix
+
     //update state for home and away team data
-    if (fixture) {
-      //find team id that match with team id in fixtures and set it for home and away
-      const homeTeam = state.teams.find(
-        (team) => team.id === fixture.home_team_id
-      );
-      const awayTeam = state.teams.find(
-        (team) => team.id === fixture.away_team_id
-      );
-      const homePlayers = state.players.filter(
-        (player) => player.team_id === fixture.home_team_id
-      );
-      const awayPlayers = state.players.filter(
-        (player) => player.team_id === fixture.away_team_id
-      );
-      //need to fix
-      if (homePlayers) {
-        setHome({
-          ...homeTeam,
-          score: fixture.home_team_score,
-          players: homePlayers,
-        });
-      }
+    setHome({
+      ...homeTeam,
+      score: fixture.home_team_score,
+      players: homePlayers,
+    });
+    setAway({
+      ...awayTeam,
+      score: fixture.home_team_score,
+      players: awayPlayers,
+    });
+    setEvent([...gameEvents]);
 
-      if (awayPlayers) {
-        setAway({
-          ...awayTeam,
-          score: fixture.home_team_score,
-          players: awayPlayers,
-        });
-      }
-    }
+    const parseTime = Math.floor(
+      (Date.now() - Date.parse(fixture.scheduled_time)) / (1000 * 60)
+    );
+    console.log("this is a parse time", parseTime);
+    // }
 
-    if (gameEvents) {
-      setEvent([...gameEvents]);
-    }
-
+    console.log("this is fixtures", fixture);
     //timer set initial interval to null
     let interval = null;
+
     //check if state is true and set timer to run and else timer to stop
     if (timerOn) {
       interval = setInterval(() => {
-        setTimer((prev) => prev + 10);
+        // setTimer((prev) => prev + 10);
+        setTimer();
       }, 10);
     } else {
       clearInterval(interval);
