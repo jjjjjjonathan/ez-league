@@ -25,14 +25,14 @@ const GameConsole = (props) => {
         <tr>
           <td>Yellow Card</td>
           <td>
-            <GiCardPlay className="fill-red-500" />
+            <GiCardPlay className="fill-yellow-500" />
           </td>
           <td>Yellow Card</td>
         </tr>
         <tr>
           <td>Red Card</td>
           <td>
-            <GiCardPlay className="fill-yellow-500" />
+            <GiCardPlay className="fill-red-500" />
           </td>
           <td>Red Card</td>
         </tr>

@@ -43,7 +43,7 @@ function App() {
             <Route exact path="/leagueform">
               <LeagueForm2 state={state} setState={setState} />
             </Route>
-            <Route exact path="/admin/game">
+            <Route exact path="/admin/game/:fixture_id">
               <AdminGame />
             </Route>
           </Switch>
