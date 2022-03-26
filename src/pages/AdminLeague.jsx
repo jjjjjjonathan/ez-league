@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import CSVReader from '../components/CSVReader';
 
 const AdminLeague = (props) => {
@@ -9,7 +9,6 @@ const AdminLeague = (props) => {
     if (
       teams.filter((team) => team.league_id === parseInt(id, 10)).length < 1
     ) {
-      console.log(teams.filter((team) => team.league_id === id));
       return (
         <Fragment>
           <p>You don't seem to have any teams. Why don't you add some?</p>
@@ -25,10 +24,17 @@ const AdminLeague = (props) => {
 
   let { id } = useParams();
 
+  const leagueName = leagues.find(
+    (league) => league.id === parseInt(id, 10)
+  ).name;
+
   return (
     <Fragment>
-      <h1>Admin page for {id}</h1>
+      <h1>{leagueName} - Admin Page</h1>
+      <h2>Teams</h2>
       {checkEmptyLeague(id, teams)}
+      <h2>Schedule</h2>
+      <h2>Players</h2>
     </Fragment>
   );
 };

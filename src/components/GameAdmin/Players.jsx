@@ -1,9 +1,8 @@
 const Players = (props) => {
-  // const homePlayers = props.home.players.map((player) => {
-  //   return <td>{player.name}</td>;
-  // }); need to fix this map
-
-  console.log("this is my props from players", props);
+  const homePlayers = props.home.players.map((player) => {
+    return <td key={player.id}>{player.name}</td>;
+  });
+  console.log('this is my props from players', props);
   return (
     <table>
       <thead>
@@ -12,7 +11,9 @@ const Players = (props) => {
           <th>Away</th>
         </tr>
       </thead>
-      <tbody>{/* <tr>{homePlayers}</tr> */}</tbody>
+      <tbody>
+        <tr>{homePlayers}</tr>
+      </tbody>
     </table>
   );
 };
