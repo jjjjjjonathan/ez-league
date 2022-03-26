@@ -404,9 +404,15 @@ const AdminGame = (props) => {
           awayYellowEvent={updateAwayYellowEvent}
         />
       </section>
-      {/* <section>
-        <EventTable event={event} fixture={fixture} eventsInGame={eventsInGame} eventTypes={state.fixtureTypes} teams={state.teams} players={state.players} key={eventsInGame.id} />
-      </section> */}
+      <section>
+        <EventTable
+          fixtureId={fixture.id}
+          fixtureEvents={state.fixtureEvents}
+          eventTypes={state.fixtureTypes}
+          teams={state.teams}
+          players={state.players}
+        />
+      </section>
       <section>
         <Players home={home} away={away} event={event} />
       </section>

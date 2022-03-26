@@ -1,7 +1,13 @@
-const EventTable = (props) => {
-  console.log('this is game schedule', props);
+import EventTableItem from "./EventTableItem";
 
-  const { eventsInGame, eventTypes, teams, players } = props;
+const EventTable = (props) => {
+  console.log("this is game schedule", props);
+
+  const { fixtureId, fixtureEvents, eventTypes, teams, players } = props;
+
+  const thisFixtureEvents = fixtureEvents.filter(
+    (fixture) => fixture.fixture_id === fixtureId
+  );
 
   const findTeamName = (id) => {
     return teams.find((team) => team.id === id).name;
@@ -16,14 +22,19 @@ const EventTable = (props) => {
   };
 
   // const gameStart = props.fixture.first_half_start_time;
-  const events = props.eventsInGame.map((event) => {
+  const events = thisFixtureEvents.map((event) => {
     return (
-      <tr>
-        <td>{findTeamName(event.team_id)}</td>
-        <td> placeholder for time </td>
-        <td>{findEventType(event.fixture_event_type_id)}</td>
-        <td>{findGoalScorerName(event.goal_scorer_id)}</td>
-      </tr>
+      <EventTableItem
+        key={event.id}
+        value={event.id}
+        type={event.fixture_event_type_id}
+        goalScorer={event.goal_scorer_id}
+        team={event.team_id}
+        listOfTeams={teams}
+        listOfPlayers={players}
+        time={event.time}
+        listOfTypes={eventTypes}
+      />
     );
   });
   return (
