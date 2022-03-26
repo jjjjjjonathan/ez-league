@@ -6,7 +6,7 @@ import EventTable from "../components/GameAdmin/EventTable";
 import Players from "../components/GameAdmin/Players";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { GiJetPack } from "react-icons/gi";
+import { GiConsoleController, GiJetPack } from "react-icons/gi";
 // import useAdminGameHooks from "../hooks/useAdminGameHooks";
 // import useApplicationData from "../hooks/useApplicationData";
 
@@ -87,23 +87,28 @@ const AdminGame = (props) => {
           seconds,
         });
         if (minutes === 45 || fixture.status === "Halftime") {
-          // clearInterval(timer1);
           setTimerOn(false);
         }
       }, 1000);
     }
     let timer2;
+
     if (fixture.status === "Second Half") {
+      setTimerOn(true);
       timer2 = setInterval(() => {
         let minutes = 0;
         let seconds =
           Math.floor(
             (Date.now() - Date.parse(fixture.second_half_start_time)) / 1000
           ) + 2700;
+
         if (seconds >= 60) {
           minutes = Math.floor(seconds / 60);
           seconds -= 60 * minutes;
         }
+
+
+
         setTime({
           minutes,
           seconds,
@@ -131,7 +136,7 @@ const AdminGame = (props) => {
     fixture.second_half_start_time,
     timerOn,
   ]);
-
+  console.log("LOOKING FOR THIS FIXTURE", fixture);
   // useEffect(() => {
   //   //find the fixture that match with fixture_id
 
@@ -265,6 +270,7 @@ const AdminGame = (props) => {
     return axios
       .put("/api/fixtures/start2", { fixtureId, string })
       .then((data) => {
+        console.log(data);
         updateFixtures(state.fixtures, data.data.rows[0]);
       });
   };
