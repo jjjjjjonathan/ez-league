@@ -14,15 +14,7 @@ const GameConsole = (props) => {
       <tbody>
         <tr>
           <td>
-            <button
-              onClick={() =>
-                props.updateGoalHome(
-                  "home_team_score",
-                  props.home.score,
-                  props.fixtureId
-                )
-              }
-            >
+            <button onClick={() => props.updateGoalHome(props.fixtureId)}>
               Goal
             </button>
           </td>
@@ -30,7 +22,9 @@ const GameConsole = (props) => {
             <GiSoccerBall />
           </td>
           <td>
-            <button onClick={props.updateGoalAway}> Goal</button>
+            <button onClick={() => props.updateGoalAway(props.fixtureId)}>
+              Goal
+            </button>
           </td>
         </tr>
         <tr>

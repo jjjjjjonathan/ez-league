@@ -74,7 +74,7 @@ const AdminGame = (props) => {
     }
     setAway({
       ...awayTeam,
-      score: fixture.home_team_score,
+      score: fixture.away_team_score,
       players: awayPlayers,
     });
     setEvent([...gameEvents]);
@@ -134,25 +134,45 @@ const AdminGame = (props) => {
     ]);
   };
 
-  const updateGoalHome = (string, score, fixtureId) => {
+  // const updateGoalHome = (score, fixtureId) => {
+  //   setHome((prev) => {
+  //     return { ...prev, score: prev.score + 1 };
+  //   });
+
+  //   return axios.put("/api/fixtures/homegoals", { score, fixtureId });
+
+  //   // setEvent((prev) => [
+  //   //   ...prev,
+
+  //   //   {
+  //   //     team: away.name,
+  //   //     time: Math.floor(timer / 60000),
+  //   //     event: "GOAL",
+  //   //     player: "jesus",
+  //   //   },
+  //   // ]);
+  // };
+
+  const updateGoalHome = (fixtureId) => {
     setHome((prev) => {
       return { ...prev, score: prev.score + 1 };
     });
 
-    return axios.put("/api/fixtures/goals", { string, score, fixtureId });
-
-    // setEvent((prev) => [
-    //   ...prev,
-
-    //   {
-    //     team: away.name,
-    //     time: Math.floor(timer / 60000),
-    //     event: "GOAL",
-    //     player: "jesus",
-    //   },
-    // ]);
+    return axios.put("/api/fixtures/homegoals", {
+      score: home.score + 1,
+      fixtureId,
+    });
   };
 
+  const updateGoalAway = (fixtureId) => {
+    setAway((prev) => {
+      return { ...prev, score: prev.score + 1 };
+    });
+    return axios.put("/api/fixtures/awaygoals", {
+      score: away.score + 1,
+      fixtureId,
+    });
+  };
   return (
     <main>
       <section>
@@ -163,7 +183,7 @@ const AdminGame = (props) => {
           home={home}
           away={away}
           updateGoalHome={updateGoalHome}
-          // updateGoalAway={updateAway}
+          updateGoalAway={updateGoalAway}
           fixtureId={fixture.id}
         />
       </section>
