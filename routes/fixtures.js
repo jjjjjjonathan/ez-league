@@ -10,7 +10,7 @@ module.exports = (db) => {
         [score, fixtureId]
       )
       .then((data) => {
-        res.status(200).json(data.data);
+        res.status(200).json(data);
       });
   });
 
@@ -22,7 +22,24 @@ module.exports = (db) => {
         [score, fixtureId]
       )
       .then((data) => {
-        res.status(200).json(data.data);
+        res.status(200).json(data);
+      });
+  });
+
+  // Start halves
+  router.put("/start1", (req, res) => {
+    const { fixtureId, string } = req.body;
+    return db.query("UPDATE fixtures SET status = $1, first_half_start_time = NOW() WHERE id = $2 RETURNING *;", [string, fixtureId])
+      .then(data => {
+        res.status(200).json(data);
+      });
+  });
+
+  router.put("/start2", (req, res) => {
+    const { fixtureId, string } = req.body;
+    return db.query("UPDATE fixtures SET status = $1, second_half_start_time = NOW() WHERE id = $2 RETURNING *;", [string, fixtureId])
+      .then(data => {
+        res.status(200).json(data);
       });
   });
 
