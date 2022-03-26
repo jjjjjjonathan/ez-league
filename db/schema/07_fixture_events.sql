@@ -10,5 +10,6 @@ CREATE TABLE fixture_events (
   sub_in_id INTEGER REFERENCES players(id) ON DELETE CASCADE,
   sub_out_id INTEGER REFERENCES players(id) ON DELETE CASCADE,
   yellow_card_id INTEGER REFERENCES players(id) ON DELETE CASCADE,
-  red_card_id INTEGER REFERENCES players(id) ON DELETE CASCADE
+  red_card_id INTEGER REFERENCES players(id) ON DELETE CASCADE,
+  half INTEGER
 );
