@@ -10,7 +10,7 @@ module.exports = (db) => {
         [score, fixtureId]
       )
       .then((data) => {
-        res.status(200).json(data.data);
+        res.status(200).json(data);
       });
   });
 
@@ -22,7 +22,32 @@ module.exports = (db) => {
         [score, fixtureId]
       )
       .then((data) => {
-        res.status(200).json(data.data);
+        res.status(200).json(data);
+      });
+  });
+
+  // Start halves
+  router.put("/start1", (req, res) => {
+    const { fixtureId, string } = req.body;
+    return db.query("UPDATE fixtures SET status = $1, first_half_start_time = NOW() WHERE id = $2 RETURNING *;", [string, fixtureId])
+      .then(data => {
+        res.status(200).json(data);
+      });
+  });
+
+  router.put("/start2", (req, res) => {
+    const { fixtureId, string } = req.body;
+    return db.query("UPDATE fixtures SET status = $1, second_half_start_time = NOW() WHERE id = $2 RETURNING *;", [string, fixtureId])
+      .then(data => {
+        res.status(200).json(data);
+      });
+  });
+
+  router.put("/end", (req, res) => {
+    const { fixtureId, string } = req.body;
+    return db.query("UPDATE fixtures SET status = $1 WHERE id = $2 RETURNING *;", [string, fixtureId])
+      .then(data => {
+        res.status(200).json(data);
       });
   });
 
@@ -68,11 +93,21 @@ module.exports = (db) => {
     });
   });
 
+  // Goal scored EVENT
+  router.put('/events', (req, res) => {
+    const { fixtureId, teamId, eventTypeId } = req.body;
+    return db.query('INSERT INTO fixture_events (fixture_id, team_id, fixture_event_type_id) VALUES ($1, $2, $3) RETURNING *;', [fixtureId, teamId, eventTypeId])
+      .then(data => {
+        res.status(201).json(data.rows);
+      });
+  });
+
   // Get all fixture event types
   router.get("/types", (req, res) => {
     return db.query("SELECT * FROM fixture_event_types;").then((data) => {
       res.json(data.rows);
     });
+
   });
   return router;
 };
