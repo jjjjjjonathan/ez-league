@@ -312,65 +312,70 @@ const AdminGame = (props) => {
       });
   };
 
-  const updateHomeGoalEvent = (fixtureId, teamId) => {
+  const updateHomeGoalEvent = (fixtureId, teamId, half) => {
     return axios
       .put("/api/fixtures/new_home_goal", {
         fixtureId,
         teamId,
         time: "NOW()",
         type: 1,
+        half,
       })
       .then((data) => {
         newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
       });
   };
 
-  const updateAwayGoalEvent = (fixtureId, teamId) => {
+  const updateAwayGoalEvent = (fixtureId, teamId, half) => {
     return axios
       .put("/api/fixtures/new_away_goal", {
         fixtureId,
         teamId,
         time: "NOW()",
         type: 1,
+        half,
       })
       .then((data) => {
         newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
       });
   };
 
-  const updateHomeYellowEvent = (fixtureId, teamId) => {
+  const updateHomeYellowEvent = (fixtureId, teamId, half) => {
     return axios
       .put("/api/fixtures/yellow_home_card", {
         fixtureId,
         teamId,
         time: "NOW()",
         type: 3,
+        half,
       })
       .then((data) => {
         newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
       });
   };
 
-  const updateHomeRedEvent = (fixtureId, teamId) => {
+  const updateHomeRedEvent = (fixtureId, teamId, half) => {
     return axios
       .put("/api/fixtures/red_home_card", {
         fixtureId,
         teamId,
         time: "NOW()",
         type: 4,
+        half,
       })
       .then((data) => {
         newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
       });
   };
 
-  const updateAwayYellowEvent = (fixtureId, teamId) => {
+  const updateAwayYellowEvent = (fixtureId, teamId, half) => {
     return axios
       .put("/api/fixtures/yellow_away_card", {
         fixtureId,
         teamId,
         time: "NOW()",
         type: 3,
+        half,
       })
       .then((data) => {
         newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
@@ -384,7 +389,7 @@ const AdminGame = (props) => {
         teamId,
         time: "NOW()",
         type: 4,
-        half
+        half,
       })
       .then((data) => {
         newFixturesEvent(state.fixtureEvents, data.data.rows[0]);

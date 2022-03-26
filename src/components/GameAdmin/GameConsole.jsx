@@ -1,4 +1,4 @@
-import { GiSoccerBall, GiCardPlay } from 'react-icons/gi';
+import { GiSoccerBall, GiCardPlay } from "react-icons/gi";
 
 const GameConsole = (props) => {
   const {
@@ -56,33 +56,33 @@ const GameConsole = (props) => {
         </tr>
         <tr>
           <td>
-            <button onClick={() => homeGoalEvent(fixtureId, home.id)}>
-              Goal Event
+            <button onClick={() => homeGoalEvent(fixtureId, home.id, 1)}>
+              Goal Event 1st Half
             </button>
           </td>
           <td>
             <GiSoccerBall />
           </td>
           <td>
-            <button onClick={() => awayGoalEvent(fixtureId, away.id)}>
-              Goal Event
+            <button onClick={() => awayGoalEvent(fixtureId, away.id, 1)}>
+              Goal Event 1st Half
             </button>
           </td>
         </tr>
         <tr>
-          <button onClick={() => homeYellowEvent(fixtureId, home.id)}>
-            Yellow Card
+          <button onClick={() => homeYellowEvent(fixtureId, home.id, 1)}>
+            Yellow Card 1st Half
           </button>
           <td>
             <GiCardPlay className="fill-yellow-500" />
           </td>
-          <button onClick={() => awayYellowEvent(fixtureId, away.id)}>
-            Yellow Card
+          <button onClick={() => awayYellowEvent(fixtureId, away.id, 1)}>
+            Yellow Card 1st Half
           </button>
         </tr>
         <tr>
-          <button onClick={() => homeRedEvent(fixtureId, home.id)}>
-            Red Card
+          <button onClick={() => homeRedEvent(fixtureId, home.id, 1)}>
+            Red Card 1st Half
           </button>
           <td>
             <GiCardPlay className="fill-red-500" />
@@ -94,7 +94,7 @@ const GameConsole = (props) => {
 
         <tr>
           <td>
-            <button onClick={() => homeGoalEvent(fixtureId, home.id)}>
+            <button onClick={() => homeGoalEvent(fixtureId, home.id, 2)}>
               Goal Event 2nd Half
             </button>
           </td>
@@ -102,24 +102,24 @@ const GameConsole = (props) => {
             <GiSoccerBall />
           </td>
           <td>
-            <button onClick={() => awayGoalEvent(fixtureId, away.id)}>
+            <button onClick={() => awayGoalEvent(fixtureId, away.id, 2)}>
               Goal Event 2nd Half
             </button>
           </td>
         </tr>
         <tr>
-          <button onClick={() => homeYellowEvent(fixtureId, home.id)}>
+          <button onClick={() => homeYellowEvent(fixtureId, home.id, 2)}>
             Yellow Card 2nd Half
           </button>
           <td>
             <GiCardPlay className="fill-yellow-500" />
           </td>
-          <button onClick={() => awayYellowEvent(fixtureId, away.id)}>
+          <button onClick={() => awayYellowEvent(fixtureId, away.id, 2)}>
             Yellow Card 2nd Half
           </button>
         </tr>
         <tr>
-          <button onClick={() => homeRedEvent(fixtureId, home.id)}>
+          <button onClick={() => homeRedEvent(fixtureId, home.id, 2)}>
             Red Card 2nd Half
           </button>
           <td>
