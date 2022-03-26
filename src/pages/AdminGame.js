@@ -89,7 +89,7 @@ const AdminGame = (props) => {
 
     const eventTime = Math.floor(
       (Date.parse(gameEvents.time) - Date.parse(fixture.scheduled_time)) /
-        (1000 * 60)
+      (1000 * 60)
     );
     // }
 
@@ -153,23 +153,23 @@ const AdminGame = (props) => {
   //   // ]);
   // };
 
-  const updateGoalHome = (fixtureId) => {
+  const updateGoalHome = (fixtureId, number) => {
     setHome((prev) => {
-      return { ...prev, score: prev.score + 1 };
+      return { ...prev, score: prev.score + number };
     });
 
     return axios.put("/api/fixtures/homegoals", {
-      score: home.score + 1,
+      score: number > 0 ? home.score + 1 : home.score - 1,
       fixtureId,
     });
   };
 
-  const updateGoalAway = (fixtureId) => {
+  const updateGoalAway = (fixtureId, number) => {
     setAway((prev) => {
-      return { ...prev, score: prev.score + 1 };
+      return { ...prev, score: prev.score + number };
     });
     return axios.put("/api/fixtures/awaygoals", {
-      score: away.score + 1,
+      score: number > 0 ? away.score + 1 : away.score - 1,
       fixtureId,
     });
   };
