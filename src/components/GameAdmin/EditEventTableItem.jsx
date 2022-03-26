@@ -17,6 +17,15 @@ const EditEventTableItem = (props) => {
     eventHalf,
   } = props;
 
+  const filterTeamPlayers = (playersArray, teamId) => {
+    const filteredPlayers = playersArray.filter(
+      (player) => player.team_id === teamId
+    );
+    return filteredPlayers.map((player) => {
+      return <option value={player.id}>{player.name}</option>;
+    });
+  };
+
   const findTeamName = (team, listOfTeams) => {
     let selectedTeam = listOfTeams.find((teamList) => teamList.id === team);
     return selectedTeam.name;
@@ -64,14 +73,12 @@ const EditEventTableItem = (props) => {
       </td>
       <td className="py-3 px-6 ">{findEventType(type, listOfTypes)}</td>
       <td className="py-3 px-6 ">
-        {findPlayerName(
-          { goalScorer, subIn, yellowCarder, redCarder },
-          listOfPlayers,
-          type
-        )}
+        <select name="" id="">
+          {filterTeamPlayers(listOfPlayers, team)}
+        </select>
       </td>
       <td>
-        <button>Fransis</button>
+        <button>Submit</button>
       </td>
       <td>
         <button>Delete</button>
