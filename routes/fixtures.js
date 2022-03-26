@@ -43,6 +43,14 @@ module.exports = (db) => {
       });
   });
 
+  router.put("/end", (req, res) => {
+    const { fixtureId, string } = req.body;
+    return db.query("UPDATE fixtures SET status = $1 WHERE id = $2 RETURNING *;", [string, fixtureId])
+      .then(data => {
+        res.status(200).json(data);
+      });
+  });
+
   // Get whole schedule of all leagues to put into state
   router.get("/", (req, res) => {
     return db
