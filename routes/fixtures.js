@@ -4,7 +4,7 @@ const router = express.Router();
 module.exports = db => {
   // Get whole schedule of all leagues to put into state
   router.get('/', (req, res) => {
-    return db.query('SELECT * FROM fixtures ORDER BY scheduled_time;')
+    return db.query('SELECT * FROM fixtures ORDER BY scheduled_time, id;')
       .then(data => {
         res.json(data.rows);
       });
@@ -43,8 +43,32 @@ module.exports = db => {
         res.json(data.rows);
       });
   });
+
+  // Goal scored
+  router.put('/events', (req, res) => {
+    const { fixtureId, teamId, eventTypeId } = req.body;
+    return db.query('INSERT INTO fixture_events (fixture_id, team_id, fixture_event_type_id) VALUES ($1, $2, $3) RETURNING *;', [fixtureId, teamId, eventTypeId])
+      .then(data => {
+        res.status(201).json(data.rows);
+      });
+  });
+
+  router.put("/homegoals", (req, res) => {
+    const { score, fixtureId } = req.body;
+    return db
+      .query("UPDATE fixtures SET home_team_score = $1 WHERE id = $2 RETURNING * ;", [
+        score,
+        fixtureId,
+      ])
+      .then((data) => {
+        res.status(200).json(data.data);
+      });
+  });
+
+
   // Get all fixture event types
   router.get('/types', (req, res) => {
+
     return db.query('SELECT * FROM fixture_event_types;')
       .then(data => {
         res.json(data.rows);
