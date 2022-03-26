@@ -3,4 +3,4 @@ VALUES (1, 1, now() + INTERVAL '2 minutes', 1, 4, 3, null, null, null, null),
 (1, 2, now() + INTERVAL '5 minutes', 1, 12, 11, null, null, null, null),
 (1, 2, now() + INTERVAL '6 minutes', 2, null, null, 21, 22, null, null),
 (1, 2, now() + INTERVAL '10 minutes', 3, null, null, null, null, 5, null),
-(1, 2, now() + INTERVAL '15 minutes', 3, null, null, null, null, null, 6);
+(1, 2, now() + INTERVAL '15 minutes', 4, null, null, null, null, null, 6);
