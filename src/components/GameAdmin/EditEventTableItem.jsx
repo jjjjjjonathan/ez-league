@@ -1,21 +1,20 @@
-const EventTableItem = (props) => {
+const EditEventTableItem = (props) => {
   const {
+    value,
     type,
     goalScorer,
     team,
     listOfTeams,
     listOfPlayers,
-    value,
     time,
     listOfTypes,
     yellowCarder,
     redCarder,
     subIn,
     firstHalfTime,
-    secondHalfTime,
     fixtureStatus,
+    secondHalfTime,
     eventHalf,
-    onClick,
   } = props;
 
   const findTeamName = (team, listOfTeams) => {
@@ -72,13 +71,7 @@ const EventTableItem = (props) => {
         )}
       </td>
       <td>
-        <button
-          onClick={(event) => {
-            onClick(event, value);
-          }}
-        >
-          Edit
-        </button>
+        <button>Fransis</button>
       </td>
       <td>
         <button>Delete</button>
@@ -87,4 +80,4 @@ const EventTableItem = (props) => {
   );
 };
 
-export default EventTableItem;
+export default EditEventTableItem;
