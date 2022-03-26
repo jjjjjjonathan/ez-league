@@ -12,24 +12,22 @@ import { GiJetPack } from "react-icons/gi";
 
 const AdminGame = (props) => {
   //fetch fixture data and store it into a state
-  const { state, updateFixtures } = props;
+  const { state, updateFixtures, newFixturesEvent } = props;
 
   //param to check fixture_id
   let { fixture_id } = useParams();
 
   // const { homeScore, awayScore, updateHomeGoals } = useAdminGameHooks(fixture_id, state.fixtures);
 
-  const eventsInGame = state.fixtureEvents.filter(event => event.fixture_id === parseInt(fixture_id, 10));
+  const eventsInGame = state.fixtureEvents.filter(
+    (event) => event.fixture_id === parseInt(fixture_id, 10)
+  );
 
   const fixture = state.fixtures.find(
     (fixture) => fixture.id === parseInt(fixture_id, 10)
   );
-  const homeTeam = state.teams.find(
-    (team) => team.id === fixture.home_team_id
-  );
-  const awayTeam = state.teams.find(
-    (team) => team.id === fixture.away_team_id
-  );
+  const homeTeam = state.teams.find((team) => team.id === fixture.home_team_id);
+  const awayTeam = state.teams.find((team) => team.id === fixture.away_team_id);
   const homePlayers = state.players.filter(
     (player) => player.team_id === fixture.home_team_id
   );
@@ -38,8 +36,16 @@ const AdminGame = (props) => {
   );
 
   //set home and away state team
-  const [home, setHome] = useState({ ...homeTeam, score: fixture.home_team_score, players: homePlayers });
-  const [away, setAway] = useState({ ...awayTeam, score: fixture.away_team_score, players: awayPlayers });
+  const [home, setHome] = useState({
+    ...homeTeam,
+    score: fixture.home_team_score,
+    players: homePlayers,
+  });
+  const [away, setAway] = useState({
+    ...awayTeam,
+    score: fixture.away_team_score,
+    players: awayPlayers,
+  });
 
   //set state for timer
   const [timer, setTimer] = useState(0);
@@ -47,10 +53,8 @@ const AdminGame = (props) => {
 
   const [time, setTime] = useState({
     minutes: 0,
-    seconds: 0
+    seconds: 0,
   });
-
-
 
   //set state for every event
   const [event, setEvent] = useState([
@@ -71,14 +75,16 @@ const AdminGame = (props) => {
       setTimerOn(true);
       timer1 = setInterval(() => {
         let minutes = 0;
-        let seconds = Math.floor((Date.now() - Date.parse(fixture.first_half_start_time)) / 1000);
+        let seconds = Math.floor(
+          (Date.now() - Date.parse(fixture.first_half_start_time)) / 1000
+        );
         if (seconds >= 60) {
           minutes = Math.floor(seconds / 60);
           seconds -= 60 * minutes;
         }
         setTime({
           minutes,
-          seconds
+          seconds,
         });
         if (minutes === 45 || fixture.status === "Halftime") {
           // clearInterval(timer1);
@@ -86,19 +92,22 @@ const AdminGame = (props) => {
         }
       }, 1000);
     }
+    let timer2;
     if (fixture.status === "Second Half") {
-      timer1 = setInterval(() => {
+      timer2 = setInterval(() => {
         let minutes = 0;
-        let seconds = Math.floor((Date.now() - Date.parse(fixture.second_half_start_time)) / 1000) + 2700;
+        let seconds =
+          Math.floor(
+            (Date.now() - Date.parse(fixture.second_half_start_time)) / 1000
+          ) + 2700;
         if (seconds >= 60) {
           minutes = Math.floor(seconds / 60);
           seconds -= 60 * minutes;
         }
         setTime({
           minutes,
-          seconds
+          seconds,
         });
-
 
         if (minutes === 90 || fixture.status === "Final") {
           // clearInterval(timer1);
@@ -109,16 +118,22 @@ const AdminGame = (props) => {
 
     if (!timerOn) {
       clearInterval(timer1);
+      clearInterval(timer2);
     }
 
-    return () => clearInterval(timer1);
-  }, [fixture.status, fixture.first_half_start_time, fixture.second_half_start_time, timerOn]);
-
+    return () => {
+      clearInterval(timer1);
+      clearInterval(timer2);
+    };
+  }, [
+    fixture.status,
+    fixture.first_half_start_time,
+    fixture.second_half_start_time,
+    timerOn,
+  ]);
 
   // useEffect(() => {
   //   //find the fixture that match with fixture_id
-
-
 
   //   const gameEvents = state.fixtureEvents.filter(
   //     (fixtureEvent) => fixtureEvent.fixture_id === parseInt(fixture_id)
@@ -194,29 +209,30 @@ const AdminGame = (props) => {
   };
   const stopTimer = (fixtureId, halftime = false) => {
     const string = halftime ? "Halftime" : "Final";
-    return axios.put('/api/fixtures/end', { fixtureId, string })
-      .then(data => {
+    return axios
+      .put("/api/fixtures/end", { fixtureId, string })
+      .then((data) => {
         setTimerOn(false);
         updateFixtures(state.fixtures, data.data.rows[0]);
       });
   };
 
   //function to update event
-  const updateHome = () => {
-    setHome((prev) => {
-      return { ...prev, score: prev.score + 1 };
-    });
-    setEvent((prev) => [
-      ...prev,
+  // const updateHome = () => {
+  //   setHome((prev) => {
+  //     return { ...prev, score: prev.score + 1 };
+  //   });
+  //   setEvent((prev) => [
+  //     ...prev,
 
-      {
-        team: home.name,
-        time: Math.floor(timer / 60000),
-        event: "GOAL",
-        player: "Werner",
-      },
-    ]);
-  };
+  //     {
+  //       team: home.name,
+  //       time: Math.floor(timer / 60000),
+  //       event: "GOAL",
+  //       player: "Werner",
+  //     },
+  //   ]);
+  // };
 
   // const updateGoalHome = (score, fixtureId) => {
   //   setHome((prev) => {
@@ -238,45 +254,136 @@ const AdminGame = (props) => {
   // };
 
   const startHalf1 = (fixtureId, string) => {
-    return axios.put('/api/fixtures/start1', { fixtureId, string })
-      .then(data => {
+    return axios
+      .put("/api/fixtures/start1", { fixtureId, string })
+      .then((data) => {
         updateFixtures(state.fixtures, data.data.rows[0]);
       });
   };
 
   const startHalf2 = (fixtureId, string) => {
-    return axios.put('/api/fixtures/start2', { fixtureId, string })
-      .then(data => {
+    return axios
+      .put("/api/fixtures/start2", { fixtureId, string })
+      .then((data) => {
         updateFixtures(state.fixtures, data.data.rows[0]);
       });
   };
 
   const updateGoalHome = (fixtureId, number) => {
     setHome((prev) => {
-      return { ...prev, score: prev.score + number < 0 ? 0 : prev.score + number };
+      return {
+        ...prev,
+        score: prev.score + number < 0 ? 0 : prev.score + number,
+      };
     });
 
-    return axios.put("/api/fixtures/homegoals", {
-      score: number > 0 ? home.score + 1 : (home.score - 1 < 0 ? 0 : home.score - 1),
-      fixtureId,
-    })
-      .then(data => {
+    return axios
+      .put("/api/fixtures/homegoals", {
+        score:
+          number > 0 ? home.score + 1 : home.score - 1 < 0 ? 0 : home.score - 1,
+        fixtureId,
+      })
+      .then((data) => {
         updateFixtures(state.fixtures, data.data.rows[0]);
       });
   };
 
   const updateGoalAway = (fixtureId, number) => {
     setAway((prev) => {
-      return { ...prev, score: prev.score + number < 0 ? 0 : prev.score + number };
+      return {
+        ...prev,
+        score: prev.score + number < 0 ? 0 : prev.score + number,
+      };
     });
-    return axios.put("/api/fixtures/awaygoals", {
-      score: number > 0 ? away.score + 1 : (away.score - 1 < 0 ? 0 : away.score - 1),
-      fixtureId,
-    })
-      .then(data => {
+    return axios
+      .put("/api/fixtures/awaygoals", {
+        score:
+          number > 0 ? away.score + 1 : away.score - 1 < 0 ? 0 : away.score - 1,
+        fixtureId,
+      })
+      .then((data) => {
         updateFixtures(state.fixtures, data.data.rows[0]);
       });
   };
+
+  const updateHomeGoalEvent = (fixtureId, teamId) => {
+    return axios
+      .put("/api/fixtures/new_home_goal", {
+        fixtureId,
+        teamId,
+        time: "NOW()",
+        type: 1,
+      })
+      .then((data) => {
+        newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
+      });
+  };
+
+  const updateAwayGoalEvent = (fixtureId, teamId) => {
+    return axios
+      .put("/api/fixtures/new_away_goal", {
+        fixtureId,
+        teamId,
+        time: "NOW()",
+        type: 1,
+      })
+      .then((data) => {
+        newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
+      });
+  };
+
+  const updateHomeYellowEvent = (fixtureId, teamId) => {
+    return axios
+      .put("/api/fixtures/yellow_home_card", {
+        fixtureId,
+        teamId,
+        time: "NOW()",
+        type: 3,
+      })
+      .then((data) => {
+        newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
+      });
+  };
+
+  const updateHomeRedEvent = (fixtureId, teamId) => {
+    return axios
+      .put("/api/fixtures/red_home_card", {
+        fixtureId,
+        teamId,
+        time: "NOW()",
+        type: 4,
+      })
+      .then((data) => {
+        newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
+      });
+  };
+
+  const updateAwayYellowEvent = (fixtureId, teamId) => {
+    return axios
+      .put("/api/fixtures/yellow_away_card", {
+        fixtureId,
+        teamId,
+        time: "NOW()",
+        type: 3,
+      })
+      .then((data) => {
+        newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
+      });
+  };
+
+  const updateAwayRedEvent = (fixtureId, teamId) => {
+    return axios
+      .put("/api/fixtures/red_away_card", {
+        fixtureId,
+        teamId,
+        time: "NOW()",
+        type: 4,
+      })
+      .then((data) => {
+        newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
+      });
+  };
+
   return (
     <main>
       <section>
@@ -289,6 +396,12 @@ const AdminGame = (props) => {
           updateGoalHome={updateGoalHome}
           updateGoalAway={updateGoalAway}
           fixtureId={fixture.id}
+          homeGoalEvent={updateHomeGoalEvent}
+          awayGoalEvent={updateAwayGoalEvent}
+          homeRedEvent={updateHomeRedEvent}
+          homeYellowEvent={updateHomeYellowEvent}
+          awayRedEvent={updateAwayRedEvent}
+          awayYellowEvent={updateAwayYellowEvent}
         />
       </section>
       {/* <section>
@@ -298,7 +411,15 @@ const AdminGame = (props) => {
         <Players home={home} away={away} event={event} />
       </section>
       <section>
-        <Timer timer={timer} onStart={startTimer} onStop={stopTimer} time={time} startHalf1={startHalf1} startHalf2={startHalf2} fixtureId={parseInt(fixture_id, 10)} />
+        <Timer
+          timer={timer}
+          onStart={startTimer}
+          onStop={stopTimer}
+          time={time}
+          startHalf1={startHalf1}
+          startHalf2={startHalf2}
+          fixtureId={parseInt(fixture_id, 10)}
+        />
       </section>
     </main>
   );
