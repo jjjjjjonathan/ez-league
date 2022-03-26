@@ -1,7 +1,7 @@
-import EventTableItem from "./EventTableItem";
+import EventTableItem from './EventTableItem';
 
 const EventTable = (props) => {
-  console.log("this is game schedule", props);
+  console.log('this is game schedule', props);
 
   const { fixtureId, fixtureEvents, eventTypes, teams, players } = props;
 
@@ -34,6 +34,9 @@ const EventTable = (props) => {
         listOfPlayers={players}
         time={event.time}
         listOfTypes={eventTypes}
+        yellowCarder={event.yellow_card_id}
+        redCarder={event.red_card_id}
+        subIn={event.sub_in_id}
       />
     );
   });

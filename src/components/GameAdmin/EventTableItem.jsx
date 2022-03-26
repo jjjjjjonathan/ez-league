@@ -8,6 +8,9 @@ const EventTableItem = (props) => {
     value,
     time,
     listOfTypes,
+    yellowCarder,
+    redCarder,
+    subIn,
   } = props;
 
   const findTeamName = (team, listOfTeams) => {
@@ -20,14 +23,20 @@ const EventTableItem = (props) => {
     return selectedType.name;
   };
 
-  const findPlayerName = (goalScorer, listOfPlayers) => {
-    let selectedPlayer = listOfPlayers.find(
-      (player) => player.id === goalScorer
-    );
-    if (goalScorer) {
-      return selectedPlayer.name;
-    }
-    return null;
+  const findPlayerName = (playerObj, listOfPlayers, type) => {
+    console.log(playerObj, type);
+    let selectedPlayer = listOfPlayers.find((player) => {
+      if (type === 1) {
+        return player.id === playerObj.goalScorer;
+      } else if (type === 2) {
+        return player.id === playerObj.subIn;
+      } else if (type === 3) {
+        return player.id === playerObj.yellowCarder;
+      } else {
+        return player.id === playerObj.redCarder;
+      }
+    });
+    return selectedPlayer.name;
   };
 
   return (
@@ -36,7 +45,11 @@ const EventTableItem = (props) => {
       <td className="py-3 px-6 ">{time}</td>
       <td className="py-3 px-6 ">{findEventType(type, listOfTypes)}</td>
       <td className="py-3 px-6 ">
-        {findPlayerName(goalScorer, listOfPlayers)}
+        {findPlayerName(
+          { goalScorer, subIn, yellowCarder, redCarder },
+          listOfPlayers,
+          type
+        )}
       </td>
       <button>Edit</button>
       <button>Delete</button>
