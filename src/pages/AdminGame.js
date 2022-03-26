@@ -66,8 +66,10 @@ const AdminGame = (props) => {
   // useEffect for timer
 
   useEffect(() => {
+    let timer1;
     if (fixture.status === "First Half") {
-      const timer1 = setInterval(() => {
+      setTimerOn(true);
+      timer1 = setInterval(() => {
         let minutes = 0;
         let seconds = Math.floor((Date.now() - Date.parse(fixture.first_half_start_time)) / 1000);
         if (seconds >= 60) {
@@ -79,12 +81,13 @@ const AdminGame = (props) => {
           seconds
         });
         if (minutes === 45 || fixture.status === "Halftime") {
-          clearInterval(timer1);
+          // clearInterval(timer1);
+          setTimerOn(false);
         }
       }, 1000);
     }
     if (fixture.status === "Second Half") {
-      const timer1 = setInterval(() => {
+      timer1 = setInterval(() => {
         let minutes = 0;
         let seconds = Math.floor((Date.now() - Date.parse(fixture.second_half_start_time)) / 1000) + 2700;
         if (seconds >= 60) {
@@ -98,11 +101,18 @@ const AdminGame = (props) => {
 
 
         if (minutes === 90 || fixture.status === "Final") {
-          clearInterval(timer1);
+          // clearInterval(timer1);
+          setTimerOn(false);
         }
       }, 1000);
     }
-  }, [fixture.status, fixture.first_half_start_time, fixture.second_half_start_time]);
+
+    if (!timerOn) {
+      clearInterval(timer1);
+    }
+
+    return () => clearInterval(timer1);
+  }, [fixture.status, fixture.first_half_start_time, fixture.second_half_start_time, timerOn]);
 
 
   // useEffect(() => {
@@ -182,8 +192,13 @@ const AdminGame = (props) => {
   const startTimer = () => {
     setTimerOn(true);
   };
-  const stopTimer = () => {
-    setTimerOn(false);
+  const stopTimer = (fixtureId, halftime = false) => {
+    const string = halftime ? "Halftime" : "Final";
+    return axios.put('/api/fixtures/end', { fixtureId, string })
+      .then(data => {
+        setTimerOn(false);
+        updateFixtures(state.fixtures, data.data.rows[0]);
+      });
   };
 
   //function to update event

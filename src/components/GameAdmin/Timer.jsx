@@ -1,7 +1,7 @@
 import { BsPlayBtnFill, BsStopCircle } from 'react-icons/bs';
 
 const Timer = (props) => {
-  const { time, startHalf1, fixtureId, startHalf2 } = props;
+  const { time, startHalf1, fixtureId, startHalf2, onStop } = props;
   return (
     <section className="min-h-screen flex flex-col justify-center items-center ">
       <section className="border-8 border-gray-500 rounded shadow-2xl text-6xl text-white font-mono grid grid-cols-2 gap-x-px">
@@ -39,7 +39,10 @@ const Timer = (props) => {
         </section>
         <section className="flex flex-row justify-center items-center">
           <button className="m-2  justify-center items-center ">
-            <BsStopCircle className="hover:fill-gray-400" />
+            <BsStopCircle
+              className="hover:fill-gray-400"
+              onClick={() => onStop(fixtureId, true)}
+            />
           </button>
         </section>
       </section>
