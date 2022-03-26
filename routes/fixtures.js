@@ -124,11 +124,11 @@ module.exports = (db) => {
   });
 
   router.put("/red_away_card", (req, res) => {
-    const { fixtureId, teamId, time, type } = req.body;
+    const { fixtureId, teamId, time, type, half } = req.body;
     return db
       .query(
-        "INSERT INTO fixture_events (fixture_id, team_id, time, fixture_event_type_id) VALUES($1,$2,$3,$4) RETURNING *;",
-        [fixtureId, teamId, time, type]
+        "INSERT INTO fixture_events (fixture_id, team_id, time, fixture_event_type_id, half) VALUES($1,$2,$3,$4,$5) RETURNING *;",
+        [fixtureId, teamId, time, type, half]
       )
       .then((data) => {
         res.status(201).json(data);
@@ -172,7 +172,7 @@ module.exports = (db) => {
   // });
   // Get all fixture events of all leagues to put into state
   router.get("/events", (req, res) => {
-    return db.query("SELECT * FROM fixture_events;").then((data) => {
+    return db.query("SELECT * FROM fixture_events ORDER BY time;").then((data) => {
       res.json(data.rows);
     });
   });
