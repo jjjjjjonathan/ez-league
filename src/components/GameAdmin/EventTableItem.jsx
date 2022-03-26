@@ -11,6 +11,10 @@ const EventTableItem = (props) => {
     yellowCarder,
     redCarder,
     subIn,
+    firstHalfTime,
+    secondHalfTime,
+    fixtureStatus,
+    eventHalf,
   } = props;
 
   const findTeamName = (team, listOfTeams) => {
@@ -24,7 +28,14 @@ const EventTableItem = (props) => {
   };
 
   const findPlayerName = (playerObj, listOfPlayers, type) => {
-    console.log(playerObj, type);
+    if (
+      !playerObj.goalScorer &&
+      !playerObj.subIn &&
+      !playerObj.yellowCarder &&
+      !playerObj.redCarder
+    ) {
+      return null;
+    }
     let selectedPlayer = listOfPlayers.find((player) => {
       if (type === 1) {
         return player.id === playerObj.goalScorer;
@@ -42,7 +53,15 @@ const EventTableItem = (props) => {
   return (
     <tr className="bg-white-200 cursor-pointer duration-300 hover:bg-b-100 hover:scale-105 cursor-pointer">
       <td className="py-3 px-6 ">{findTeamName(team, listOfTeams)}</td>
-      <td className="py-3 px-6 ">{time}</td>
+      <td className="py-3 px-6 ">
+        {eventHalf === 2
+          ? Math.floor(
+              (Date.parse(time) - Date.parse(secondHalfTime)) / (1000 * 60)
+            ) + 45
+          : Math.floor(
+              (Date.parse(time) - Date.parse(firstHalfTime)) / (1000 * 60)
+            )}
+      </td>
       <td className="py-3 px-6 ">{findEventType(type, listOfTypes)}</td>
       <td className="py-3 px-6 ">
         {findPlayerName(
@@ -51,8 +70,16 @@ const EventTableItem = (props) => {
           type
         )}
       </td>
-      <button>Edit</button>
-      <button>Delete</button>
+      <td>
+        <form action="">
+          <button>Edit</button>
+        </form>
+      </td>
+      <td>
+        <form action="">
+          <button>Delete</button>
+        </form>
+      </td>
     </tr>
   );
 };

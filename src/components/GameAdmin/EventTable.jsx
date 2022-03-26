@@ -3,7 +3,16 @@ import EventTableItem from './EventTableItem';
 const EventTable = (props) => {
   console.log('this is game schedule', props);
 
-  const { fixtureId, fixtureEvents, eventTypes, teams, players } = props;
+  const {
+    fixtureId,
+    fixtureEvents,
+    eventTypes,
+    teams,
+    players,
+    firstHalfTime,
+    fixtureStatus,
+    secondHalfTime,
+  } = props;
 
   const thisFixtureEvents = fixtureEvents.filter(
     (fixture) => fixture.fixture_id === fixtureId
@@ -37,6 +46,10 @@ const EventTable = (props) => {
         yellowCarder={event.yellow_card_id}
         redCarder={event.red_card_id}
         subIn={event.sub_in_id}
+        firstHalfTime={firstHalfTime}
+        fixtureStatus={fixtureStatus}
+        secondHalfTime={secondHalfTime}
+        eventHalf={event.half}
       />
     );
   });

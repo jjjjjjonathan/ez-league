@@ -1,4 +1,4 @@
-import { GiSoccerBall, GiCardPlay } from "react-icons/gi";
+import { GiSoccerBall, GiCardPlay } from 'react-icons/gi';
 
 const GameConsole = (props) => {
   const {
@@ -87,8 +87,46 @@ const GameConsole = (props) => {
           <td>
             <GiCardPlay className="fill-red-500" />
           </td>
-          <button onClick={() => awayRedEvent(fixtureId, away.id)}>
-            Red Card
+          <button onClick={() => awayRedEvent(fixtureId, away.id, 1)}>
+            Red Card 1st Half
+          </button>
+        </tr>
+
+        <tr>
+          <td>
+            <button onClick={() => homeGoalEvent(fixtureId, home.id)}>
+              Goal Event 2nd Half
+            </button>
+          </td>
+          <td>
+            <GiSoccerBall />
+          </td>
+          <td>
+            <button onClick={() => awayGoalEvent(fixtureId, away.id)}>
+              Goal Event 2nd Half
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <button onClick={() => homeYellowEvent(fixtureId, home.id)}>
+            Yellow Card 2nd Half
+          </button>
+          <td>
+            <GiCardPlay className="fill-yellow-500" />
+          </td>
+          <button onClick={() => awayYellowEvent(fixtureId, away.id)}>
+            Yellow Card 2nd Half
+          </button>
+        </tr>
+        <tr>
+          <button onClick={() => homeRedEvent(fixtureId, home.id)}>
+            Red Card 2nd Half
+          </button>
+          <td>
+            <GiCardPlay className="fill-red-500" />
+          </td>
+          <button onClick={() => awayRedEvent(fixtureId, away.id, 2)}>
+            Red Card 2nd Half
           </button>
         </tr>
       </tbody>

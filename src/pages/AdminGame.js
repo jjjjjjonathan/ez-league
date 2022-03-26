@@ -371,13 +371,14 @@ const AdminGame = (props) => {
       });
   };
 
-  const updateAwayRedEvent = (fixtureId, teamId) => {
+  const updateAwayRedEvent = (fixtureId, teamId, half) => {
     return axios
       .put("/api/fixtures/red_away_card", {
         fixtureId,
         teamId,
         time: "NOW()",
         type: 4,
+        half
       })
       .then((data) => {
         newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
@@ -407,10 +408,13 @@ const AdminGame = (props) => {
       <section>
         <EventTable
           fixtureId={fixture.id}
+          firstHalfTime={fixture.first_half_start_time}
           fixtureEvents={state.fixtureEvents}
           eventTypes={state.fixtureTypes}
           teams={state.teams}
           players={state.players}
+          fixtureStatus={fixture.status}
+          secondHalfTime={fixture.second_half_start_time}
         />
       </section>
       <section>
