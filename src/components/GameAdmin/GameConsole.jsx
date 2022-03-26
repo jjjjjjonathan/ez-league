@@ -43,6 +43,21 @@ const GameConsole = (props) => {
           </td>
         </tr>
         <tr>
+          <td>
+            <button onClick={() => updateGoalHome(fixtureId, -1)}>
+              Goal Event
+            </button>
+          </td>
+          <td>
+            <GiSoccerBall />
+          </td>
+          <td>
+            <button onClick={() => updateGoalAway(fixtureId, -1)}>
+              Goal Event
+            </button>
+          </td>
+        </tr>
+        <tr>
           <td>Yellow Card</td>
           <td>
             <GiCardPlay className="fill-yellow-500" />

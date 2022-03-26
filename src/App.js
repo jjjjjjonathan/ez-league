@@ -14,7 +14,7 @@ import AdminLeague from "./pages/AdminLeague";
 import AdminGame from "./pages/AdminGame";
 
 function App() {
-  const { state, setState, setMultipleTeams } = useApplicationData();
+  const { state, setState, setMultipleTeams, updateFixtures } = useApplicationData();
   return !state.isReady ? (
     <Loading />
   ) : (
@@ -54,7 +54,7 @@ function App() {
               <LeagueForm2 state={state} setState={setState} />
             </Route>
             <Route exact path="/admin/game/:fixture_id">
-              <AdminGame state={state} />
+              <AdminGame state={state} updateFixtures={updateFixtures} />
             </Route>
           </Switch>
         </div>

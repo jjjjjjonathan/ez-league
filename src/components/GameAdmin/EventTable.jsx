@@ -1,16 +1,28 @@
 const EventTable = (props) => {
-  console.log("this is game schedule", props);
-  const gameStart = props.fixture.first_half_start_time;
-  const events = props.event.map((event) => {
-    const eventTime = Math.floor(
-      (Date.parse(event.time) - Date.parse(gameStart)) / (1000 * 60)
-    );
+  console.log('this is game schedule', props);
+
+  const { eventsInGame, eventTypes, teams, players } = props;
+
+  const findTeamName = (id) => {
+    return teams.find((team) => team.id === id).name;
+  };
+
+  const findEventType = (id) => {
+    return eventTypes.find((eventType) => eventType.id === id).name;
+  };
+
+  const findGoalScorerName = (id) => {
+    return players.find((player) => player.id === id).name;
+  };
+
+  // const gameStart = props.fixture.first_half_start_time;
+  const events = props.eventsInGame.map((event) => {
     return (
-      <tr keys={event.id}>
-        <td>{event.team}</td>
-        <td> {eventTime}</td>
-        <td>{event.event}</td>
-        <td>{event.player}</td>
+      <tr>
+        <td>{findTeamName(event.team_id)}</td>
+        <td> placeholder for time </td>
+        <td>{findEventType(event.fixture_event_type_id)}</td>
+        <td>{findGoalScorerName(event.goal_scorer_id)}</td>
       </tr>
     );
   });
