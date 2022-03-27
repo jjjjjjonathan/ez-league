@@ -60,6 +60,16 @@ const useApplicationData = () => {
     });
   };
 
+  const deleteFixtureEvent = (oldFixtureEventsArray, deletedFixtureEventObj) => {
+    const updatedFixtureEventsArray = oldFixtureEventsArray.filter(fixtureEvent => fixtureEvent.id !== deletedFixtureEventObj.id);
+    setState(prev => {
+      return {
+        ...prev,
+        fixtureEvents: updatedFixtureEventsArray
+      };
+    });
+  };
+
   useEffect(() => {
     Promise.all([
       axios.get("/api/sports"),
@@ -100,6 +110,7 @@ const useApplicationData = () => {
     updateFixtures,
     newFixturesEvent,
     updateFixturesEvent,
+    deleteFixtureEvent
   };
 };
 

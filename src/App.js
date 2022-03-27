@@ -21,6 +21,7 @@ function App() {
     updateFixtures,
     newFixturesEvent,
     updateFixturesEvent,
+    deleteFixtureEvent
   } = useApplicationData();
   return !state.isReady ? (
     <Loading />
@@ -66,6 +67,7 @@ function App() {
                 updateFixtures={updateFixtures}
                 newFixturesEvent={newFixturesEvent}
                 updateFixturesEvent={updateFixturesEvent}
+                deleteFixtureEvent={deleteFixtureEvent}
               />
             </Route>
           </Switch>

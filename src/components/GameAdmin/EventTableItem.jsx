@@ -19,6 +19,7 @@ const EventTableItem = (props) => {
     eventHalf,
     admin,
     onClick,
+    onClickDelete,
   } = props;
 
   const findTeamName = (team, listOfTeams) => {
@@ -84,7 +85,7 @@ const EventTableItem = (props) => {
         </button>
       </td>
       <td>
-        <button>Delete</button>
+        <button onClick={(event) => onClickDelete(event, value)}>Delete</button>
       </td>
     </tr>
   );

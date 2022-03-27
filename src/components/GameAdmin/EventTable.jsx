@@ -1,15 +1,9 @@
 import EventTableItem from './EventTableItem';
 import EditEventTableItem from './EditEventTableItem';
 import { useState } from 'react';
+import axios from 'axios';
 
 const EventTable = (props) => {
-  const [editEventId, setEditEventId] = useState(null);
-
-  const onClickEdit = (event, eventValue) => {
-    event.preventDefault();
-    setEditEventId(eventValue);
-  };
-
   const {
     fixtureId,
     fixtureEvents,
@@ -21,7 +15,21 @@ const EventTable = (props) => {
     secondHalfTime,
     updateFixturesEvent,
     admin,
+    deleteFixtureEvent,
   } = props;
+  const [editEventId, setEditEventId] = useState(null);
+
+  const onClickEdit = (event, eventValue) => {
+    event.preventDefault();
+    setEditEventId(eventValue);
+  };
+
+  const onClickDelete = (event, eventId) => {
+    event.preventDefault();
+    return axios.delete(`/api/fixtures/events/${eventId}`).then((data) => {
+      deleteFixtureEvent(fixtureEvents, data.data[0]);
+    });
+  };
 
   const thisFixtureEvents = fixtureEvents.filter(
     (fixture) => fixture.fixture_id === fixtureId
@@ -86,6 +94,8 @@ const EventTable = (props) => {
         secondHalfTime={secondHalfTime}
         eventHalf={event.half}
         admin={admin}
+        onClick={onClickEdit}
+        onClickDelete={onClickDelete}
       />
     );
   });
