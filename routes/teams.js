@@ -4,7 +4,13 @@ const router = express.Router();
 module.exports = (db) => {
   // SELECT ALL TEAMS TO PUT INTO STATE
   router.get("/", (req, res) => {
-    return db.query("SELECT * FROM teams;").then((data) => {
+    return db.query(`SELECT teams.*,
+    teams.wins + teams.draws + teams.losses AS matches_played,
+    teams.wins * 3 + teams.draws AS points,
+    teams.goals_for - teams.goals_against AS goal_difference
+    FROM teams
+    ORDER BY points DESC, goal_difference DESC, goals_for DESC;`
+    ).then((data) => {
       res.json(data.rows);
     });
   });
