@@ -426,6 +426,7 @@ const AdminGame = (props) => {
           fixtureStatus={fixture.status}
           secondHalfTime={fixture.second_half_start_time}
           updateFixturesEvent={updateFixturesEvent}
+          admin={true}
         />
       </section>
       <section>

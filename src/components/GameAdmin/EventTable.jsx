@@ -1,6 +1,6 @@
-import EventTableItem from "./EventTableItem";
-import EditEventTableItem from "./EditEventTableItem";
-import { useState } from "react";
+import EventTableItem from './EventTableItem';
+import EditEventTableItem from './EditEventTableItem';
+import { useState } from 'react';
 
 const EventTable = (props) => {
   const [editEventId, setEditEventId] = useState(null);
@@ -20,6 +20,7 @@ const EventTable = (props) => {
     fixtureStatus,
     secondHalfTime,
     updateFixturesEvent,
+    admin,
   } = props;
 
   const thisFixtureEvents = fixtureEvents.filter(
@@ -84,7 +85,7 @@ const EventTable = (props) => {
         fixtureStatus={fixtureStatus}
         secondHalfTime={secondHalfTime}
         eventHalf={event.half}
-        onClick={onClickEdit}
+        admin={admin}
       />
     );
   });

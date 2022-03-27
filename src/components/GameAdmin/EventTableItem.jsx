@@ -1,3 +1,5 @@
+import { Fragment } from 'react';
+
 const EventTableItem = (props) => {
   const {
     type,
@@ -15,6 +17,7 @@ const EventTableItem = (props) => {
     secondHalfTime,
     fixtureStatus,
     eventHalf,
+    admin,
     onClick,
   } = props;
 
