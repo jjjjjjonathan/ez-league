@@ -13,6 +13,7 @@ import Loading from "./components/Loading";
 import AdminLeague from "./pages/AdminLeague";
 import AdminGame from "./pages/AdminGame";
 import DashBoard from "./components/Dashboard";
+import TeamDashboard from "./components/TeamDashboard"
 
 function App() {
   const {
@@ -24,7 +25,9 @@ function App() {
     updateFixturesEvent,
     deleteFixtureEvent,
     updateMultipleTeam,
+    set1Player,
   } = useApplicationData();
+
   return !state.isReady ? (
     <Loading />
   ) : (
@@ -44,6 +47,9 @@ function App() {
                 setMultipleTeams={setMultipleTeams}
               /> */}
               <DashBoard teams={state.teams} />
+            </Route>
+            <Route exact path="/teams/:id/admin">
+              <TeamDashboard players={state.players} set1Player={set1Player} />
             </Route>
             <Route
               path="/leagues/:id"
