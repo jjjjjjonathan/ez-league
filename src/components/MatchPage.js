@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import EventTable from "./GameAdmin/EventTable";
 
 const MatchPage = (props) => {
   const { id } = useParams();
-  const { fixtures, teams, players } = props;
+  const { fixtures, teams, players, state } = props;
   const [timer, setTimer] = useState(0);
   const [timerRef, setTimerRef] = useState();
   const startTimer = () => {
@@ -95,6 +96,25 @@ const MatchPage = (props) => {
     timerOn,
   ]);
 
+<<<<<<< HEAD
+=======
+  //fetching the data
+  // fetch("DYNAMIC URL GOES HERE", {
+
+  //   "method": "GET",
+  //   "headers": {
+  //     "x-rapidapi-host": "",
+  //     "x-rapidapi-key": ""
+  // //   }
+  // // })
+  //   .then(response => response.json().then(data => {
+  //     console.log(response.body);
+  //   }))
+  //   .catch(err => {
+  //     console.log(err);
+  //   });
+
+>>>>>>> eb4c1bb37b21fa116ed1d767ebc85c2d2e274bb2
   return (
     <div className="h-screen bg-cover bg-no-repeat bg-center" >
       <div className="container absolute p-4 w-6/12 bg-gray-100 text-center rounded uppercase ">
@@ -123,9 +143,22 @@ const MatchPage = (props) => {
         </div>
         <div className="matchTable" class="matches-table mt-12 flex flex-col">
           <div style={{ borderTop: "2px solid #fff ", marginLeft: 20, marginRight: 20 }}></div>
-        </div>
+        </div>  <section>
+          <EventTable
+            fixtureId={fixture.id}
+            firstHalfTime={fixture.first_half_start_time}
+            fixtureEvents={state.fixtureEvents}
+            eventTypes={state.fixtureTypes}
+            teams={state.teams}
+            players={state.players}
+            fixtureStatus={fixture.status}
+            secondHalfTime={fixture.second_half_start_time}
+            admin={false}
+          />
+        </section>
       </div>
     </div>
+
 
   );
 };
