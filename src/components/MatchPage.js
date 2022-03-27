@@ -21,16 +21,6 @@ const MatchPage = (props) => {
 
   const awayTeam = teams.find(team => team.id === fixture.away_team_id)
 
-  useEffect(() => {
-    const matchId = 6; // FOR TEST PURPOSES WILL HAVE TO CHANGE DYNAMICALLY LATER 
-    const route = `/api/fixtures/${matchId}`;
-    Promise.all([
-      axios.get(route)
-    ]).then(all => {
-      console.log("----", all);
-    });
-  }, []);
-
   const [timerOn, setTimerOn] = useState(false);
 
   const [time, setTime] = useState({
