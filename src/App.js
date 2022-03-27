@@ -20,6 +20,7 @@ function App() {
     setMultipleTeams,
     updateFixtures,
     newFixturesEvent,
+    updateFixturesEvent,
   } = useApplicationData();
   return !state.isReady ? (
     <Loading />
@@ -64,6 +65,7 @@ function App() {
                 state={state}
                 updateFixtures={updateFixtures}
                 newFixturesEvent={newFixturesEvent}
+                updateFixturesEvent={updateFixturesEvent}
               />
             </Route>
           </Switch>

@@ -25,42 +25,45 @@ const GameConsole = (props) => {
       </thead>
       <tbody>
         <tr>
-          <td>
+          <th>
             <button onClick={() => updateGoalHome(fixtureId, 1)}>
               Goal +1
             </button>
-          </td>
-          <td>
-            <GiSoccerBall className="fill-green-500" />
-          </td>
-          <td>
+          </th>
+          <th className="py-3 px-6">
+            <GiSoccerBall className="fill-green-500 " />
+          </th>
+          <th>
             <button onClick={() => updateGoalAway(fixtureId, 1)}>
               Goal +1
             </button>
-          </td>
+          </th>
         </tr>
         <tr>
-          <td>
+          <th>
             <button onClick={() => updateGoalHome(fixtureId, -1)}>
               Goal -1
             </button>
-          </td>
-          <td>
+          </th>
+          <th className="py-3 px-6">
             <GiSoccerBall className="fill-red-500" />
-          </td>
-          <td>
+          </th>
+          <th>
             <button onClick={() => updateGoalAway(fixtureId, -1)}>
               Goal -1
             </button>
-          </td>
+          </th>
         </tr>
+      </tbody>
+      <span className="mx-auto">1st-Half</span>
+      <tbody>
         <tr>
           <td>
             <button onClick={() => homeGoalEvent(fixtureId, home.id, 1)}>
               Goal Event 1st Half
             </button>
           </td>
-          <td>
+          <td className="py-3 px-6">
             <GiSoccerBall />
           </td>
           <td>
@@ -91,7 +94,9 @@ const GameConsole = (props) => {
             Red Card 1st Half
           </button>
         </tr>
-
+      </tbody>
+      <label className="border-gray-200 center">2nd-Half</label>
+      <tbody>
         <tr>
           <td>
             <button onClick={() => homeGoalEvent(fixtureId, home.id, 2)}>

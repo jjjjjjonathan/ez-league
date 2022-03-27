@@ -1,7 +1,14 @@
 import EventTableItem from './EventTableItem';
+import EditEventTableItem from './EditEventTableItem';
+import { useState } from 'react';
 
 const EventTable = (props) => {
-  console.log('this is game schedule', props);
+  const [editEventId, setEditEventId] = useState(null);
+
+  const onClickEdit = (event, eventValue) => {
+    event.preventDefault();
+    setEditEventId(eventValue);
+  };
 
   const {
     fixtureId,
@@ -12,6 +19,7 @@ const EventTable = (props) => {
     firstHalfTime,
     fixtureStatus,
     secondHalfTime,
+    updateFixturesEvent,
     admin,
   } = props;
 
@@ -31,9 +39,35 @@ const EventTable = (props) => {
     return players.find((player) => player.id === id).name;
   };
 
+  const preventSubmit = (event) => {
+    event.preventDefault();
+  };
+
   // const gameStart = props.fixture.first_half_start_time;
   const events = thisFixtureEvents.map((event) => {
-    return (
+    return editEventId === event.id ? (
+      <EditEventTableItem
+        key={event.id}
+        value={event.id}
+        type={event.fixture_event_type_id}
+        goalScorer={event.goal_scorer_id}
+        team={event.team_id}
+        listOfTeams={teams}
+        listOfPlayers={players}
+        time={event.time}
+        listOfTypes={eventTypes}
+        yellowCarder={event.yellow_card_id}
+        redCarder={event.red_card_id}
+        subIn={event.sub_in_id}
+        firstHalfTime={firstHalfTime}
+        fixtureStatus={fixtureStatus}
+        secondHalfTime={secondHalfTime}
+        eventHalf={event.half}
+        updateFixturesEvent={updateFixturesEvent}
+        fixtureEvents={fixtureEvents}
+        setEditEventId={setEditEventId}
+      />
+    ) : (
       <EventTableItem
         key={event.id}
         value={event.id}
@@ -56,17 +90,19 @@ const EventTable = (props) => {
     );
   });
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Team</th>
-          <th>Time</th>
-          <th>Event</th>
-          <th>Player</th>
-        </tr>
-      </thead>
-      <tbody>{events}</tbody>
-    </table>
+    <form onSubmit={(event) => preventSubmit(event)}>
+      <table>
+        <thead>
+          <tr>
+            <th>Team</th>
+            <th>Time</th>
+            <th>Event</th>
+            <th>Player</th>
+          </tr>
+        </thead>
+        <tbody>{events}</tbody>
+      </table>
+    </form>
   );
 };
 
