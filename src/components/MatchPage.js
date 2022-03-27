@@ -14,29 +14,11 @@ const MatchPage = (props) => {
     setTimerRef(seconds);
   };
 
-  const fixture = fixtures.find(fixture => fixture.id === parseInt(id))
+  const fixture = fixtures.find(fixture => fixture.id === parseInt(id));
 
-  const homeTeam = teams.find(team => team.id === fixture.home_team_id)
+  const homeTeam = teams.find(team => team.id === fixture.home_team_id);
 
-  const awayTeam = teams.find(team => team.id === fixture.away_team_id)
-
-  useEffect(() => {
-    const matchId = 6; // FOR TEST PURPOSES WILL HAVE TO CHANGE DYNAMICALLY LATER 
-    const route = `/api/fixtures/${matchId}`;
-    Promise.all([
-      axios.get(route)
-    ]).then(all => {
-      console.log("----", all);
-      // setState(prev => ({
-      //   ...prev,
-      //   days: all[0].data,
-      //   appointments: all[1].data,
-      //   interviewers: all[2].data
-      // }));
-    });
-  }, []);
-
-
+  const awayTeam = teams.find(team => team.id === fixture.away_team_id);
 
   const [timerOn, setTimerOn] = useState(false);
 
@@ -112,22 +94,6 @@ const MatchPage = (props) => {
     fixture.second_half_start_time,
     timerOn,
   ]);
-
-  //fetching the data
-  fetch("DYNAMIC URL GOES HERE", {
-
-    "method": "GET",
-    "headers": {
-      "x-rapidapi-host": "",
-      "x-rapidapi-key": ""
-    }
-  })
-    .then(response => response.json().then(data => {
-      console.log(response.body);
-    }))
-    .catch(err => {
-      console.log(err);
-    });
 
   return (
     <div className="h-screen bg-cover bg-no-repeat bg-center" >
