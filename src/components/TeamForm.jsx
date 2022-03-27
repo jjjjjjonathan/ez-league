@@ -1,20 +1,26 @@
-import axios from "axios";
-import { useState, Fragment } from "react";
+import axios from 'axios';
+import { useState, Fragment } from 'react';
 
 const TeamForm = (props) => {
-  const [teamName, setTeamName] = useState("");
-  const [logo, setLogo] = useState("");
+  const { id, setMultipleTeams, teams } = props;
+  const [teamName, setTeamName] = useState('');
+  const [logo, setLogo] = useState(null);
   const submit = (event) => {
     event.preventDefault();
   };
-  const validate = (teamName, logo) => {
-    if (teamName) {
-      save(teamName, logo);
-    }
-  };
 
-  const save = (teamName, logo) => {
-    axios.put("/api/teams", { teamName, logo });
+  const save = (leagueId, teamName, logo) => {
+    axios.put('/api/teams/add', { leagueId, teamName, logo }).then((data) => {
+      setMultipleTeams(teams, data.data.rows);
+    });
+  };
+  const validate = (event, leagueId, teamName, logo) => {
+    event.preventDefault();
+    console.log('validating...');
+    if (teamName) {
+      console.log('saving...');
+      save(leagueId, teamName, logo);
+    }
   };
 
   return (
@@ -49,14 +55,18 @@ const TeamForm = (props) => {
                 type="text"
                 name="logoURL"
                 placeholder="Enter a URL for your logo"
-                onChange={(event) => setLogo(event.target.value)}
+                onChange={(event) =>
+                  setLogo(
+                    event.target.value.length === 0 ? null : event.target.value
+                  )
+                }
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
               />
             </div>
           </form>
           <div className="md:flex md:justify-center mb-6">
             <button
-              onClick={() => validate(teamName, logo)}
+              onClick={(event) => validate(event, id, teamName, logo)}
               className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded md:items-center"
             >
               Submit
