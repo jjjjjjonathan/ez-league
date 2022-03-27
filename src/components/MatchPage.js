@@ -15,11 +15,11 @@ const MatchPage = (props) => {
     setTimerRef(seconds);
   };
 
-  const fixture = fixtures.find(fixture => fixture.id === parseInt(id));
+  const fixture = fixtures.find(fixture => fixture.id === parseInt(id))
 
-  const homeTeam = teams.find(team => team.id === fixture.home_team_id);
+  const homeTeam = teams.find(team => team.id === fixture.home_team_id)
 
-  const awayTeam = teams.find(team => team.id === fixture.away_team_id);
+  const awayTeam = teams.find(team => team.id === fixture.away_team_id)
 
   const [timerOn, setTimerOn] = useState(false);
 
@@ -65,8 +65,6 @@ const MatchPage = (props) => {
           minutes = Math.floor(seconds / 60);
           seconds -= 60 * minutes;
         }
-
-
 
         setTime({
           minutes,
@@ -139,7 +137,6 @@ const MatchPage = (props) => {
         </section>
       </div>
     </div>
-
 
   );
 };
