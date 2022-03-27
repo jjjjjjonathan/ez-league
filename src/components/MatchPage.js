@@ -96,25 +96,6 @@ const MatchPage = (props) => {
     timerOn,
   ]);
 
-<<<<<<< HEAD
-=======
-  //fetching the data
-  // fetch("DYNAMIC URL GOES HERE", {
-
-  //   "method": "GET",
-  //   "headers": {
-  //     "x-rapidapi-host": "",
-  //     "x-rapidapi-key": ""
-  // //   }
-  // // })
-  //   .then(response => response.json().then(data => {
-  //     console.log(response.body);
-  //   }))
-  //   .catch(err => {
-  //     console.log(err);
-  //   });
-
->>>>>>> eb4c1bb37b21fa116ed1d767ebc85c2d2e274bb2
   return (
     <div className="h-screen bg-cover bg-no-repeat bg-center" >
       <div className="container absolute p-4 w-6/12 bg-gray-100 text-center rounded uppercase ">
