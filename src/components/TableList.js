@@ -1,17 +1,15 @@
 import TableListItem from "./TableListItem";
 
 const TableList = (props) => {
-  const { teams } = props;
-  const teamList = teams.map((team, index) => {
-    let bg = index + 1;
+  const { teams, id } = props;
+  const filteredTeams = teams.filter(team => team.league_id === id)
+  const teamList = filteredTeams.map((team, index) => {
 
     return (
       <TableListItem
         key={team.id}
         rank={index + 1}
         {...team}
-        points={team.wins * 3 + team.draws * 1}
-        goal_difference={team.goals_for - team.goals_against}
       />
     );
   });
