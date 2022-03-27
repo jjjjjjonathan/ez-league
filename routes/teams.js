@@ -1,5 +1,4 @@
 const express = require("express");
-const { restart } = require("nodemon");
 const router = express.Router();
 
 module.exports = (db) => {
@@ -52,6 +51,14 @@ module.exports = (db) => {
       )
       .then((data) => {
         res.status(200).json(data);
+      });
+  });
+
+  router.put("/add", (req, res) => {
+    const { leagueId, teamName, logo } = req.body;
+    return db.query("INSERT INTO teams (league_id, name, thumbnail_logo) VALUES ($1, $2, $3) RETURNING *;", [leagueId, teamName, logo])
+      .then(data => {
+        res.status(201).json(data);
       });
   });
 
