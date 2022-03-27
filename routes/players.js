@@ -9,5 +9,13 @@ module.exports = db => {
         res.json(data.rows);
       });
   });
+  router.put('/add', (req, res) => {
+    const { teamId, playerName, shirtNumber } = req.body
+    return db.query(`INSERT into players (team_id, name, shirt_number) VALUES($1,$2,$3) RETURNING *;`, [teamId, playerName, shirtNumber])
+      .then(data => {
+        res.status(201).json(data);
+      });
+  })
   return router;
 };
+
