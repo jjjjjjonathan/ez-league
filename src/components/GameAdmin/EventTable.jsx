@@ -19,6 +19,7 @@ const EventTable = (props) => {
     firstHalfTime,
     fixtureStatus,
     secondHalfTime,
+    updateFixturesEvent,
   } = props;
 
   const thisFixtureEvents = fixtureEvents.filter(
@@ -35,6 +36,10 @@ const EventTable = (props) => {
 
   const findGoalScorerName = (id) => {
     return players.find((player) => player.id === id).name;
+  };
+
+  const preventSubmit = (event) => {
+    event.preventDefault();
   };
 
   // const gameStart = props.fixture.first_half_start_time;
@@ -57,6 +62,9 @@ const EventTable = (props) => {
         fixtureStatus={fixtureStatus}
         secondHalfTime={secondHalfTime}
         eventHalf={event.half}
+        updateFixturesEvent={updateFixturesEvent}
+        fixtureEvents={fixtureEvents}
+        setEditEventId={setEditEventId}
       />
     ) : (
       <EventTableItem
@@ -81,7 +89,7 @@ const EventTable = (props) => {
     );
   });
   return (
-    <form>
+    <form onSubmit={(event) => preventSubmit(event)}>
       <table>
         <thead>
           <tr>

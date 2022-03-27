@@ -1,3 +1,6 @@
+import axios from "axios";
+import { useState } from "react";
+
 const EditEventTableItem = (props) => {
   const {
     value,
@@ -15,16 +18,47 @@ const EditEventTableItem = (props) => {
     fixtureStatus,
     secondHalfTime,
     eventHalf,
+    updateFixturesEvent,
+    fixtureEvents,
+    setEditEventId,
   } = props;
 
-  const filterTeamPlayers = (playersArray, teamId) => {
-    const filteredPlayers = playersArray.filter(
-      (player) => player.team_id === teamId
-    );
-    return filteredPlayers.map((player) => {
-      return <option value={player.id}>{player.name}</option>;
-    });
+  const submitEventEdit = (event, eventType, eventId, playerId) => {
+    event.preventDefault();
+    console.log(event.target.value);
+    let string = "";
+    if (eventType === 1) {
+      string = "goal_scorer_id";
+    } else if (eventType === 3) {
+      string = "yellow_card_id";
+    } else if (eventType === 4) {
+      string = "red_card_id";
+    }
+    return axios
+      .put("/api/fixtures/update_events", {
+        playerId,
+        eventId,
+        string,
+      })
+      .then((data) => {
+        updateFixturesEvent(fixtureEvents, data.data[0]);
+        setSelectedPlayerId(filteredPlayers[0].id);
+        setEditEventId(null);
+      });
   };
+
+  const selectPlayer = (event) => {
+    console.log(event.target.value);
+    setSelectedPlayerId(event.target.value);
+  };
+
+  const filteredPlayers = listOfPlayers.filter(
+    (player) => player.team_id === team
+  );
+
+  const mapPlayers = filteredPlayers.map((player) => {
+    return <option value={player.id}>{player.name}</option>;
+  });
 
   const findTeamName = (team, listOfTeams) => {
     let selectedTeam = listOfTeams.find((teamList) => teamList.id === team);
@@ -58,6 +92,9 @@ const EditEventTableItem = (props) => {
     });
     return selectedPlayer.name;
   };
+  const [selectedPlayerId, setSelectedPlayerId] = useState(
+    filteredPlayers[0].id
+  );
 
   return (
     <tr className="bg-white-200 cursor-pointer duration-300 hover:bg-b-100 hover:scale-105 cursor-pointer">
@@ -73,12 +110,16 @@ const EditEventTableItem = (props) => {
       </td>
       <td className="py-3 px-6 ">{findEventType(type, listOfTypes)}</td>
       <td className="py-3 px-6 ">
-        <select name="" id="">
-          {filterTeamPlayers(listOfPlayers, team)}
-        </select>
+        <select onChange={(event) => selectPlayer(event)}>{mapPlayers}</select>
       </td>
       <td>
-        <button>Submit</button>
+        <button
+          onClick={(event) =>
+            submitEventEdit(event, type, value, selectedPlayerId)
+          }
+        >
+          Submit
+        </button>
       </td>
       <td>
         <button>Delete</button>

@@ -46,6 +46,20 @@ const useApplicationData = () => {
     });
   };
 
+  const updateFixturesEvent = (oldFixtureEventsArray, newFixtureEventObj) => {
+    const newFixtureEventsArray = oldFixtureEventsArray.map((fixtureEvent) =>
+      fixtureEvent.id === newFixtureEventObj.id
+        ? newFixtureEventObj
+        : fixtureEvent
+    );
+    setState((prev) => {
+      return {
+        ...prev,
+        fixtureEvents: newFixtureEventsArray,
+      };
+    });
+  };
+
   useEffect(() => {
     Promise.all([
       axios.get("/api/sports"),
@@ -85,6 +99,7 @@ const useApplicationData = () => {
     setMultipleTeams,
     updateFixtures,
     newFixturesEvent,
+    updateFixturesEvent,
   };
 };
 
