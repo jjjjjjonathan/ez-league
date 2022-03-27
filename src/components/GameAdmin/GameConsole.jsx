@@ -15,8 +15,8 @@ const GameConsole = (props) => {
     awayYellowEvent,
   } = props;
   return (
-    <table className="mx-auto justify-center items-center text-2xl border-4 border-gray-200 rounded py-10 ">
-      <thead>
+    <table className="mx-auto justify-center items-center text-2xl border-4 border-gray-200 rounded-lg py-10 ">
+      <thead className="mx-auto justify-center items-center text-2xl border-4 border-gray-200 rounded-lg py-10 ">
         <tr>
           <th>Home</th>
           <th>Event</th>
@@ -30,7 +30,7 @@ const GameConsole = (props) => {
               Goal +1
             </button>
           </th>
-          <th className="py-3 px-6">
+          <th className="py-3 px-8">
             <GiSoccerBall className="fill-green-500 " />
           </th>
           <th>
@@ -45,7 +45,7 @@ const GameConsole = (props) => {
               Goal -1
             </button>
           </th>
-          <th className="py-3 px-6">
+          <th className="py-3 px-8">
             <GiSoccerBall className="fill-red-500" />
           </th>
           <th>
@@ -55,7 +55,8 @@ const GameConsole = (props) => {
           </th>
         </tr>
       </tbody>
-      <span className="mx-auto">1st-Half</span>
+      <td></td>
+      <th>1st-Half</th>
       <tbody>
         <tr>
           <td>
@@ -63,7 +64,7 @@ const GameConsole = (props) => {
               Goal Event 1st Half
             </button>
           </td>
-          <td className="py-3 px-6">
+          <td className="py-3 px-8">
             <GiSoccerBall />
           </td>
           <td>
@@ -76,7 +77,7 @@ const GameConsole = (props) => {
           <button onClick={() => homeYellowEvent(fixtureId, home.id, 1)}>
             Yellow Card 1st Half
           </button>
-          <td>
+          <td className="py-3 px-8">
             <GiCardPlay className="fill-yellow-500" />
           </td>
           <button onClick={() => awayYellowEvent(fixtureId, away.id, 1)}>
@@ -87,7 +88,7 @@ const GameConsole = (props) => {
           <button onClick={() => homeRedEvent(fixtureId, home.id, 1)}>
             Red Card 1st Half
           </button>
-          <td>
+          <td className="py-3 px-8">
             <GiCardPlay className="fill-red-500" />
           </td>
           <button onClick={() => awayRedEvent(fixtureId, away.id, 1)}>
@@ -95,7 +96,8 @@ const GameConsole = (props) => {
           </button>
         </tr>
       </tbody>
-      <label className="border-gray-200 center">2nd-Half</label>
+      <td></td>
+      <th>2nd-Half</th>
       <tbody>
         <tr>
           <td>
@@ -103,7 +105,7 @@ const GameConsole = (props) => {
               Goal Event 2nd Half
             </button>
           </td>
-          <td>
+          <td className="py-3 px-8">
             <GiSoccerBall />
           </td>
           <td>
@@ -116,7 +118,7 @@ const GameConsole = (props) => {
           <button onClick={() => homeYellowEvent(fixtureId, home.id, 2)}>
             Yellow Card 2nd Half
           </button>
-          <td>
+          <td className="py-3 px-8">
             <GiCardPlay className="fill-yellow-500" />
           </td>
           <button onClick={() => awayYellowEvent(fixtureId, away.id, 2)}>
@@ -127,7 +129,7 @@ const GameConsole = (props) => {
           <button onClick={() => homeRedEvent(fixtureId, home.id, 2)}>
             Red Card 2nd Half
           </button>
-          <td>
+          <td className="py-3 px-8">
             <GiCardPlay className="fill-red-500" />
           </td>
           <button onClick={() => awayRedEvent(fixtureId, away.id, 2)}>

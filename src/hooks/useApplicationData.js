@@ -24,6 +24,22 @@ const useApplicationData = () => {
     });
   };
 
+  const updateMultipleTeam = (oldTeamState, newTeam1, newTeam2) => {
+    const updateTeamsArray1 = oldTeamState.map((team) =>
+      team.id === newTeam1.id ? newTeam1 : team
+    );
+    const updateTeamArray2 = updateTeamsArray1.map((team) =>
+      team.id === newTeam2.id ? newTeam2 : team
+    );
+
+    setState((prev) => {
+      return {
+        ...prev,
+        teams: updateTeamArray2,
+      };
+    });
+  };
+
   const updateFixtures = (oldFixturesArray, newFixtureObj) => {
     const newFixturesArray = oldFixturesArray.map((fixture) =>
       fixture.id === newFixtureObj.id ? newFixtureObj : fixture
@@ -60,12 +76,17 @@ const useApplicationData = () => {
     });
   };
 
-  const deleteFixtureEvent = (oldFixtureEventsArray, deletedFixtureEventObj) => {
-    const updatedFixtureEventsArray = oldFixtureEventsArray.filter(fixtureEvent => fixtureEvent.id !== deletedFixtureEventObj.id);
-    setState(prev => {
+  const deleteFixtureEvent = (
+    oldFixtureEventsArray,
+    deletedFixtureEventObj
+  ) => {
+    const updatedFixtureEventsArray = oldFixtureEventsArray.filter(
+      (fixtureEvent) => fixtureEvent.id !== deletedFixtureEventObj.id
+    );
+    setState((prev) => {
       return {
         ...prev,
-        fixtureEvents: updatedFixtureEventsArray
+        fixtureEvents: updatedFixtureEventsArray,
       };
     });
   };
@@ -110,7 +131,8 @@ const useApplicationData = () => {
     updateFixtures,
     newFixturesEvent,
     updateFixturesEvent,
-    deleteFixtureEvent
+    deleteFixtureEvent,
+    updateMultipleTeam,
   };
 };
 

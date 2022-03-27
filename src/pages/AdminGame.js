@@ -18,6 +18,7 @@ const AdminGame = (props) => {
     newFixturesEvent,
     updateFixturesEvent,
     deleteFixtureEvent,
+    updateMultipleTeam,
   } = props;
 
   //param to check fixture_id
@@ -444,6 +445,11 @@ const AdminGame = (props) => {
           startHalf1={startHalf1}
           startHalf2={startHalf2}
           fixtureId={parseInt(fixture_id, 10)}
+          fixture={fixture}
+          teams={state.teams}
+          home={homeTeam}
+          away={awayTeam}
+          updateMultipleTeam={updateMultipleTeam}
         />
       </section>
     </main>
