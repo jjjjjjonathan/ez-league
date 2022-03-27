@@ -55,17 +55,27 @@ const EventTableItem = (props) => {
     return selectedPlayer.name;
   };
 
+  const parsedFirstHalfTime = (time, firstHalfTime) => {
+    const timeToReturn = Math.floor(
+      (Date.parse(time) - Date.parse(firstHalfTime)) / (1000 * 60)
+    );
+    return timeToReturn > 45 ? 45 : timeToReturn;
+  };
+
+  const parsedSecondHalfTime = (time, secondHalfTime) => {
+    const timeToReturn = Math.floor(
+      (Date.parse(time) - Date.parse(secondHalfTime)) / (1000 * 60) + 45
+    );
+    return timeToReturn > 90 ? 90 : timeToReturn;
+  };
+
   return (
     <tr className="bg-white-200 cursor-pointer duration-300 hover:bg-b-100 hover:scale-105 cursor-pointer">
       <td className="py-3 px-6 ">{findTeamName(team, listOfTeams)}</td>
       <td className="py-3 px-6 ">
         {eventHalf === 2
-          ? Math.floor(
-              (Date.parse(time) - Date.parse(secondHalfTime)) / (1000 * 60)
-            ) + 45
-          : Math.floor(
-              (Date.parse(time) - Date.parse(firstHalfTime)) / (1000 * 60)
-            )}
+          ? parsedSecondHalfTime(time, secondHalfTime)
+          : parsedFirstHalfTime(time, firstHalfTime)}
       </td>
       <td className="py-3 px-6 ">{findEventType(type, listOfTypes)}</td>
       <td className="py-3 px-6 ">
