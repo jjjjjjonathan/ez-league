@@ -40,6 +40,16 @@ const useApplicationData = () => {
     });
   };
 
+  const set1Player = (playersState, newPlayerObj) => {
+    const newPlayersArray = [...playersState, newPlayerObj];
+    setState((prev) => {
+      return {
+        ...prev,
+        players: newPlayersArray,
+      };
+    });
+  };
+
   const updateFixtures = (oldFixturesArray, newFixtureObj) => {
     const newFixturesArray = oldFixturesArray.map((fixture) =>
       fixture.id === newFixtureObj.id ? newFixtureObj : fixture
@@ -133,6 +143,7 @@ const useApplicationData = () => {
     updateFixturesEvent,
     deleteFixtureEvent,
     updateMultipleTeam,
+    set1Player,
   };
 };
 
