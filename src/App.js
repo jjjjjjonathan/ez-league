@@ -12,6 +12,7 @@ import LeagueHome from "./pages/LeagueHome";
 import Loading from "./components/Loading";
 import AdminLeague from "./pages/AdminLeague";
 import AdminGame from "./pages/AdminGame";
+import DashBoard from "./components/Dashboard";
 
 function App() {
   const {
@@ -36,12 +37,13 @@ function App() {
               <Home />
             </Route>
             <Route exact path="/leagues/:id/admin">
-              <AdminLeague
+              {/* <AdminLeague
                 teams={state.teams}
                 fixtures={state.fixtures}
                 leagues={state.leagues}
                 setMultipleTeams={setMultipleTeams}
-              />
+              /> */}
+              <DashBoard teams={state.teams} />
             </Route>
             <Route
               path="/leagues/:id"
