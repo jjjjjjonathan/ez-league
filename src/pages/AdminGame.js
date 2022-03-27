@@ -12,8 +12,13 @@ import { GiConsoleController, GiJetPack } from "react-icons/gi";
 
 const AdminGame = (props) => {
   //fetch fixture data and store it into a state
-  const { state, updateFixtures, newFixturesEvent, updateFixturesEvent, deleteFixtureEvent } =
-    props;
+  const {
+    state,
+    updateFixtures,
+    newFixturesEvent,
+    updateFixturesEvent,
+    deleteFixtureEvent,
+  } = props;
 
   //param to check fixture_id
   let { fixture_id } = useParams();
@@ -429,9 +434,6 @@ const AdminGame = (props) => {
           admin={true}
           deleteFixtureEvent={deleteFixtureEvent}
         />
-      </section>
-      <section>
-        <Players home={home} away={away} event={event} />
       </section>
       <section>
         <Timer
