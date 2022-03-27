@@ -2,19 +2,23 @@ import TableListItem from "./TableListItem";
 
 const TableList = (props) => {
   const { teams } = props;
-  const teamList = teams.map((team, index) => (
-    <TableListItem
-      key={team.id}
-      rank={index + 1}
-      {...team}
-      points={team.wins * 3 + team.draws * 1}
-      goal_difference={team.goals_for - team.goals_against}
-    />
-  ));
+  const teamList = teams.map((team, index) => {
+    let bg = index + 1;
+
+    return (
+      <TableListItem
+        key={team.id}
+        rank={index + 1}
+        {...team}
+        points={team.wins * 3 + team.draws * 1}
+        goal_difference={team.goals_for - team.goals_against}
+      />
+    );
+  });
 
   return (
     <table className="shadow-2x1 font-[Poppins] border-1 border-gray-200 w-6/12 overflow-hidden content-center mx-auto ">
-      <thead className="bg-gray-100  border-gray-200 gap-4">
+      <thead className="bg-gray-200  border-gray-200 gap-4">
         <tr>
           <th className="p-3 text-sm font-semibold tracking-wide text-center">
             Rank

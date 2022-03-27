@@ -1,7 +1,7 @@
-import EventTableItem from './EventTableItem';
-import EditEventTableItem from './EditEventTableItem';
-import { useState } from 'react';
-import axios from 'axios';
+import EventTableItem from "./EventTableItem";
+import EditEventTableItem from "./EditEventTableItem";
+import { useState } from "react";
+import axios from "axios";
 
 const EventTable = (props) => {
   const {
@@ -29,6 +29,10 @@ const EventTable = (props) => {
     return axios.delete(`/api/fixtures/events/${eventId}`).then((data) => {
       deleteFixtureEvent(fixtureEvents, data.data[0]);
     });
+  };
+
+  const onClickBack = () => {
+    setEditEventId(null);
   };
 
   const thisFixtureEvents = fixtureEvents.filter(
@@ -74,6 +78,7 @@ const EventTable = (props) => {
         updateFixturesEvent={updateFixturesEvent}
         fixtureEvents={fixtureEvents}
         setEditEventId={setEditEventId}
+        onClickBack={onClickBack}
       />
     ) : (
       <EventTableItem

@@ -21,6 +21,7 @@ const EditEventTableItem = (props) => {
     updateFixturesEvent,
     fixtureEvents,
     setEditEventId,
+    onClickBack,
   } = props;
 
   const submitEventEdit = (event, eventType, eventId, playerId) => {
@@ -122,7 +123,7 @@ const EditEventTableItem = (props) => {
         </button>
       </td>
       <td>
-        <button>Delete</button>
+        <button onClick={onClickBack}>Back</button>
       </td>
     </tr>
   );

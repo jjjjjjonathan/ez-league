@@ -1,8 +1,12 @@
 const Players = (props) => {
   const homePlayers = props.home.players.map((player) => {
-    return <td key={player.id}>{player.name}</td>;
+    return <tr key={player.id}>{player.name}</tr>;
   });
-  console.log('this is my props from players', props);
+
+  const awayPlayers = props.away.players.map((player) => {
+    return <tr key={player.id}>{player.name}</tr>;
+  });
+  console.log("this is my props from players", props);
   return (
     <table>
       <thead>
@@ -12,7 +16,12 @@ const Players = (props) => {
         </tr>
       </thead>
       <tbody>
-        <tr>{homePlayers}</tr>
+        <td>
+          <tr>{homePlayers}</tr>
+        </td>
+        <td>
+          <tr>{awayPlayers}</tr>
+        </td>
       </tbody>
     </table>
   );

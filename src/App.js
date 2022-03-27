@@ -21,7 +21,8 @@ function App() {
     updateFixtures,
     newFixturesEvent,
     updateFixturesEvent,
-    deleteFixtureEvent
+    deleteFixtureEvent,
+    updateMultipleTeam,
   } = useApplicationData();
   return !state.isReady ? (
     <Loading />
@@ -53,7 +54,12 @@ function App() {
               <TeamForm />
             </Route>
             <Route exact path="/matchpage/:id">
-              <MatchPage fixtures={state.fixtures} teams={state.teams} players={state.players} state={state} />
+              <MatchPage
+                fixtures={state.fixtures}
+                teams={state.teams}
+                players={state.players}
+                state={state}
+              />
             </Route>
             <Route exact path="/parse">
               <CSVReader />
@@ -68,6 +74,7 @@ function App() {
                 newFixturesEvent={newFixturesEvent}
                 updateFixturesEvent={updateFixturesEvent}
                 deleteFixtureEvent={deleteFixtureEvent}
+                updateMultipleTeam={updateMultipleTeam}
               />
             </Route>
           </Switch>
