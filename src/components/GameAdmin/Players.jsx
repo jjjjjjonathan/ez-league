@@ -2,7 +2,6 @@ const Players = (props) => {
   const homePlayers = props.home.players.map((player) => {
     return <tr key={player.id}>{player.name}</tr>;
   });
-
   const awayPlayers = props.away.players.map((player) => {
     return <tr key={player.id}>{player.name}</tr>;
   });
