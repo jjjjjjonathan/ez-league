@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 const EventTableItem = (props) => {
   const {
     type,
@@ -15,6 +17,7 @@ const EventTableItem = (props) => {
     secondHalfTime,
     fixtureStatus,
     eventHalf,
+    admin,
   } = props;
 
   const findTeamName = (team, listOfTeams) => {
@@ -70,7 +73,7 @@ const EventTableItem = (props) => {
           type
         )}
       </td>
-      <td>
+      {admin &&  <Fragment> <td>
         <form action="">
           <button>Edit</button>
         </form>
@@ -79,7 +82,9 @@ const EventTableItem = (props) => {
         <form action="">
           <button>Delete</button>
         </form>
-      </td>
+      </td></Fragment>
+      }
+    
     </tr>
   );
 };

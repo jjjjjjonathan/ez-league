@@ -426,6 +426,7 @@ const AdminGame = (props) => {
           players={state.players}
           fixtureStatus={fixture.status}
           secondHalfTime={fixture.second_half_start_time}
+          admin={true}
         />
       </section>
       <section>
