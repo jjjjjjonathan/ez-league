@@ -30,6 +30,7 @@ const MatchPage = (props) => {
       console.log("----", all);
     });
   }, []);
+
   const [timerOn, setTimerOn] = useState(false);
 
   const [time, setTime] = useState({
@@ -74,8 +75,6 @@ const MatchPage = (props) => {
           minutes = Math.floor(seconds / 60);
           seconds -= 60 * minutes;
         }
-
-
 
         setTime({
           minutes,
