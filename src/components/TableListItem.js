@@ -1,6 +1,6 @@
 const TableListItem = (props) => {
   return (
-    <tr className="bg-gray-100 cursor-pointer duration-300 hover:bg-b-100 hover:scale-105 cursor-pointer">
+    <tr className="bg-gray-100 cursor-pointer duration-300 hover:bg-b-100 hover:scale-105 cursor-pointer" onClick={() => console.log("clICK")}>
       <td className="py-3 px-6 ">{props.rank}</td>
       <td className="py-3 px-2 flex flex-row space-x-4">
         <img
