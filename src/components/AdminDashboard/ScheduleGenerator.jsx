@@ -21,8 +21,8 @@ const ScheduleGenerator = (props) => {
 
   const scheduleGenerator = (teamArray, leagueId) => {
     let queryString =
-      'INSERT INTO fixtures (league_id, home_team_id, away_team_id) VALUES ';
-    // let counter = 7;
+      'INSERT INTO fixtures (league_id, home_team_id, away_team_id, scheduled_time) VALUES ';
+    let counter = 7;
     let queryParams = [];
     let conditions = [];
     teamArray.forEach((week) => {
@@ -33,7 +33,9 @@ const ScheduleGenerator = (props) => {
         queryParams.push(match[0].id.toString(10));
         newQuery += `$${queryParams.length.toString(10)}, `;
         queryParams.push(match[1].id.toString(10));
-        newQuery += `$${queryParams.length.toString(10)})`;
+        newQuery += `$${queryParams.length.toString(
+          10
+        )}, now() + INTERVAL '${counter} DAYS')`;
         // queryParams.push(`now() + INTERVAL '${counter.toString(10)} DAYS'`);
         // newQuery += `$${queryParams.length.toString(10)})`;
         conditions.push(newQuery);

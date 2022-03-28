@@ -11,6 +11,7 @@ const FixtureList = (props) => {
       awayTeamId={fixture.away_team_id}
       status={fixture.status}
       fixtureId={fixture.id}
+      scheduledTime={fixture.scheduled_time}
     />
   ));
 
@@ -22,6 +23,7 @@ const FixtureList = (props) => {
             <th>Home</th>
             <th>Away</th>
             <th>Status</th>
+            <th>Scheduled for</th>
           </tr>
         </thead>
         <tbody>{mappedLeagueFixtures}</tbody>

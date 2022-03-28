@@ -2,7 +2,14 @@ import { useHistory } from 'react-router-dom';
 
 const FixtureListItem = (props) => {
   let history = useHistory();
-  const { leagueTeams, status, homeTeamId, awayTeamId, fixtureId } = props;
+  const {
+    leagueTeams,
+    status,
+    homeTeamId,
+    awayTeamId,
+    fixtureId,
+    scheduledTime,
+  } = props;
 
   const homeTeam = leagueTeams.find((team) => team.id === homeTeamId);
 
@@ -13,6 +20,7 @@ const FixtureListItem = (props) => {
       <td>{homeTeam.name}</td>
       <td>{awayTeam.name}</td>
       <td>{status}</td>
+      <td>{scheduledTime}</td>
     </tr>
   );
 };
