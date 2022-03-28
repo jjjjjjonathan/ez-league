@@ -2,6 +2,7 @@ import "./App.css";
 import useApplicationData from "./hooks/useApplicationData";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Standing from "./pages/Standing";
 import TeamForm from "./components/TeamForm";
@@ -33,10 +34,10 @@ function App() {
   return !state.isReady ? (
     <Loading />
   ) : (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-gray-600 to-gray-200">
+    <div className="min-h-screen flex-grow bg-gradient-to-b from-gray-50 via-gray-600 to-gray-200 font-sans font-semibold ">
       <Router>
         <Navbar />
-        <div className="container mx-auto">
+        <div className="min-h-screen">
           <Switch>
             <Route exact path="/">
               <Home />
@@ -102,6 +103,7 @@ function App() {
           </Switch>
         </div>
       </Router>
+      <Footer />
     </div>
   );
 }

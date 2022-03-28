@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <section className="flex flex-row justify-center ">
+    <section className="container mx-auto flex flex-col m-0 scale-125 sm:flex-row scale-125 justify-center m-20  ">
       <HomeButton
         text={"As a Manager"}
         url={"images/manager2.jpeg"}
