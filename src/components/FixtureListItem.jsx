@@ -8,7 +8,9 @@ const FixtureListItem = (props) => {
     homeTeamId,
     awayTeamId,
     fixtureId,
-    scheduledTime,
+    scheduledTimestamp,
+    scheduledDate,
+    onClickEdit,
   } = props;
 
   const homeTeam = leagueTeams.find((team) => team.id === homeTeamId);
@@ -16,11 +18,19 @@ const FixtureListItem = (props) => {
   const awayTeam = leagueTeams.find((team) => team.id === awayTeamId);
 
   return (
-    <tr onClick={() => history.push(`/admin/game/${fixtureId}`)}>
-      <td>{homeTeam.name}</td>
-      <td>{awayTeam.name}</td>
+    <tr>
+      <td onClick={() => history.push(`/admin/game/${fixtureId}`)}>
+        <strong>{homeTeam.name}</strong> v. <strong>{awayTeam.name}</strong>
+      </td>
       <td>{status}</td>
-      <td>{scheduledTime}</td>
+      <td>{scheduledDate}</td>
+      <td>{scheduledTimestamp}</td>
+      <td>
+        <button onClick={(event) => onClickEdit(event, fixtureId)}>Edit</button>
+      </td>
+      <td>
+        <button>Delete</button>
+      </td>
     </tr>
   );
 };
