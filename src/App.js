@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
-import Standing from "./pages/Standing";
+import LeagueStanding from "./pages/LeagueStanding";
 import TeamForm from "./components/TeamForm";
 import MatchPage from "./components/MatchPage";
 import CSVReader from "./components/CSVReader";
@@ -16,6 +16,7 @@ import AdminGame from "./pages/AdminGame";
 import DashBoard from "./components/Dashboard";
 import TeamDashboard from "./components/TeamDashboard";
 import LeagueList from "./components/LeagueList";
+import LeaguePlayers from "./pages/LeaguePlayers";
 
 function App() {
   const {
@@ -71,7 +72,10 @@ function App() {
               children={<LeagueHome state={state} setState={setState} />}
             />
             <Route exact path="/leagues/:id/table">
-              <Standing teams={state.teams} />
+              <LeagueStanding teams={state.teams} />
+            </Route>
+            <Route exact path="/leagues/:id/players">
+              <LeaguePlayers players={state.players} teams={state.teams} />
             </Route>
             <Route exact path="/teamform">
               <TeamForm />
