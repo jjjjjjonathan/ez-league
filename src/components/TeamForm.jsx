@@ -33,7 +33,7 @@ const TeamForm = (props) => {
           <form
             autoComplete="off"
             onSubmit={submit}
-            className="shadow-md bg-white rounded px-8 pt-6 pb-8 mb-4"
+            className="shadow-md bg-gray-200 border border-gray-200 rounded px-8 pt-6 pb-8 mb-4"
           >
             <div className="mb-5">
               <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -44,7 +44,7 @@ const TeamForm = (props) => {
                 name="name"
                 placeholder="Enter Team Name"
                 onChange={(event) => setTeamName(event.target.value)}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none bg-gray-100 "
               />
             </div>
             <div className="mb-5">
@@ -60,18 +60,23 @@ const TeamForm = (props) => {
                     event.target.value.length === 0 ? null : event.target.value
                   )
                 }
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none bg-gray-100"
               />
             </div>
           </form>
           <div className="md:flex md:justify-center mb-6">
             <button
               onClick={(event) => validate(event, id, teamName, logo)}
-              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded md:items-center"
+              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded md:items-center mx-5"
             >
               Submit
             </button>
-            <button onClick={() => onClickBack()}>Go Back</button>
+            <button
+              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded md:items-center mx-5"
+              onClick={() => onClickBack()}
+            >
+              Go Back
+            </button>
           </div>
         </section>
       </article>

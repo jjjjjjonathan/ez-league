@@ -18,18 +18,18 @@ const FixtureListItem = (props) => {
   const awayTeam = leagueTeams.find((team) => team.id === awayTeamId);
 
   return (
-    <tr>
-      <td onClick={() => history.push(`/admin/game/${fixtureId}`)}>
+    <tr className="hover:bg-gray-100 mx-4">
+      <td
+        onClick={() => history.push(`/admin/game/${fixtureId}`)}
+        className="border px-8 py-4"
+      >
         <strong>{homeTeam.name}</strong> v. <strong>{awayTeam.name}</strong>
       </td>
-      <td>{status}</td>
-      <td>{scheduledDate}</td>
-      <td>{scheduledTimestamp}</td>
-      <td>
+      <td className="border px-8 py-4">{status}</td>
+      <td className="border px-8 py-4">{scheduledDate}</td>
+      <td className="border px-8 py-4">{scheduledTimestamp}</td>
+      <td className="border px-8 py-4">
         <button onClick={(event) => onClickEdit(event, fixtureId)}>Edit</button>
-      </td>
-      <td>
-        <button>Delete</button>
       </td>
     </tr>
   );

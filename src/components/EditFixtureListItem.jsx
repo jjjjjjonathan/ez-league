@@ -15,20 +15,24 @@ const EditFixtureListItem = (props) => {
   const awayTeam = leagueTeams.find((team) => team.id === awayTeamId);
   return (
     <tr>
-      <td>
+      <td className="border px-8 py-4">
         <strong>{homeTeam.name}</strong> v. <strong>{awayTeam.name}</strong>
       </td>
-      <td>
+      <td className="border px-8 py-4">
         <em>Pick a new date: </em>
       </td>
-      <td>
-        <input type="datetime-local" id="game-time" value={scheduledTime} />
+      <td className="border px-8 py-4">
+        <input
+          className="bg-gray-300"
+          type="datetime-local"
+          id="game-time"
+          value={scheduledTime}
+        />
       </td>
-      <td></td>
-      <td>
+      <td className="border px-8 py-4">
         <button>Submit</button>
       </td>
-      <td>
+      <td className="border px-8 py-4">
         <button onClick={() => onClickEditBack()}>Cancel</button>
       </td>
     </tr>
