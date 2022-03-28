@@ -1,27 +1,37 @@
+import PlayerListItem from '../PlayerListItem';
+
 const Players = (props) => {
-  const homePlayers = props.home.players.map((player) => {
-    return <tr key={player.id}>{player.name}</tr>;
+  const { teamId, players } = props;
+
+  const filteredPlayers = players.filter((player) => player.team_id === teamId);
+
+  const mappedPlayers = filteredPlayers.map((player) => {
+    return (
+      <PlayerListItem
+        key={player.id}
+        name={player.name}
+        shirtNumber={player.shirt_number}
+        goals={player.goals}
+        yellowCards={player.yellow_cards}
+        redCards={player.red_cards}
+        photoUrl={player.photo_url}
+      />
+    );
   });
-  const awayPlayers = props.away.players.map((player) => {
-    return <tr key={player.id}>{player.name}</tr>;
-  });
-  console.log("this is my props from players", props);
+
   return (
     <table>
       <thead>
         <tr>
-          <th>Home</th>
-          <th>Away</th>
+          <th>Image</th>
+          <th>Shirt Number</th>
+          <th>Name</th>
+          <th>Goals</th>
+          <th>Yellow Cards</th>
+          <th>Red Cards</th>
         </tr>
       </thead>
-      <tbody>
-        <td>
-          <tr>{homePlayers}</tr>
-        </td>
-        <td>
-          <tr>{awayPlayers}</tr>
-        </td>
-      </tbody>
+      <tbody>{mappedPlayers}</tbody>
     </table>
   );
 };
