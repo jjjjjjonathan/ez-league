@@ -49,6 +49,7 @@ function App() {
                 setMultipleTeams={setMultipleTeams}
               /> */}
               <DashBoard
+                leagues={state.leagues}
                 teams={state.teams}
                 fixtures={state.fixtures}
                 setMultipleTeams={setMultipleTeams}

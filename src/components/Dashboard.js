@@ -12,14 +12,14 @@ const DashBoard = (props) => {
   const ADDTEAMS = "ADDTEAMS";
   const SEETEAMS = "SEETEAMS";
   const SCHEDULE = "SCHEDULE";
-  const { teams, fixtures, setMultipleTeams, addNewFixtures } = props;
+  const { teams, fixtures, setMultipleTeams, addNewFixtures, leagues } = props;
   const { mode, transition, back, reset } = useDashboardMode(START);
 
 
 
   return (
     <Fragment>
-      {mode === START && <Start onClick={transition} />}
+      {mode === START && <Start onClick={transition} id={parseInt(id, 10)} leagues={leagues} />}
       {mode === ADDTEAMS && <TeamForm id={parseInt(id)} setMultipleTeams={setMultipleTeams} teams={teams} onClickBack={back} />}
       {mode === SEETEAMS && <TableList id={parseInt(id)} teams={teams} onClickBack={back} />}
       {mode === SCHEDULE && <Schedule id={parseInt(id, 10)} fixtures={fixtures} teams={teams} addNewFixtures={addNewFixtures} onClickBack={back} />}
