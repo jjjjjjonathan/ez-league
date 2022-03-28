@@ -186,6 +186,14 @@ module.exports = (db) => {
     });
   });
 
+  router.put("/generate", (req, res) => {
+    const { queryString, queryParams } = req.body;
+    return db.query(queryString, queryParams)
+      .then(data => {
+        res.status(201).json(data);
+      });
+  });
+
   router.delete("/events/:id", (req, res) => {
     return db.query("DELETE FROM fixture_events WHERE id = $1 RETURNING *;", [req.params.id])
       .then(data => {

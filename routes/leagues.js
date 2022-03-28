@@ -29,7 +29,7 @@ module.exports = db => {
     teams.goals_for - teams.goals_against AS goal_difference
     FROM teams
     WHERE league_id = $1
-    ORDER BY points DESC, goal_difference DESC;`, [req.params.id])
+    ORDER BY points DESC, goal_difference, goals_for DESC;`, [req.params.id])
       .then(data => {
         res.json(data.rows);
       });
