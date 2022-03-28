@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment } from "react";
 
 const EventTableItem = (props) => {
   const {
@@ -56,7 +56,7 @@ const EventTableItem = (props) => {
   };
 
   return (
-    <tr className="bg-white-200 cursor-pointer duration-300 hover:bg-b-100 hover:scale-105 cursor-pointer">
+    <tr className="bg-white-200  duration-300 hover:bg-b-100 hover:scale-105 cursor-pointer">
       <td className="py-3 px-6 ">{findTeamName(team, listOfTeams)}</td>
       <td className="py-3 px-6 ">
         {eventHalf === 2

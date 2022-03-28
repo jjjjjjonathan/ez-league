@@ -13,6 +13,17 @@ const useApplicationData = () => {
     isReady: false,
   });
 
+  const addNewFixtures = (fixturesState, newFixturesArray) => {
+    const updatedFixturesState = [...fixturesState];
+    newFixturesArray.forEach(newFixture => updatedFixturesState.push(newFixture));
+    setState(prev => {
+      return {
+        ...prev,
+        fixtures: updatedFixturesState
+      };
+    });
+  };
+
   const setMultipleTeams = (teamsState, teamsArray) => {
     const newTeams = [...teamsState];
     teamsArray.forEach((newTeam) => newTeams.push(newTeam));
@@ -36,6 +47,16 @@ const useApplicationData = () => {
       return {
         ...prev,
         teams: updateTeamArray2,
+      };
+    });
+  };
+
+  const set1Player = (playersState, newPlayerObj) => {
+    const newPlayersArray = [...playersState, newPlayerObj];
+    setState((prev) => {
+      return {
+        ...prev,
+        players: newPlayersArray,
       };
     });
   };
@@ -133,6 +154,8 @@ const useApplicationData = () => {
     updateFixturesEvent,
     deleteFixtureEvent,
     updateMultipleTeam,
+    set1Player,
+    addNewFixtures
   };
 };
 

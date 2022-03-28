@@ -1,32 +1,33 @@
 import axios from 'axios';
 import { useState, Fragment } from 'react';
 
-const TeamForm = (props) => {
-  const { id, setMultipleTeams, teams, onClickBack } = props;
-  const [teamName, setTeamName] = useState('');
-  const [logo, setLogo] = useState(null);
+const PlayerForm = (props) => {
+  const { id, set1Player, players } = props;
+  const [playerName, setPlayerName] = useState('');
+  const [shirtNumber, setShirtNumber] = useState(null);
   const submit = (event) => {
     event.preventDefault();
   };
 
-  const save = (leagueId, teamName, logo) => {
-    axios.put('/api/teams/add', { leagueId, teamName, logo }).then((data) => {
-      setMultipleTeams(teams, data.data.rows);
+  const save = (teamId, playerName, shirtNumber) => {
+    axios.put('/api/players/add', { teamId, playerName, shirtNumber }).then((data) => {
+      console.log(data)
+      set1Player(players, data.data.rows[0]);
     });
   };
-  const validate = (event, leagueId, teamName, logo) => {
+  const validate = (event, teamId, playerName, shirtNumber) => {
     event.preventDefault();
     console.log('validating...');
-    if (teamName) {
+    if (playerName) {
       console.log('saving...');
-      save(leagueId, teamName, logo);
+      save(teamId, playerName, shirtNumber);
     }
   };
 
   return (
     <Fragment>
       <h1 className="flex items-center justify-center mt-5 text-2xl ">
-        Add Your Team
+        Add Your Player
       </h1>
       <article className="flex justify-center mt-10 ">
         <section className="w-full max-w-sm flex-col">
@@ -37,26 +38,26 @@ const TeamForm = (props) => {
           >
             <div className="mb-5">
               <label className="block text-gray-700 text-sm font-bold mb-2">
-                Team Name
+                Player Name
               </label>
               <input
                 type="text"
                 name="name"
-                placeholder="Enter Team Name"
-                onChange={(event) => setTeamName(event.target.value)}
+                placeholder="Enter Player Name"
+                onChange={(event) => setPlayerName(event.target.value)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
               />
             </div>
             <div className="mb-5">
               <label className="block text-gray-700 text-sm font-bold mb-2">
-                Add Team Logo
+                Add Shirt Number
               </label>
               <input
                 type="text"
-                name="logoURL"
-                placeholder="Enter a URL for your logo"
+                name="Jersey"
+                placeholder="Enter a shirt number"
                 onChange={(event) =>
-                  setLogo(
+                  setShirtNumber(
                     event.target.value.length === 0 ? null : event.target.value
                   )
                 }
@@ -66,12 +67,11 @@ const TeamForm = (props) => {
           </form>
           <div className="md:flex md:justify-center mb-6">
             <button
-              onClick={(event) => validate(event, id, teamName, logo)}
+              onClick={(event) => validate(event, id, playerName, shirtNumber)}
               className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded md:items-center"
             >
               Submit
             </button>
-            <button onClick={() => onClickBack()}>Go Back</button>
           </div>
         </section>
       </article>
@@ -79,4 +79,4 @@ const TeamForm = (props) => {
   );
 };
 
-export default TeamForm;
+export default PlayerForm;

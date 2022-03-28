@@ -1,8 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { Fragment, useState } from 'react';
 import CSVReader from '../components/CSVReader';
+import TeamForm from '../components/TeamForm';
 
 const AdminLeague = (props) => {
+  let { id } = useParams();
   const { leagues, fixtures, teams, setMultipleTeams } = props;
 
   const checkEmptyLeague = (id, teams) => {
@@ -12,6 +14,7 @@ const AdminLeague = (props) => {
       return (
         <Fragment>
           <p>You don't seem to have any teams. Why don't you add some?</p>
+          <TeamForm id={id} setMultipleTeams={setMultipleTeams} teams={teams} />
           <CSVReader
             id={id}
             setMultipleTeams={setMultipleTeams}
@@ -21,8 +24,6 @@ const AdminLeague = (props) => {
       );
     }
   };
-
-  let { id } = useParams();
 
   const leagueName = leagues.find(
     (league) => league.id === parseInt(id, 10)

@@ -1,6 +1,12 @@
+import { useHistory } from "react-router-dom";
+
 const TableListItem = (props) => {
+  let history = useHistory();
   return (
-    <tr className="bg-gray-100 cursor-pointer duration-300 hover:bg-b-100 hover:scale-105 cursor-pointer">
+    <tr
+      className=" odd:bg-gray-100 even:bg-gray-200 cursor-pointer duration-300 hover:bg-b-100 hover:scale-105 cursor-pointer"
+      onClick={() => history.push(`/teams/${props.id}/admin`)}
+    >
       <td className="py-3 px-6 ">{props.rank}</td>
       <td className="py-3 px-2 flex flex-row space-x-4">
         <img
@@ -10,7 +16,7 @@ const TableListItem = (props) => {
         />
         <p className="sm:w-2/3 lg:w-3/4 p-4 whitespace-nowrap">{props.name}</p>
       </td>
-      <td className="py-3 px-6 ">{props.wins + props.draws + props.losses}</td>
+      <td className="py-3 px-6 ">{props.matches_played}</td>
       <td className="py-3 px-6 ">{props.wins}</td>
       <td className="py-3 px-6 ">{props.draws}</td>
       <td className="py-3 px-6 ">{props.losses}</td>
