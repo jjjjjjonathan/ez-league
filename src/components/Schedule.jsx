@@ -1,4 +1,5 @@
 import ScheduleGenerator from './AdminDashboard/ScheduleGenerator';
+import FixtureList from './FixtureList';
 
 const Schedule = (props) => {
   const { fixtures, id, teams, addNewFixtures } = props;
@@ -17,7 +18,12 @@ const Schedule = (props) => {
           fixtures={fixtures}
         />
       )}
-      {leagueFixtures.length >= 1 && <h1>yes teams!</h1>}
+      {leagueFixtures.length >= 1 && (
+        <FixtureList
+          leagueFixtures={leagueFixtures}
+          leagueTeams={leagueTeams}
+        />
+      )}
     </section>
   );
 };
