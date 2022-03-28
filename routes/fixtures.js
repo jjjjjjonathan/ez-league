@@ -10,6 +10,8 @@ module.exports = (db) => {
         [score, fixtureId]
       )
       .then((data) => {
+        console.log(data.rows[0]);
+        req.io.emit("UPDATESTATE", { type: "UPDATE_FIXTURES", content: data.rows[0] });
         res.status(200).json(data);
       });
   });
