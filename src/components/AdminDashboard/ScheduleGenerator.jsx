@@ -45,7 +45,8 @@ const ScheduleGenerator = (props) => {
     return { queryString, queryParams };
   };
 
-  const { leagueId, leagueTeams, addNewFixtures, fixtures } = props;
+  const { leagueId, leagueTeams, addNewFixtures, fixtures, onClickBack } =
+    props;
 
   return (
     <div>
@@ -54,6 +55,7 @@ const ScheduleGenerator = (props) => {
         one!
       </h1>
       <button onClick={() => validate(leagueTeams, leagueId)}>Generate</button>
+      <button onClick={() => onClickBack()}>Go Back</button>
     </div>
   );
 };

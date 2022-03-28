@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState, Fragment } from 'react';
 
 const TeamForm = (props) => {
-  const { id, setMultipleTeams, teams } = props;
+  const { id, setMultipleTeams, teams, onClickBack } = props;
   const [teamName, setTeamName] = useState('');
   const [logo, setLogo] = useState(null);
   const submit = (event) => {
@@ -71,6 +71,7 @@ const TeamForm = (props) => {
             >
               Submit
             </button>
+            <button onClick={() => onClickBack()}>Go Back</button>
           </div>
         </section>
       </article>

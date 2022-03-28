@@ -1,7 +1,7 @@
 import FixtureListItem from './FixtureListItem';
 
 const FixtureList = (props) => {
-  const { leagueFixtures, leagueTeams } = props;
+  const { leagueFixtures, leagueTeams, onClickBack } = props;
 
   const mappedLeagueFixtures = leagueFixtures.map((fixture) => (
     <FixtureListItem
@@ -15,16 +15,19 @@ const FixtureList = (props) => {
   ));
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Home</th>
-          <th>Away</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>{mappedLeagueFixtures}</tbody>
-    </table>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Home</th>
+            <th>Away</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>{mappedLeagueFixtures}</tbody>
+      </table>
+      <button onClick={() => onClickBack()}>Go Back</button>
+    </div>
   );
 };
 

@@ -20,9 +20,9 @@ const DashBoard = (props) => {
   return (
     <Fragment>
       {mode === START && <Start onClick={transition} />}
-      {mode === ADDTEAMS && <TeamForm id={parseInt(id)} setMultipleTeams={setMultipleTeams} teams={teams} />}
-      {mode === SEETEAMS && <TableList id={parseInt(id)} teams={teams} />}
-      {mode === SCHEDULE && <Schedule id={parseInt(id, 10)} fixtures={fixtures} teams={teams} addNewFixtures={addNewFixtures} />}
+      {mode === ADDTEAMS && <TeamForm id={parseInt(id)} setMultipleTeams={setMultipleTeams} teams={teams} onClickBack={back} />}
+      {mode === SEETEAMS && <TableList id={parseInt(id)} teams={teams} onClickBack={back} />}
+      {mode === SCHEDULE && <Schedule id={parseInt(id, 10)} fixtures={fixtures} teams={teams} addNewFixtures={addNewFixtures} onClickBack={back} />}
     </Fragment>
   );
 };
