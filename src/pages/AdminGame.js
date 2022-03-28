@@ -141,7 +141,6 @@ const AdminGame = (props) => {
     fixture.second_half_start_time,
     timerOn,
   ]);
-  console.log("LOOKING FOR THIS FIXTURE", fixture);
   // useEffect(() => {
   //   //find the fixture that match with fixture_id
 

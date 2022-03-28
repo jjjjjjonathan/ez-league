@@ -1,7 +1,63 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useReducer } from "react";
 import axios from "axios";
+import socketIoClient from 'socket.io-client';
 
 const useApplicationData = () => {
+
+  const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
+  const UPDATE_FIXTURES = "UPDATE_FIXTURES";
+
+  const reducers = {
+    SET_APPLICATION_DATA(state2, action) {
+      return {
+        ...state2,
+        sports: action.sports.data,
+        leagues: action.leagues.data,
+        teams: action.teams.data,
+        players: action.players.data,
+        fixtures: action.fixtures.data,
+        fixtureEvents: action.fixtureEvents.data,
+        fixtureTypes: action.fixtureTypes.data,
+        isReady: true,
+      };
+    },
+
+    UPDATE_FIXTURES(state2, action) {
+      console.log("this is action", action);
+      const updateFixtures2 = (oldFixturesArray, newFixtureObj) => {
+        const newFixturesArray = oldFixturesArray.map((fixture) =>
+          fixture.id === newFixtureObj.id ? newFixtureObj : fixture
+        );
+        return newFixturesArray;
+      };
+      console.log(updateFixtures2(state2.fixtures, action.content));
+      return {
+        ...state2,
+        fixtures: [updateFixtures2(state2.fixtures, action.content)]
+      };
+    }
+  };
+
+  const reducer = (state, action) => {
+    return reducers[action.type](state, action) || state;
+  };
+
+  const [state2, dispatch] = useReducer(reducer, {
+    leagues: [],
+    teams: [],
+    players: [],
+    fixtures: [],
+    fixtureEvents: [],
+    fixtureTypes: [],
+    sports: [],
+    isReady: false,
+  });
+
+
+
+
+
+
   const [state, setState] = useState({
     leagues: [],
     teams: [],
@@ -131,22 +187,45 @@ const useApplicationData = () => {
         fixtureEvents,
         fixtureTypes,
       ] = all;
-      setState((prev) => ({
-        ...prev,
-        sports: sports.data,
-        leagues: leagues.data,
-        teams: teams.data,
-        players: players.data,
-        fixtures: fixtures.data,
-        fixtureEvents: fixtureEvents.data,
-        fixtureTypes: fixtureTypes.data,
-        isReady: true,
-      }));
+      // setState((prev) => ({
+      //   ...prev,
+      //   sports: sports.data,
+      //   leagues: leagues.data,
+      //   teams: teams.data,
+      //   players: players.data,
+      //   fixtures: fixtures.data,
+      //   fixtureEvents: fixtureEvents.data,
+      //   fixtureTypes: fixtureTypes.data,
+      //   isReady: true,
+      // }));
+      dispatch({
+        type: SET_APPLICATION_DATA,
+        sports,
+        leagues,
+        teams,
+        players,
+        fixtures,
+        fixtureEvents,
+        fixtureTypes,
+      });
     });
   }, []);
 
+  useEffect(() => {
+    const ENDPOINT = 'http://localhost:8001';
+    const connection = socketIoClient(ENDPOINT);
+
+    connection.on('UPDATESTATE', (data) => {
+      if (data.type === 'UPDATE_FIXTURES') {
+        dispatch({ type: UPDATE_FIXTURES, content: data.content });
+      }
+      // updateFixtures(state.fixtures, data.content.rows[0]);
+    });
+
+  }, []);
+
   return {
-    state,
+    state: state2,
     setState,
     setMultipleTeams,
     updateFixtures,
