@@ -22,7 +22,7 @@ const AdminGame = (props) => {
   } = props;
 
   //param to check fixture_id
-  let { fixture_id } = useParams();
+  const { fixture_id } = useParams();
 
   // const { homeScore, awayScore, updateHomeGoals } = useAdminGameHooks(fixture_id, state.fixtures);
 
