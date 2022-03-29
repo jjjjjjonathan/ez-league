@@ -37,7 +37,7 @@ const TeamProfile = (props) => {
   return (
     <article>
       <h1 className="bg-gradient-to-r from-gray-400 via-gray-800 to-gray-600 my-auto text-center p-5 text-4xl text-white">
-        {club.name}
+        {club.name.toUpperCase()}
       </h1>
       <section className="grid grid-cols-1 sm:grid-cols-2">
         <aside className="container">
