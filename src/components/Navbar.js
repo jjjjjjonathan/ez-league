@@ -4,6 +4,14 @@ const Navbar = () => {
   return (
     <nav className="bg-gray-900 text-gray-100 py-3.5 px-6 shadow md:flex justify-between items-center">
       <ul className="flex flex-col cursor-pointer  md:flex-row md:items-center ">
+        <Link to="/">
+          <img
+            src="/images/logoNav.png"
+            alt="ez-league-logo"
+            className="w-20"
+          />
+        </Link>
+
         <li className="md:mx-4 hover:text-gray-400">
           <Link to="/">Home</Link>
         </li>

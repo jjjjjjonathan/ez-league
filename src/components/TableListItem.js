@@ -10,9 +10,11 @@ const TableListItem = (props) => {
       <td className="py-3 px-6 ">{props.rank}</td>
       <td className="py-3 px-2 flex flex-row space-x-4">
         <img
-          src={props.thumbnail_logo}
+          src={
+            props.thumbnail_logo ? props.thumbnail_logo : "/images/small.png"
+          }
           alt="team-logo"
-          className="object-contain "
+          className={props.thumbnail_logo ? "object-contain" : "object-contain"}
         />
         <p className="sm:w-2/3 lg:w-3/4 p-4 whitespace-nowrap">{props.name}</p>
       </td>
