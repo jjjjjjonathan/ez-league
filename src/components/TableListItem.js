@@ -17,7 +17,7 @@ const TableListItem = (props) => {
           }
           alt="team-logo"
           className={
-            props.thumbnail_logo ? "object-contain" : "h-8 w-4 my-auto"
+            props.thumbnail_logo ? "object-contain" : "h-8 w-8  object-contain"
           }
         />
         <p className="sm:w-2/3 lg:w-3/4 p-4 whitespace-nowrap">{props.name}</p>
