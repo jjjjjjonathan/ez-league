@@ -3,15 +3,20 @@ import { parse } from 'papaparse';
 import { addBulkTeams } from '../helpers/csvParsers';
 import axios from 'axios';
 
-const save = (list, id, teams, callback) => {
-  return axios.put('/api/teams', addBulkTeams(list, id)).then((data) => {
-    callback(data.data, teams);
-  });
-};
-
 const CSVReader = (props) => {
   const [list, setList] = useState([]);
+  const [successList, setSuccessList] = useState([]);
+  const [success, setSuccess] = useState(false);
   const { id, setMultipleTeams, teams } = props;
+
+  const save = (list, id, teams, callback) => {
+    return axios.put('/api/teams', addBulkTeams(list, id)).then((data) => {
+      const newTeamNames = data.data.map((newTeam) => newTeam.name);
+      setSuccessList(newTeamNames);
+      setSuccess(true);
+      callback(data.data, teams);
+    });
+  };
 
   return (
     <div className="  mb-6 shadow-md bg-white rounded px-8 pt-6 pb-8 mb-4 m-20 ">
@@ -89,6 +94,12 @@ const CSVReader = (props) => {
       >
         Submit
       </button>
+      {success && (
+        <p className="text-green-600">
+          Congrats, you just added a bunch of teams to the league:{' '}
+          {successList.join(', ')}.
+        </p>
+      )}
     </div>
   );
 };
