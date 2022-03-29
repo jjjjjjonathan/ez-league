@@ -14,7 +14,7 @@ const AddTeams = (props) => {
   const SINGLE = 'SINGLE';
   const BULK = 'BULK';
 
-  const { mode, transition, back, reset } = useLeagueAdminHooks(BUTTON);
+  const { mode, transition } = useLeagueAdminHooks(BUTTON);
 
   return (
     <Fragment>

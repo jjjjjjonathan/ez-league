@@ -6,6 +6,7 @@ import TeamForm from "./TeamForm";
 import TableList from "./TableList";
 import Schedule from "./Schedule";
 import AddTeams from "./AdminDashboard/AddTeams";
+import AdminTeamList from "./AdminDashboard/AdminTeamList";
 
 const DashBoard = (props) => {
 
@@ -16,10 +17,8 @@ const DashBoard = (props) => {
   const SEETEAMS = "SEETEAMS";
   const SCHEDULE = "SCHEDULE";
   const { teams, fixtures, setMultipleTeams, addNewFixtures, leagues } = props;
-  const { mode, transition, back, reset } = useDashboardMode(START);
-  const thisLeague = leagues.find(league => league.id === id);
 
-  const teamsInLeagueCount = teams.filter((team) => team.league_id === id).length;
+  const thisLeague = leagues.find(league => league.id === id);
 
 
 
@@ -38,22 +37,17 @@ const DashBoard = (props) => {
           teams={teams}
           setMultipleTeams={setMultipleTeams}
         />
-        {/* {teamsInLeagueCount > 1 ? <p className="py-3">You seem to already have enough teams in the league, but you can click the button below if you want to add some more.</p> : <p className="py-3">You don't seem to have enough teams in your league yet. Click the button below to add some more.</p>}
-
-        <button
-          className="my-2 px-4 py-2 border-2 border-gray-500 rounded-md bg-gray-400 hover:bg-gray-200 text-gray-800 font-bold"
-        // onClick={() => onClick("ADDTEAMS")}
-        >Add Teams</button> */}
       </div>
 
       <p className="text-center">---</p>
 
       <div className="see-teams container px-4 py-3">
-        <p className="py-3">If you added some teams already, click See Teams to check the table. You can click on each of the teams to go to their respective pages to add players.</p>
+        <AdminTeamList id={id} teams={teams} />
+        {/* <p className="py-3">If you added some teams already, click See Teams to check the table. You can click on each of the teams to go to their respective pages to add players.</p>
         <button
           className="my-2 px-4 py-2 border-2 border-gray-500 rounded-md bg-gray-400 hover:bg-gray-200 text-gray-800 font-bold"
         // onClick={() => onClick("SEETEAMS")}
-        >See Teams</button>
+        >See Teams</button> */}
       </div>
 
       <p className="text-center">---</p>

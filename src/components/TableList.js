@@ -1,16 +1,16 @@
 import TableListItem from "./TableListItem";
+import { Fragment } from "react";
 
 const TableList = (props) => {
-  const { teams, id, onClickBack } = props;
+  const { teams, id, transition } = props;
 
   const filteredTeams = teams.filter((team) => team.league_id === id);
-  console.log("this is teams", filteredTeams);
   const teamList = filteredTeams.map((team, index) => {
     return <TableListItem key={team.id} rank={index + 1} {...team} />;
   });
 
   return (
-    <div>
+    <Fragment>
       <table className="odd:bg-white even:bg-gray-400 shadow-2x1 font-[Poppins] border-1 border-gray-200 w-6/12 overflow-hidden content-center mx-auto ">
         <thead className="bg-gray-200  border-gray-200 gap-4">
           <tr>
@@ -48,8 +48,8 @@ const TableList = (props) => {
         </thead>
         <tbody className="text-center ">{teamList}</tbody>
       </table>
-      <button onClick={() => onClickBack()}>Go Back</button>
-    </div>
+      <button onClick={() => transition("START")}>Go Back</button>
+    </Fragment>
   );
 };
 
