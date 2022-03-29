@@ -1,21 +1,19 @@
 import { useParams } from "react-router-dom";
 import NavLeague from "../components/NavLeague";
-
-const dummy = {
-  cover_photo:
-    "https://www.footballcritic.com/images/general/copy_723x397/fcd77f8a5c11be79dfd2829bd90bb32776b4a889.jpg",
-  id: 1,
-  logo: "https://w7.pngwing.com/pngs/431/737/png-transparent-2011-12-premier-league-arsenal-f-c-england-english-football-league-sport-arsenal-f-c-sport-team-dog-like-mammal-thumbnail.png",
-  name: "Barclays Premier League",
-  sport_type_id: 1,
-  year: "2011-12",
-};
+import TeamCards from "../components/HomeLeagueCards/TeamCards";
 
 const LeagueHome = (props) => {
   const { state } = props;
   let { id } = useParams();
 
   const league = state.leagues.find((league) => league.id === parseInt(id, 10));
+  const teamInTheLeague = state.teams.filter(
+    (team) => team.league_id === league.id
+  );
+
+  const teamCards = teamInTheLeague.map((team) => (
+    <TeamCards key={team.id} team={team} />
+  ));
 
   return (
     <div className="m-0">
@@ -28,7 +26,9 @@ const LeagueHome = (props) => {
         <h1 className="my-auto ml-2">Welcome to League {league.name}</h1>
       </aside>
       <NavLeague id={league.id} logo={league.logo} />
-      <div></div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
+        {teamCards}
+      </div>
     </div>
   );
 };
