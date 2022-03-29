@@ -24,7 +24,7 @@ const UpcomingSchedule = (props) => {
       <h1 className="bg-gradient-to-r from-gray-400 via-gray-800 to-gray-600 my-auto  p-5 text-4xl text-white ">
         Upcoming Schedule
       </h1>
-      <section className="mx-auto">{eachResult}</section>;
+      <section className="mx-auto">{eachResult}</section>
     </article>
   );
 };

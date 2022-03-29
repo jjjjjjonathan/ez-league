@@ -24,11 +24,6 @@ const LeagueHome = (props) => {
       </h1>
       <NavLeague id={league.id} />
       <div></div>
-      <img
-        src={league.cover_photo}
-        alt=""
-        className="w-fill bg-auto object-fill"
-      />
     </div>
   );
 };

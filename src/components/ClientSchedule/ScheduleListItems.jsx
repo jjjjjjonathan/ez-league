@@ -7,14 +7,20 @@ const ScheduleListItems = (props) => {
   const gameTime = new Date(game.scheduled_time);
   const today = new Date();
 
-  console.log("this is gameTimeHours", gameTime.getHours());
+  console.log("this is gameTimeHours", gameTime);
 
   return (
     <article className="m-2 p-2 text-white">
-      <section className="m-2">
-        <h1>{gameTime.toDateString("DD-M-YYYY")}</h1>
+      <section className="m-2 flex flex-row">
+        <h1>{gameTime.toDateString()}</h1>
+        <h1 className="pl-2"> - </h1>
+        <div className="flex flex-row ml-2">
+          <h1>{"0" + gameTime.getHours()}</h1>
+          <h1>:</h1>
+          <h1>{("0" + gameTime.getMinutes()).slice(-2)}</h1>
+        </div>
       </section>
-      <section className="flex flex-row m-2 py-5 border-solid border-y border-gray-600  m-2 bg-gradient-to-r from-gray-400 via-gray-800 to-gray-600 text-white rounded  mx-auto duration-300 hover:scale-105 cursor-pointer hover:shadow-lg hover:shadow-white m-2">
+      <section className="flex flex-row m-2 py-5 m-2 bg-gradient-to-r from-gray-400 via-gray-800 to-gray-600  text-white rounded  mx-auto duration-300 hover:scale-105 cursor-pointer hover:shadow-lg hover:shadow-white m-2 ">
         <img
           src={
             homeTeam.thumbnail_logo
@@ -48,7 +54,7 @@ const ScheduleListItems = (props) => {
               : "/images/ez-team.png"
           }
           alt=""
-          className="mx-2"
+          className="mx-2 "
         />
       </section>
     </article>

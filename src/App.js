@@ -39,7 +39,7 @@ function App() {
   ) : (
     <div className="min-h-screen flex-grow bg-gradient-to-b from-gray-50 via-gray-600 to-gray-200 font-sans font-semibold ">
       <Router>
-        <Navbar />
+        {/* <Navbar /> */}
         <div className="min-h-screen">
           <Switch>
             <Route exact path="/">
