@@ -7,6 +7,7 @@ import Players from "../components/GameAdmin/Players";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { GiConsoleController, GiJetPack } from "react-icons/gi";
+import useAdminGameHooks from "../hooks/useAdminGameHooks"
 // import useAdminGameHooks from "../hooks/useAdminGameHooks";
 // import useApplicationData from "../hooks/useApplicationData";
 
@@ -21,8 +22,14 @@ const AdminGame = (props) => {
     updateMultipleTeam,
   } = props;
 
+
+  const { updateHomeGoals, gameScore } = useAdminGameHooks(1, state.fixtures);
+
+
   //param to check fixture_id
   let { fixture_id } = useParams();
+
+  // console.log("abc", updateHomeGoals(1, 2))
 
   // const { homeScore, awayScore, updateHomeGoals } = useAdminGameHooks(fixture_id, state.fixtures);
 
@@ -408,6 +415,7 @@ const AdminGame = (props) => {
       </section>
       <section>
         <GameConsole
+          {...state}
           home={home}
           away={away}
           updateGoalHome={updateGoalHome}

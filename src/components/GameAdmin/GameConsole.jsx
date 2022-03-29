@@ -1,8 +1,10 @@
 import { GiSoccerBall, GiCardPlay } from "react-icons/gi";
+import useAdminGameHooks from "../../hooks/useAdminGameHooks";
 
 const GameConsole = (props) => {
   const {
     updateGoalHome,
+    fixtures,
     updateGoalAway,
     fixtureId,
     homeGoalEvent,
@@ -14,6 +16,8 @@ const GameConsole = (props) => {
     awayRedEvent,
     awayYellowEvent,
   } = props;
+  console.log("fixtures", fixtures)
+  const { updateHomeGoals } = useAdminGameHooks(fixtureId, fixtures)
   return (
     <table className="mx-auto justify-center items-center text-2xl border-4 border-gray-200 rounded-lg py-10 ">
       <thead className="mx-auto justify-center items-center text-2xl border-4 border-gray-200 rounded-lg py-10 ">
@@ -26,7 +30,8 @@ const GameConsole = (props) => {
       <tbody>
         <tr>
           <th>
-            <button onClick={() => updateGoalHome(fixtureId, 1)}>
+          <button onClick={() => updateHomeGoals(fixtureId, 1)}>
+            {/* <button onClick={() => updateGoalHome(fixtureId, 1)}> */}
               Goal +1
             </button>
           </th>
@@ -41,7 +46,8 @@ const GameConsole = (props) => {
         </tr>
         <tr>
           <th>
-            <button onClick={() => updateGoalHome(fixtureId, -1)}>
+          <button onClick={() => updateHomeGoals(fixtureId, -1)}>
+            {/* <button onClick={() => updateGoalHome(fixtureId, -1)}> */}
               Goal -1
             </button>
           </th>
