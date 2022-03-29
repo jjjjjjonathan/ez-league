@@ -9,8 +9,8 @@ const NavLeague = (props) => {
       <Link to={`${props.id}/players`}>
         <h1 className="duration-300 hover:scale-110 mx-2">Players</h1>
       </Link>
-      <Link to={`${props.id}/schedule`}>
-        <h1 className="duration-300 hover:scale-110 mx-2">Schedule</h1>
+      <Link to={`${props.id}/results`}>
+        <h1 className="duration-300 hover:scale-110 mx-2">Results</h1>
       </Link>
     </article>
   );

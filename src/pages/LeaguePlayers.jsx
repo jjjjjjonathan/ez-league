@@ -7,6 +7,7 @@ const LeaguePlayers = (props) => {
   const leagueId = parseInt(id.id);
   const { players, teams } = props;
   const playersInLeague = playersLeagueGenerator(leagueId, teams, players);
+  console.log("this is players", players);
 
   const mappedPlayers = playersInLeague.map((player) => {
     return (
@@ -17,13 +18,13 @@ const LeaguePlayers = (props) => {
         goals={player.goals}
         yellowCards={player.yellow_cards}
         redCards={player.red_cards}
-        photoUrl={player.photo_url}
+        photoUrl={player.photo_url ? player.photo_url : "/images/lego.png"}
       />
     );
   });
 
   return (
-    <table className="container m-5">
+    <table className="container m-5 mx-auto">
       <thead className="text-center">
         <tr>
           <th className="text-center">Image</th>

@@ -17,6 +17,7 @@ import DashBoard from "./components/Dashboard";
 import TeamDashboard from "./components/TeamDashboard";
 import LeagueList from "./components/LeagueList";
 import LeaguePlayers from "./pages/LeaguePlayers";
+import LeagueResults from "./pages/LeagueResults";
 
 function App() {
   const {
@@ -76,6 +77,9 @@ function App() {
             </Route>
             <Route exact path="/leagues/:id/players">
               <LeaguePlayers players={state.players} teams={state.teams} />
+            </Route>
+            <Route exact path="/leagues/:id/results">
+              <LeagueResults fixtures={state.fixtures} teams={state.teams} />
             </Route>
             <Route exact path="/teamform">
               <TeamForm />

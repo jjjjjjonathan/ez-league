@@ -3,7 +3,7 @@ const PlayerListItem = (props) => {
   return (
     <tr className=" odd:bg-gray-100 even:bg-gray-200 cursor-pointer duration-300 hover:bg-b-100 hover:scale-105 cursor-pointer">
       <td className="text-center">
-        <img src={photoUrl} alt={name} className="rounded-full w-12 h-12" />
+        <img src={photoUrl} alt="pict" className="rounded-full w-12 h-12" />
       </td>
       <td className="text-center">{shirtNumber.toString()}</td>
       <td className="text-center">{name}</td>
