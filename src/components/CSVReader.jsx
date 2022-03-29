@@ -7,7 +7,7 @@ const CSVReader = (props) => {
   const [list, setList] = useState([]);
   const [successList, setSuccessList] = useState([]);
   const [success, setSuccess] = useState(false);
-  const { id, setMultipleTeams, teams } = props;
+  const { id, setMultipleTeams, teams, transition } = props;
 
   const save = (list, id, teams, callback) => {
     return axios.put('/api/teams', addBulkTeams(list, id)).then((data) => {
@@ -19,10 +19,10 @@ const CSVReader = (props) => {
   };
 
   return (
-    <div className="  mb-6 shadow-md bg-white rounded px-8 pt-6 pb-8 mb-4 m-20 ">
+    <div className="  mb-6 shadow-md bg-gray-200 rounded px-8 pt-6 pb-8 mb-4 m-20 ">
       <div className="max-w-xl">
         <label
-          className="flex justify-center w-full h-32 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none"
+          className="flex justify-center w-full h-32 px-4 transition bg-gray-200 border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none"
           onDragOver={(e) => {
             e.preventDefault();
           }}
@@ -88,12 +88,26 @@ const CSVReader = (props) => {
           />
         </label>
       </div>
-      <button
-        onClick={() => save(list[0].data, id, teams, setMultipleTeams)}
-        className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded md:items-center"
-      >
-        Submit
-      </button>
+      <div className="flex flex-row justify-items-center mt-4">
+        <button
+          onClick={() => save(list[0].data, id, teams, setMultipleTeams)}
+          className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded md:items-center mt-2 mx-auto"
+        >
+          Submit
+        </button>
+        <button
+          onClick={() => transition('SINGLE')}
+          className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded md:items-center mt-2 mx-auto"
+        >
+          Add One Team
+        </button>
+        <button
+          onClick={() => transition('BUTTON')}
+          className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded md:items-center mt-2 mx-auto"
+        >
+          Go Back
+        </button>
+      </div>
       {success && (
         <p className="text-green-600">
           Congrats, you just added a bunch of teams to the league:{' '}
