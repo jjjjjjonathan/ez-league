@@ -42,8 +42,9 @@ const ScheduleGenerator = (props) => {
       });
       // counter += 7;
     });
-    queryString += `${conditions.join(', ')} RETURNING *;`;
-    console.log(queryString, queryParams);
+    queryString += `${conditions.join(
+      ', '
+    )} RETURNING *, TO_CHAR(scheduled_time, 'Mon. DD, YYYY') scheduled_date, TO_CHAR(scheduled_time, 'HH24:MI') scheduled_timestamp;`;
     return { queryString, queryParams };
   };
 

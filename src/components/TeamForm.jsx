@@ -5,6 +5,8 @@ const TeamForm = (props) => {
   const { id, setMultipleTeams, teams, onClickBack } = props;
   const [teamName, setTeamName] = useState('');
   const [logo, setLogo] = useState(null);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
   const submit = (event) => {
     event.preventDefault();
   };
@@ -12,13 +14,15 @@ const TeamForm = (props) => {
   const save = (leagueId, teamName, logo) => {
     axios.put('/api/teams/add', { leagueId, teamName, logo }).then((data) => {
       setMultipleTeams(teams, data.data.rows);
+      setSuccess(true);
+      setError('');
     });
   };
   const validate = (event, leagueId, teamName, logo) => {
     event.preventDefault();
-    console.log('validating...');
-    if (teamName) {
-      console.log('saving...');
+    if (!teamName) {
+      setError('You need to add a name to your team!');
+    } else {
       save(leagueId, teamName, logo);
     }
   };
@@ -43,7 +47,10 @@ const TeamForm = (props) => {
                 type="text"
                 name="name"
                 placeholder="Enter Team Name"
-                onChange={(event) => setTeamName(event.target.value)}
+                onChange={(event) => {
+                  setSuccess(false);
+                  setTeamName(event.target.value);
+                }}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none bg-gray-100 "
               />
             </div>
@@ -54,7 +61,7 @@ const TeamForm = (props) => {
               <input
                 type="text"
                 name="logoURL"
-                placeholder="Enter a URL for your logo"
+                placeholder="Enter an optional URL for your logo"
                 onChange={(event) =>
                   setLogo(
                     event.target.value.length === 0 ? null : event.target.value
@@ -78,6 +85,12 @@ const TeamForm = (props) => {
               Go Back
             </button>
           </div>
+          {error.length > 0 && <p className="text-red-600">{error}</p>}
+          {success && (
+            <p className="text-green-400">
+              Congrats, you just added "{teamName}" to your league!
+            </p>
+          )}
         </section>
       </article>
     </Fragment>

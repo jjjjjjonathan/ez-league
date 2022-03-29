@@ -5,21 +5,21 @@ const PlayerForm = (props) => {
   const { id, set1Player, players } = props;
   const [playerName, setPlayerName] = useState('');
   const [shirtNumber, setShirtNumber] = useState(null);
+
   const submit = (event) => {
     event.preventDefault();
   };
 
   const save = (teamId, playerName, shirtNumber) => {
-    axios.put('/api/players/add', { teamId, playerName, shirtNumber }).then((data) => {
-      console.log(data)
-      set1Player(players, data.data.rows[0]);
-    });
+    axios
+      .put('/api/players/add', { teamId, playerName, shirtNumber })
+      .then((data) => {
+        set1Player(players, data.data.rows[0]);
+      });
   };
   const validate = (event, teamId, playerName, shirtNumber) => {
     event.preventDefault();
-    console.log('validating...');
     if (playerName) {
-      console.log('saving...');
       save(teamId, playerName, shirtNumber);
     }
   };
