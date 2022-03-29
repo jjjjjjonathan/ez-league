@@ -2,7 +2,9 @@ import TableListItem from "./TableListItem";
 
 const TableList = (props) => {
   const { teams, id, onClickBack } = props;
+
   const filteredTeams = teams.filter((team) => team.league_id === id);
+  console.log("this is teams", filteredTeams);
   const teamList = filteredTeams.map((team, index) => {
     return <TableListItem key={team.id} rank={index + 1} {...team} />;
   });
