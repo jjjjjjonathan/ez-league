@@ -19,6 +19,7 @@ import LeagueList from "./components/LeagueList";
 import LeaguePlayers from "./pages/LeaguePlayers";
 import LeagueResults from "./pages/LeagueResults";
 import UpcomingSchedule from "./pages/UpcomingSchedule";
+import TeamProfile from "./pages/TeamProfile";
 
 function App() {
   const {
@@ -72,6 +73,11 @@ function App() {
               exact
               path="/leagues/:id"
               children={<LeagueHome state={state} setState={setState} />}
+            />
+            <Route
+              exact
+              path="/leagues/team/:id"
+              children={<TeamProfile state={state} setState={setState} />}
             />
             <Route exact path="/leagues/:id/table">
               <LeagueStanding teams={state.teams} />

@@ -4,20 +4,30 @@ const ScheduleListItems = (props) => {
 
   const homeTeam = teams.find((team) => game.home_team_id === team.id);
   const awayTeam = teams.find((team) => game.away_team_id === team.id);
-  const gameTime = new Date(game.scheduled_time);
-  const today = new Date();
-
-  console.log("this is gameTimeHours", gameTime);
 
   return (
     <article className="m-2 p-2 text-white">
       <section className="m-2 flex flex-row">
-        <h1>{gameTime.toDateString()}</h1>
-        <h1 className="pl-2"> - </h1>
+        <h1>{game.scheduled_date}</h1>
+
         <div className="flex flex-row ml-2">
-          <h1>{"0" + gameTime.getHours()}</h1>
-          <h1>:</h1>
-          <h1>{("0" + gameTime.getMinutes()).slice(-2)}</h1>
+          {game.status === "Upcoming" && (
+            <section>
+              <h1> - {game.scheduled_timestamp}</h1>
+            </section>
+          )}
+          {(game.status === "First Half" ||
+            game.status === "Halftime" ||
+            game.status === "Second Half") && (
+            <section>
+              <h1> - Ongoing</h1>
+            </section>
+          )}
+          {game.status === "Final" && (
+            <section>
+              <h1> - FT</h1>
+            </section>
+          )}
         </div>
       </section>
       <section className="flex flex-row m-2 py-5 m-2 bg-gradient-to-r from-gray-400 via-gray-800 to-gray-600  text-white rounded  mx-auto duration-300 hover:scale-105 cursor-pointer hover:shadow-lg hover:shadow-white m-2 ">
@@ -31,7 +41,7 @@ const ScheduleListItems = (props) => {
           className="mx-2"
         />
         <p>{homeTeam.name}</p>
-        {gameTime.toDateString < today.toISOString ? (
+        {game.status !== "Upcoming" ? (
           <aside className="flex flex-row bg-gray-400 mx-1 px-2 rounded-sm">
             <p>{game.home_team_score}</p>
             <p className="mx-px">:</p>
