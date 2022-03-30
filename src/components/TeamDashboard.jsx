@@ -11,7 +11,7 @@ const TeamDashboard = (props) => {
   const SEEPLAYERS = 'SEEPLAYERS';
   const { set1Player, players } = props;
   const { mode, transition, reset, back } = useTeamDashboardMode(START);
-  let { id } = useParams();
+  const id = parseInt(useParams().id, 10);
   return (
     <Fragment>
       {mode === START && <Start onClick={transition} />}
@@ -22,9 +22,7 @@ const TeamDashboard = (props) => {
           players={players}
         />
       )}
-      {mode === SEEPLAYERS && (
-        <Players teamId={parseInt(id, 10)} players={players} />
-      )}
+      {mode === SEEPLAYERS && <Players teamId={id} players={players} />}
     </Fragment>
   );
 };
