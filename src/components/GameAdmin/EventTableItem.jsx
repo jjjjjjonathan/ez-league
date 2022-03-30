@@ -56,7 +56,7 @@ const EventTableItem = (props) => {
   };
 
   return (
-    <tr className="bg-white-200  duration-300 hover:bg-b-100 hover:scale-105 cursor-pointer">
+    <tr className="odd:bg-gray-100 even:bg-gray-200  duration-300 hover:bg-b-100 hover:scale-105 cursor-pointer">
       <td className="py-3 px-6 ">{findTeamName(team, listOfTeams)}</td>
       <td className="py-3 px-6 ">
         {eventHalf === 2
@@ -75,7 +75,7 @@ const EventTableItem = (props) => {
           type
         )}
       </td>
-      <td>
+      <td className="py-3 px-6 ">
         <button
           onClick={(event) => {
             onClick(event, value);
@@ -84,7 +84,7 @@ const EventTableItem = (props) => {
           Edit
         </button>
       </td>
-      <td>
+      <td className="py-3 px-6 ">
         <button onClick={(event) => onClickDelete(event, value)}>Delete</button>
       </td>
     </tr>

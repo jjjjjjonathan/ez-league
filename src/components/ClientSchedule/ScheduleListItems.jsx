@@ -8,9 +8,9 @@ const ScheduleListItems = (props) => {
   return (
     <article className="m-2 p-2 text-white">
       <section className="m-2 flex flex-row">
-        <h1 className="text-gray-600">{game.scheduled_date}</h1>
+        <h1 className="text-gray-800">{game.scheduled_date}</h1>
 
-        <div className="flex flex-row ml-2 text-gray-600">
+        <div className="flex flex-row ml-2 text-gray-800">
           {game.status === "Upcoming" && (
             <section>
               <h1> - {game.scheduled_timestamp}</h1>

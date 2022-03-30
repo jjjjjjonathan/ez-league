@@ -74,7 +74,7 @@ const Timer = (props) => {
   };
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center ">
+    <section className="mt-6 flex flex-col justify-center items-center ">
       <section className="border-8 border-gray-500 rounded shadow-2xl text-6xl text-white font-mono grid grid-cols-2 gap-x-px">
         <h1 className="bg-black p-2">
           {time.minutes.toLocaleString("en-US", {
@@ -99,16 +99,7 @@ const Timer = (props) => {
           </button>
           <label>First-half</label>
         </section>
-        <section className="flex flex-row justify-center items-center">
-          <button className="m-2  ">
-            <BsPlayBtnFill
-              onClick={() => startHalf2(fixtureId, "Second Half")}
-              className="hover:fill-gray-400"
-            />
-          </button>
-          <label>Second-half</label>
-        </section>
-        <section className="flex flex-row justify-center items-center">
+        <section className="flex flex-row justify-center items-center mr-10 ml-4">
           <button className="m-2  justify-center items-center ">
             <BsStopCircle
               className="hover:fill-gray-400"
@@ -116,6 +107,16 @@ const Timer = (props) => {
             />
           </button>
           <label htmlFor="">End Half</label>
+        </section>
+        <label className="mr-4"> - </label>
+        <section className="flex flex-row justify-center items-center mx-4">
+          <button className="m-2  ">
+            <BsPlayBtnFill
+              onClick={() => startHalf2(fixtureId, "Second Half")}
+              className="hover:fill-gray-400"
+            />
+          </button>
+          <label>Second-half </label>
         </section>
         <section className="flex flex-row justify-center items-center">
           <button className="m-2  justify-center items-center ">

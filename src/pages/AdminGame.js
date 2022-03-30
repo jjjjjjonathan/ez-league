@@ -406,7 +406,7 @@ const AdminGame = (props) => {
       <section>
         <ScoreBoard home={home} away={away} event={event} />
       </section>
-      <section>
+      <section className="mt-4">
         <GameConsole
           home={home}
           away={away}
@@ -421,7 +421,7 @@ const AdminGame = (props) => {
           awayYellowEvent={updateAwayYellowEvent}
         />
       </section>
-      <section>
+      <section className="mx-auto">
         <EventTable
           fixtureId={fixture.id}
           firstHalfTime={fixture.first_half_start_time}
