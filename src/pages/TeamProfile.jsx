@@ -41,13 +41,13 @@ const TeamProfile = (props) => {
       </h1>
       <section className="grid grid-cols-1 sm:grid-cols-2">
         <aside className="container">
-          <h1 className="text-center text-gray-600 text-2xl mt-4">
+          <h1 className="text-center text-gray-800 text-2xl mt-4">
             Upcoming Games
           </h1>
           {games}
         </aside>
         <aside>
-          <table className="container m-5 mx-auto rounded-sm text-gray-600">
+          <table className="container m-5 mx-auto rounded-sm text-gray-800">
             <thead className="text-center bg-gray-400 rounded-sm">
               <tr>
                 <th className="text-center">Image</th>
