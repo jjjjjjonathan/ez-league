@@ -1,13 +1,15 @@
+import TeamCards from '../HomeLeagueCards/TeamCards';
+
 const ScoreBoard = (props) => {
   return (
     <article className="text-2xl font-mono border-2  border-gray-200 rounded py-10 bg-black text-white ">
       <h1 className="text-center ">
-        {props.timer.minutes.toLocaleString("en-US", {
+        {props.timer.minutes.toLocaleString('en-US', {
           minimumIntegerDigits: 2,
           useGrouping: false,
         })}
         :
-        {props.timer.seconds.toLocaleString("en-US", {
+        {props.timer.seconds.toLocaleString('en-US', {
           minimumIntegerDigits: 2,
           useGrouping: false,
         })}
@@ -16,7 +18,11 @@ const ScoreBoard = (props) => {
         <section className="py-3 px-2 flex flex-col col-start-1 col-end-3">
           <div className="flex items-center justify-center">
             <img
-              src={props.home.thumbnail_logo}
+              src={
+                props.home.thumbnail_logo
+                  ? props.home.thumbnail_logo
+                  : '/images/ez-team.png'
+              }
               alt="team-logo"
               className="object-contain mr-2 w-10 h-10 justify-center items-center"
             />
@@ -28,7 +34,11 @@ const ScoreBoard = (props) => {
         <section className="py-3 px-2 flex flex-col col-end-7 col-span-2 font-mono">
           <div className="flex items-center justify-center">
             <img
-              src={props.away.thumbnail_logo}
+              src={
+                props.away.thumbnail_logo
+                  ? props.away.thumbnail_logo
+                  : '/images/ez-team.png'
+              }
               alt="team-logo"
               className="object-contain mr-2 w-10 h-10 justify-center items-center"
             />

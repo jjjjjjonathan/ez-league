@@ -5,7 +5,6 @@ const robin = require('roundrobin');
 const ScheduleGenerator = (props) => {
   const validate = (leagueTeams, leagueId) => {
     if (leagueTeams.length >= 2) {
-      console.log('Validated');
       return axios
         .put(
           '/api/fixtures/generate',
@@ -15,7 +14,6 @@ const ScheduleGenerator = (props) => {
           addNewFixtures(fixtures, data.data.rows);
         });
     } else {
-      console.log('Rejected');
     }
   };
 
@@ -36,19 +34,17 @@ const ScheduleGenerator = (props) => {
         newQuery += `$${queryParams.length.toString(
           10
         )}, now() + INTERVAL '${counter} DAYS')`;
-        // queryParams.push(`now() + INTERVAL '${counter.toString(10)} DAYS'`);
-        // newQuery += `$${queryParams.length.toString(10)})`;
         conditions.push(newQuery);
       });
-      // counter += 7;
+      counter += 7;
     });
-    queryString += `${conditions.join(', ')} RETURNING *;`;
-    console.log(queryString, queryParams);
+    queryString += `${conditions.join(
+      ', '
+    )} RETURNING *, TO_CHAR(scheduled_time, 'Mon. DD, YYYY') scheduled_date, TO_CHAR(scheduled_time, 'HH24:MI') scheduled_timestamp;`;
     return { queryString, queryParams };
   };
 
-  const { leagueId, leagueTeams, addNewFixtures, fixtures, onClickBack } =
-    props;
+  const { leagueId, leagueTeams, addNewFixtures, fixtures, transition } = props;
 
   return (
     <div>
@@ -56,8 +52,18 @@ const ScheduleGenerator = (props) => {
         You don't seem to have a schedule. Press the button below to generate
         one!
       </h1>
-      <button onClick={() => validate(leagueTeams, leagueId)}>Generate</button>
-      <button onClick={() => onClickBack()}>Go Back</button>
+      <button
+        className="my-2 px-4 py-2 border-2 border-gray-500 rounded-md bg-gray-400 hover:bg-gray-200 text-gray-800 font-bold"
+        onClick={() => validate(leagueTeams, leagueId)}
+      >
+        Generate
+      </button>
+      <button
+        className="mx-3 my-2 px-4 py-2 border-2 border-gray-500 rounded-md bg-gray-400 hover:bg-gray-200 text-gray-800 font-bold"
+        onClick={() => transition('START')}
+      >
+        Go Back
+      </button>
     </div>
   );
 };

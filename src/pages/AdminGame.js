@@ -3,10 +3,8 @@ import ScoreBoard from "../components/GameAdmin/ScoreBoard";
 import Timer from "../components/GameAdmin/Timer";
 import GameConsole from "../components/GameAdmin/GameConsole";
 import EventTable from "../components/GameAdmin/EventTable";
-import Players from "../components/GameAdmin/Players";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { GiConsoleController, GiJetPack } from "react-icons/gi";
 // import useAdminGameHooks from "../hooks/useAdminGameHooks";
 // import useApplicationData from "../hooks/useApplicationData";
 
@@ -23,12 +21,6 @@ const AdminGame = (props) => {
 
   //param to check fixture_id
   const { fixture_id } = useParams();
-
-  // const { homeScore, awayScore, updateHomeGoals } = useAdminGameHooks(fixture_id, state.fixtures);
-
-  const eventsInGame = state.fixtureEvents.filter(
-    (event) => event.fixture_id === parseInt(fixture_id, 10)
-  );
 
   const fixture = state.fixtures.find(
     (fixture) => fixture.id === parseInt(fixture_id, 10)
@@ -55,24 +47,12 @@ const AdminGame = (props) => {
   });
 
   //set state for timer
-  const [timer, setTimer] = useState(0);
   const [timerOn, setTimerOn] = useState(false);
 
   const [time, setTime] = useState({
     minutes: 0,
     seconds: 0,
   });
-
-  //set state for every event
-  const [event, setEvent] = useState([
-    {
-      team: null,
-      time: null,
-      event: null,
-      player: null,
-      score: 0,
-    },
-  ]);
 
   // useEffect for timer
 
@@ -83,7 +63,7 @@ const AdminGame = (props) => {
       timer1 = setInterval(() => {
         let minutes = 0;
         let seconds = Math.floor(
-          (Date.now() - Date.parse(fixture.first_half_start_time)) / 1000
+          (Date.now() - Date.parse(fixture.first_half_start_time)) / 1000 + 1
         );
         if (seconds >= 60) {
           minutes = Math.floor(seconds / 60);
@@ -107,7 +87,7 @@ const AdminGame = (props) => {
         let seconds =
           Math.floor(
             (Date.now() - Date.parse(fixture.second_half_start_time)) / 1000
-          ) + 2700;
+          ) + 2701;
 
         if (seconds >= 60) {
           minutes = Math.floor(seconds / 60);
@@ -141,79 +121,7 @@ const AdminGame = (props) => {
     fixture.second_half_start_time,
     timerOn,
   ]);
-  console.log("LOOKING FOR THIS FIXTURE", fixture);
-  // useEffect(() => {
-  //   //find the fixture that match with fixture_id
 
-  //   const gameEvents = state.fixtureEvents.filter(
-  //     (fixtureEvent) => fixtureEvent.fixture_id === parseInt(fixture_id)
-  //   );
-
-  //   console.log("this is game event ****", gameEvents);
-
-  //   //find team id that match with team id in fixtures and set it for home and away
-  //   // const homeTeam = state.teams.find(
-  //   //   (team) => team.id === fixture.home_team_id
-  //   // );
-  //   // const awayTeam = state.teams.find(
-  //   //   (team) => team.id === fixture.away_team_id
-  //   // );
-  //   // const homePlayers = state.players.filter(
-  //   //   (player) => player.team_id === fixture.home_team_id
-  //   // );
-  //   // const awayPlayers = state.players.filter(
-  //   //   (player) => player.team_id === fixture.away_team_id
-  //   // );
-  //   //need to fix
-
-  //   //update state for home and away team data
-  //   // if (homePlayers) {
-  //   //   setHome({
-  //   //     ...homeTeam,
-  //   //     score: fixture.home_team_score,
-  //   //     players: homePlayers,
-  //   //   });
-  //   // }
-  //   // if (awayPlayers) {
-  //   // }
-  //   // setAway({
-  //   //   ...awayTeam,
-  //   //   score: fixture.away_team_score,
-  //   //   players: awayPlayers,
-  //   // });
-  //   // setEvent([...gameEvents]);
-
-  //   // const parseTime = Math.floor(
-  //   //   (Date.now() - Date.parse(fixture.scheduled_time)) / (1000 * 60)
-  //   // );
-
-  //   const parseTime = Math.floor(
-  //     Date.parse(fixture.scheduled_time) / (1000 * 60)
-  //   );
-
-  //   const eventTime = Math.floor(
-  //     (Date.parse(gameEvents.time) - Date.parse(fixture.scheduled_time)) /
-  //     (1000 * 60)
-  //   );
-  //   // }
-
-  //   //timer set initial interval to null
-  //   let interval = null;
-
-  //   //check if state is true and set timer to run and else timer to stop
-  //   if (timerOn) {
-  //     interval = setInterval(() => {
-  //       setTimer((prev) => prev + 10);
-  //       // setTimer((prev) => prev + parseTime);
-  //     }, 10);
-  //   } else {
-  //     clearInterval(interval);
-  //   }
-  //   //clean up the state and set the watch for everytime change the state and time
-  //   return () => clearInterval(interval, state);
-  // }, [state, timerOn, fixture_id]);
-
-  //function to set timer to true and false
   const startTimer = () => {
     setTimerOn(true);
   };
@@ -226,42 +134,6 @@ const AdminGame = (props) => {
         updateFixtures(state.fixtures, data.data.rows[0]);
       });
   };
-
-  //function to update event
-  // const updateHome = () => {
-  //   setHome((prev) => {
-  //     return { ...prev, score: prev.score + 1 };
-  //   });
-  //   setEvent((prev) => [
-  //     ...prev,
-
-  //     {
-  //       team: home.name,
-  //       time: Math.floor(timer / 60000),
-  //       event: "GOAL",
-  //       player: "Werner",
-  //     },
-  //   ]);
-  // };
-
-  // const updateGoalHome = (score, fixtureId) => {
-  //   setHome((prev) => {
-  //     return { ...prev, score: prev.score + 1 };
-  //   });
-
-  //   return axios.put("/api/fixtures/homegoals", { score, fixtureId });
-
-  //   // setEvent((prev) => [
-  //   //   ...prev,
-
-  //   //   {
-  //   //     team: away.name,
-  //   //     time: Math.floor(timer / 60000),
-  //   //     event: "GOAL",
-  //   //     player: "jesus",
-  //   //   },
-  //   // ]);
-  // };
 
   const startHalf1 = (fixtureId, string) => {
     return axios
@@ -404,7 +276,7 @@ const AdminGame = (props) => {
   return (
     <main>
       <section>
-        <ScoreBoard home={home} away={away} event={event} timer={time} />
+        <ScoreBoard home={home} away={away} timer={time} />
       </section>
       <section className="mt-4">
         <GameConsole
@@ -438,7 +310,6 @@ const AdminGame = (props) => {
       </section>
       <section>
         <Timer
-          timer={timer}
           onStart={startTimer}
           onStop={stopTimer}
           time={time}

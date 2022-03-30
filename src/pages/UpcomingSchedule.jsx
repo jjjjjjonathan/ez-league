@@ -1,5 +1,5 @@
-import { useParams } from "react-router-dom";
-import ScheduleListItems from "../components/ClientSchedule/ScheduleListItems";
+import { useParams } from 'react-router-dom';
+import ScheduleListItems from '../components/ClientSchedule/ScheduleListItems';
 
 const UpcomingSchedule = (props) => {
   const { fixtures, teams } = props;
@@ -17,14 +17,12 @@ const UpcomingSchedule = (props) => {
     return <ScheduleListItems game={game} id={id} teams={teams} />;
   });
 
-  console.log("this is eachresult", eachResult);
-
   return (
     <article>
       <h1 className="bg-gradient-to-r from-gray-400 via-gray-800 to-gray-600 my-auto  p-5 text-4xl text-white ">
         Upcoming Schedule
       </h1>
-      <section className="mx-auto">{eachResult}</section>
+      <section className="container mx-auto w-5/6">{eachResult}</section>
     </article>
   );
 };

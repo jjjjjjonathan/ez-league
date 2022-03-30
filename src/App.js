@@ -11,7 +11,6 @@ import CSVReader from "./components/CSVReader";
 import LeagueForm2 from "./components/LeagueForm/index";
 import LeagueHome from "./pages/LeagueHome";
 import Loading from "./components/Loading";
-import AdminLeague from "./pages/AdminLeague";
 import AdminGame from "./pages/AdminGame";
 import DashBoard from "./components/Dashboard";
 import TeamDashboard from "./components/TeamDashboard";
@@ -33,6 +32,7 @@ function App() {
     updateMultipleTeam,
     set1Player,
     addNewFixtures,
+    setMultiplePlayers
   } = useApplicationData();
 
   return !state.isReady ? (
@@ -47,13 +47,8 @@ function App() {
               <Home />
             </Route>
             <Route exact path="/leagues/:id/admin">
-              {/* <AdminLeague
-                teams={state.teams}
-                fixtures={state.fixtures}
-                leagues={state.leagues}
-                setMultipleTeams={setMultipleTeams}
-              /> */}
               <DashBoard
+                leagues={state.leagues}
                 teams={state.teams}
                 fixtures={state.fixtures}
                 setMultipleTeams={setMultipleTeams}
@@ -61,7 +56,7 @@ function App() {
               />
             </Route>
             <Route exact path="/teams/:id/admin">
-              <TeamDashboard players={state.players} set1Player={set1Player} />
+              <TeamDashboard players={state.players} set1Player={set1Player} teams={state.teams} setMultiplePlayers={setMultiplePlayers} />
             </Route>
 
             <Route

@@ -63,6 +63,17 @@ const useApplicationData = () => {
     });
   };
 
+  const setMultiplePlayers = (playersState, newPlayersArray) => {
+    const updatedPlayersArray = playersState;
+    newPlayersArray.forEach(player => updatedPlayersArray.push(player));
+    setState(prev => {
+      return {
+        ...prev,
+        players: updatedPlayersArray
+      };
+    });
+  };
+
   const updateFixtures = (oldFixturesArray, newFixtureObj) => {
     const newFixturesArray = oldFixturesArray.map((fixture) =>
       fixture.id === newFixtureObj.id ? newFixtureObj : fixture
@@ -158,6 +169,7 @@ const useApplicationData = () => {
     updateMultipleTeam,
     set1Player,
     addNewFixtures,
+    setMultiplePlayers
   };
 };
 

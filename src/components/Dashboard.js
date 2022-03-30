@@ -1,29 +1,45 @@
-import { Fragment } from "react";
-import useDashboardMode from "../hooks/useDashboardMode";
-import Start from "./AdminDashboard/Start";
 import { useParams } from "react-router-dom";
-import TeamForm from "./TeamForm";
-import TableList from "./TableList";
-import Schedule from "./Schedule";
+import AddTeams from "./AdminDashboard/AddTeams";
+import AdminTeamList from "./AdminDashboard/AdminTeamList";
+import AdminSchedule from "./AdminDashboard/AdminSchedule";
 
 const DashBoard = (props) => {
-  let { id } = useParams();
-  const START = "START";
-  const ADDTEAMS = "ADDTEAMS";
-  const SEETEAMS = "SEETEAMS";
-  const SCHEDULE = "SCHEDULE";
-  const { teams, fixtures, setMultipleTeams, addNewFixtures } = props;
-  const { mode, transition, back, reset } = useDashboardMode(START);
 
+  const id = parseInt(useParams().id, 10);
 
+  const { teams, fixtures, setMultipleTeams, addNewFixtures, leagues } = props;
+
+  const thisLeague = leagues.find(league => league.id === id);
 
   return (
-    <Fragment>
-      {mode === START && <Start onClick={transition} />}
-      {mode === ADDTEAMS && <TeamForm id={parseInt(id)} setMultipleTeams={setMultipleTeams} teams={teams} onClickBack={back} />}
-      {mode === SEETEAMS && <TableList id={parseInt(id)} teams={teams} onClickBack={back} />}
-      {mode === SCHEDULE && <Schedule id={parseInt(id, 10)} fixtures={fixtures} teams={teams} addNewFixtures={addNewFixtures} onClickBack={back} />}
-    </Fragment>
+    <div className="container mx-auto px-4 py-6 w-3/4">
+
+      <h1 className="text-xl">Welcome to the Admin Dashboard for your league: <strong>{thisLeague.name}</strong></h1>
+
+      <p>Here are some options to get you started.</p>
+
+      <p className="text-center">---</p>
+
+      <div className="add-teams container px-4 py-3">
+        <AddTeams
+          id={id}
+          teams={teams}
+          setMultipleTeams={setMultipleTeams}
+        />
+      </div>
+
+      <p className="text-center">---</p>
+
+      <div className="see-teams container px-4 py-3">
+        <AdminTeamList id={id} teams={teams} />
+      </div>
+
+      <p className="text-center">---</p>
+
+      <div className="league-schedule container px-4 py-3">
+        <AdminSchedule id={id} teams={teams} addNewFixtures={addNewFixtures} fixtures={fixtures} />
+      </div>
+    </div>
   );
 };
 
