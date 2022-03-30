@@ -25,7 +25,7 @@ const GameConsole = (props) => {
       </thead>
       <tbody className="">
         <tr className="bg-gray-100 ">
-          <td>
+          <td className="py-3 px-8">
             <button
               onClick={() => updateGoalHome(fixtureId, 1)}
               className="hover:bg-gray-400"
@@ -36,7 +36,7 @@ const GameConsole = (props) => {
           <td className="py-3 px-8 ">
             <GiSoccerBall className="fill-green-500 " />
           </td>
-          <td>
+          <td className="py-3 px-8">
             <button
               onClick={() => updateGoalAway(fixtureId, 1)}
               className="hover:bg-gray-400"
@@ -46,7 +46,7 @@ const GameConsole = (props) => {
           </td>
         </tr>
         <tr className="bg-gray-100 ">
-          <td>
+          <td className="py-3 px-8">
             <button
               onClick={() => updateGoalHome(fixtureId, -1)}
               className="hover:bg-gray-400"
@@ -57,7 +57,7 @@ const GameConsole = (props) => {
           <td className="py-3 px-8">
             <GiSoccerBall className="fill-red-500" />
           </td>
-          <td>
+          <td className="py-3 px-8">
             <button
               onClick={() => updateGoalAway(fixtureId, -1)}
               className="hover:bg-gray-400"
@@ -72,7 +72,7 @@ const GameConsole = (props) => {
       <th>1st-Half</th>
       <tbody>
         <tr className="bg-gray-100 ">
-          <td>
+          <td className="py-3 px-8">
             <button
               onClick={() => homeGoalEvent(fixtureId, home.id, 1)}
               className="hover:bg-gray-400"
@@ -83,7 +83,7 @@ const GameConsole = (props) => {
           <td className="py-3 px-8">
             <GiSoccerBall />
           </td>
-          <td>
+          <td className="py-3 px-8">
             <button
               onClick={() => awayGoalEvent(fixtureId, away.id, 1)}
               className="hover:bg-gray-400"
@@ -93,7 +93,7 @@ const GameConsole = (props) => {
           </td>
         </tr>
         <tr className="bg-gray-100 ">
-          <td>
+          <td className="py-3 px-8">
             <button
               onClick={() => homeYellowEvent(fixtureId, home.id, 1)}
               className="hover:bg-gray-400"
@@ -105,7 +105,7 @@ const GameConsole = (props) => {
           <td className="py-3 px-8">
             <GiCardPlay className="fill-yellow-500" />
           </td>
-          <td>
+          <td className="py-3 px-8">
             <button
               onClick={() => awayYellowEvent(fixtureId, away.id, 1)}
               className="hover:bg-gray-400"
@@ -115,7 +115,7 @@ const GameConsole = (props) => {
           </td>
         </tr>
         <tr className="bg-gray-100 ">
-          <td>
+          <td className="py-3 px-8">
             <button
               onClick={() => homeRedEvent(fixtureId, home.id, 1)}
               className="hover:bg-gray-400"
@@ -126,7 +126,7 @@ const GameConsole = (props) => {
           <td className="py-3 px-8">
             <GiCardPlay className="fill-red-500" />
           </td>
-          <td>
+          <td className="py-3 px-8">
             <button
               onClick={() => awayRedEvent(fixtureId, away.id, 1)}
               className="hover:bg-gray-400"
@@ -140,7 +140,7 @@ const GameConsole = (props) => {
       <th>2nd-Half</th>
       <tbody>
         <tr className="bg-gray-100 ">
-          <td>
+          <td className="py-3 px-8">
             <button
               onClick={() => homeGoalEvent(fixtureId, home.id, 2)}
               className="hover:bg-gray-400"
@@ -151,7 +151,7 @@ const GameConsole = (props) => {
           <td className="py-3 px-8">
             <GiSoccerBall />
           </td>
-          <td>
+          <td className="py-3 px-8">
             <button
               onClick={() => awayGoalEvent(fixtureId, away.id, 2)}
               className="hover:bg-gray-400"
@@ -161,7 +161,7 @@ const GameConsole = (props) => {
           </td>
         </tr>
         <tr className="bg-gray-100 ">
-          <td>
+          <td className="py-3 px-8">
             <button
               onClick={() => homeYellowEvent(fixtureId, home.id, 2)}
               className="hover:bg-gray-400"
@@ -172,7 +172,7 @@ const GameConsole = (props) => {
           <td className="py-3 px-8">
             <GiCardPlay className="fill-yellow-500" />
           </td>
-          <td>
+          <td className="py-3 px-8">
             <button
               onClick={() => awayYellowEvent(fixtureId, away.id, 2)}
               className="hover:bg-gray-400"
@@ -182,7 +182,7 @@ const GameConsole = (props) => {
           </td>
         </tr>
         <tr className="bg-gray-100 ">
-          <td>
+          <td className="py-3 px-8">
             <button
               onClick={() => homeRedEvent(fixtureId, home.id, 2)}
               className="hover:bg-gray-400"
@@ -193,7 +193,7 @@ const GameConsole = (props) => {
           <td className="py-3 px-8">
             <GiCardPlay className="fill-red-500" />
           </td>
-          <td>
+          <td className="py-3 px-8">
             <button
               onClick={() => awayRedEvent(fixtureId, away.id, 2)}
               className="hover:bg-gray-400"
