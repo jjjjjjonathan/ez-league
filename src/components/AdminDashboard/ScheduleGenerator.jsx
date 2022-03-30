@@ -52,8 +52,18 @@ const ScheduleGenerator = (props) => {
         You don't seem to have a schedule. Press the button below to generate
         one!
       </h1>
-      <button onClick={() => validate(leagueTeams, leagueId)}>Generate</button>
-      <button onClick={() => transition('START')}>Go Back</button>
+      <button
+        className="my-2 px-4 py-2 border-2 border-gray-500 rounded-md bg-gray-400 hover:bg-gray-200 text-gray-800 font-bold"
+        onClick={() => validate(leagueTeams, leagueId)}
+      >
+        Generate
+      </button>
+      <button
+        className="mx-3 my-2 px-4 py-2 border-2 border-gray-500 rounded-md bg-gray-400 hover:bg-gray-200 text-gray-800 font-bold"
+        onClick={() => transition('START')}
+      >
+        Go Back
+      </button>
     </div>
   );
 };

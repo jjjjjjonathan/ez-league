@@ -14,7 +14,7 @@ const EditFixtureListItem = (props) => {
 
   const awayTeam = leagueTeams.find((team) => team.id === awayTeamId);
   return (
-    <tr>
+    <tr className="hover:bg-gray-200 mx-4 odd:bg-gray-300 even:bg-gray-400">
       <td className="border px-8 py-4">
         <strong>{homeTeam.name}</strong> v. <strong>{awayTeam.name}</strong>
       </td>

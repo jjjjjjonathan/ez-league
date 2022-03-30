@@ -18,7 +18,7 @@ const FixtureListItem = (props) => {
   const awayTeam = leagueTeams.find((team) => team.id === awayTeamId);
 
   return (
-    <tr className="hover:bg-gray-100 mx-4">
+    <tr className="hover:bg-gray-200 mx-4 odd:bg-gray-300 even:bg-gray-400">
       <td
         onClick={() => history.push(`/admin/game/${fixtureId}`)}
         className="border px-8 py-4"

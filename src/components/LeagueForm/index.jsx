@@ -56,7 +56,7 @@ const LeagueForm2 = (props) => {
   };
 
   return (
-    <div>
+    <div className='container w-3/4 mx-auto items-center"'>
       {mode === START && (
         <Start
           setLeagueName={setLeagueName}

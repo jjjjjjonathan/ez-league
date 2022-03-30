@@ -1,9 +1,9 @@
-import axios from "axios";
-import { useState, Fragment } from "react";
+import axios from 'axios';
+import { useState, Fragment } from 'react';
 
 const LeagueForm = (props) => {
-  const [leagueName, setLeagueName] = useState("");
-  const [sport, setSport] = useState("");
+  const [leagueName, setLeagueName] = useState('');
+  const [sport, setSport] = useState('');
   const submit = (event) => {
     event.preventDefault();
   };
@@ -14,11 +14,11 @@ const LeagueForm = (props) => {
   };
 
   const save = (leagueName, sport) => {
-    axios.put("/api/", { leagueName, sport });
+    axios.put('/api/', { leagueName, sport });
   };
 
   return (
-    <Fragment>
+    <div className="container w-50 mx-auto">
       <form autoComplete="off" onSubmit={submit}>
         <input
           type="text"
@@ -40,7 +40,7 @@ const LeagueForm = (props) => {
       <button onClick={() => validate(leagueName, sport)} className="">
         Submit
       </button>
-    </Fragment>
+    </div>
   );
 };
 
