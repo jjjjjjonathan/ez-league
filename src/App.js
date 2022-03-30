@@ -32,6 +32,7 @@ function App() {
     updateMultipleTeam,
     set1Player,
     addNewFixtures,
+    setMultiplePlayers
   } = useApplicationData();
 
   return !state.isReady ? (
@@ -55,7 +56,7 @@ function App() {
               />
             </Route>
             <Route exact path="/teams/:id/admin">
-              <TeamDashboard players={state.players} set1Player={set1Player} />
+              <TeamDashboard players={state.players} set1Player={set1Player} teams={state.teams} setMultiplePlayers={setMultiplePlayers} />
             </Route>
 
             <Route

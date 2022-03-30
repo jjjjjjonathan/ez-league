@@ -5,7 +5,9 @@ const PlayerListItem = (props) => {
       <td className="text-center">
         <img src={photoUrl} alt="pict" className="rounded-full w-12 h-12" />
       </td>
-      <td className="text-center">{shirtNumber.toString()}</td>
+      <td className="text-center">
+        {shirtNumber ? shirtNumber.toString() : ''}
+      </td>
       <td className="text-center">{name}</td>
       <td className="text-center">{goals.toString()}</td>
       <td className="text-center">{yellowCards.toString()}</td>
