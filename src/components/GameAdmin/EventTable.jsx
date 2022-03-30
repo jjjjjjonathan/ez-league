@@ -109,12 +109,12 @@ const EventTable = (props) => {
       <table className="mx-auto mt-4 border">
         <thead>
           <tr className="bg-gray-400">
-            <th>Team</th>
-            <th>Time</th>
-            <th>Event</th>
-            <th>Player</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th className="px-2">Team</th>
+            <th className="px-2">Time</th>
+            <th className="px-2">Event</th>
+            <th className="px-2">Player</th>
+            <th className="px-2">Edit</th>
+            <th className="px-2">Delete</th>
           </tr>
         </thead>
         <tbody>{events}</tbody>
