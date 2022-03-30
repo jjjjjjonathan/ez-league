@@ -404,7 +404,7 @@ const AdminGame = (props) => {
   return (
     <main>
       <section>
-        <ScoreBoard home={home} away={away} event={event} />
+        <ScoreBoard home={home} away={away} event={event} timer={time} />
       </section>
       <section className="mt-4">
         <GameConsole

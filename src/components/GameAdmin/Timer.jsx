@@ -133,31 +133,3 @@ const Timer = (props) => {
 };
 
 export default Timer;
-
-// const timer2 = setInterval(() => {
-//   let minutes = 0;
-//   let seconds = Math.floor((Date.now() - dateBefore) / 1000);
-//   if (seconds >= 60) {
-//     minutes = Math.floor(seconds / 60);
-//     seconds -= 60 * minutes;
-//   }
-//   console.log(`${minutes.toLocaleString('en-US', {
-//     minimumIntegerDigits: 2,
-//     useGrouping: false
-//   })}:${seconds.toLocaleString('en-US', {
-//     minimumIntegerDigits: 2,
-//     useGrouping: false
-//   })}`);
-
-//   if (minutes === 8) {
-//     clearInterval(timer2);
-//   }
-// }, 1000);
-
-// console.log(`${minutes.toLocaleString('en-US', {
-//   minimumIntegerDigits: 2,
-//   useGrouping: false
-// })}:${seconds.toLocaleString('en-US', {
-//   minimumIntegerDigits: 2,
-//   useGrouping: false
-// })}`);
