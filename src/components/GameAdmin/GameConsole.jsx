@@ -15,126 +15,192 @@ const GameConsole = (props) => {
     awayYellowEvent,
   } = props;
   return (
-    <table className="mx-auto justify-center items-center text-2xl border-4 border-gray-200 rounded-lg py-10 ">
-      <thead className="mx-auto justify-center items-center text-2xl border-4 border-gray-200 rounded-lg py-10 ">
+    <table className="mx-auto px-2 justify-center items-center text-2xl border-4 border-gray-200 rounded-lg py-10 ">
+      <thead className="bg-gray-400 mx-auto justify-center items-center text-2xl border-4 border-gray-200 rounded-lg py-10 ">
         <tr>
           <th>Home</th>
           <th>Event</th>
           <th>Away</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <th>
-            <button onClick={() => updateGoalHome(fixtureId, 1)}>
+      <tbody className="">
+        <tr className="bg-gray-100 ">
+          <td className="py-3 px-8">
+            <button
+              onClick={() => updateGoalHome(fixtureId, 1)}
+              className="hover:bg-gray-400"
+            >
               Goal +1
             </button>
-          </th>
-          <th className="py-3 px-8">
+          </td>
+          <td className="py-3 px-8 ">
             <GiSoccerBall className="fill-green-500 " />
-          </th>
-          <th>
-            <button onClick={() => updateGoalAway(fixtureId, 1)}>
+          </td>
+          <td className="py-3 px-8">
+            <button
+              onClick={() => updateGoalAway(fixtureId, 1)}
+              className="hover:bg-gray-400"
+            >
               Goal +1
             </button>
-          </th>
+          </td>
         </tr>
-        <tr>
-          <th>
-            <button onClick={() => updateGoalHome(fixtureId, -1)}>
+        <tr className="bg-gray-100 ">
+          <td className="py-3 px-8">
+            <button
+              onClick={() => updateGoalHome(fixtureId, -1)}
+              className="hover:bg-gray-400"
+            >
               Goal -1
             </button>
-          </th>
-          <th className="py-3 px-8">
+          </td>
+          <td className="py-3 px-8">
             <GiSoccerBall className="fill-red-500" />
-          </th>
-          <th>
-            <button onClick={() => updateGoalAway(fixtureId, -1)}>
+          </td>
+          <td className="py-3 px-8">
+            <button
+              onClick={() => updateGoalAway(fixtureId, -1)}
+              className="hover:bg-gray-400"
+            >
               Goal -1
             </button>
-          </th>
+          </td>
         </tr>
       </tbody>
+      <tbody></tbody>
       <td></td>
       <th>1st-Half</th>
       <tbody>
-        <tr>
-          <td>
-            <button onClick={() => homeGoalEvent(fixtureId, home.id, 1)}>
-              Goal Event 1st Half
+        <tr className="bg-gray-100 ">
+          <td className="py-3 px-8">
+            <button
+              onClick={() => homeGoalEvent(fixtureId, home.id, 1)}
+              className="hover:bg-gray-400"
+            >
+              Goal Event
             </button>
           </td>
           <td className="py-3 px-8">
             <GiSoccerBall />
           </td>
-          <td>
-            <button onClick={() => awayGoalEvent(fixtureId, away.id, 1)}>
-              Goal Event 1st Half
+          <td className="py-3 px-8">
+            <button
+              onClick={() => awayGoalEvent(fixtureId, away.id, 1)}
+              className="hover:bg-gray-400"
+            >
+              Goal Event
             </button>
           </td>
         </tr>
-        <tr>
-          <button onClick={() => homeYellowEvent(fixtureId, home.id, 1)}>
-            Yellow Card 1st Half
-          </button>
+        <tr className="bg-gray-100 ">
+          <td className="py-3 px-8">
+            <button
+              onClick={() => homeYellowEvent(fixtureId, home.id, 1)}
+              className="hover:bg-gray-400"
+            >
+              Yellow Card
+            </button>
+          </td>
+
           <td className="py-3 px-8">
             <GiCardPlay className="fill-yellow-500" />
           </td>
-          <button onClick={() => awayYellowEvent(fixtureId, away.id, 1)}>
-            Yellow Card 1st Half
-          </button>
+          <td className="py-3 px-8">
+            <button
+              onClick={() => awayYellowEvent(fixtureId, away.id, 1)}
+              className="hover:bg-gray-400"
+            >
+              Yellow Card
+            </button>
+          </td>
         </tr>
-        <tr>
-          <button onClick={() => homeRedEvent(fixtureId, home.id, 1)}>
-            Red Card 1st Half
-          </button>
+        <tr className="bg-gray-100 ">
+          <td className="py-3 px-8">
+            <button
+              onClick={() => homeRedEvent(fixtureId, home.id, 1)}
+              className="hover:bg-gray-400"
+            >
+              Red Card
+            </button>
+          </td>
           <td className="py-3 px-8">
             <GiCardPlay className="fill-red-500" />
           </td>
-          <button onClick={() => awayRedEvent(fixtureId, away.id, 1)}>
-            Red Card 1st Half
-          </button>
+          <td className="py-3 px-8">
+            <button
+              onClick={() => awayRedEvent(fixtureId, away.id, 1)}
+              className="hover:bg-gray-400"
+            >
+              Red Card
+            </button>
+          </td>
         </tr>
       </tbody>
       <td></td>
       <th>2nd-Half</th>
       <tbody>
-        <tr>
-          <td>
-            <button onClick={() => homeGoalEvent(fixtureId, home.id, 2)}>
-              Goal Event 2nd Half
+        <tr className="bg-gray-100 ">
+          <td className="py-3 px-8">
+            <button
+              onClick={() => homeGoalEvent(fixtureId, home.id, 2)}
+              className="hover:bg-gray-400"
+            >
+              Goal Event
             </button>
           </td>
           <td className="py-3 px-8">
             <GiSoccerBall />
           </td>
-          <td>
-            <button onClick={() => awayGoalEvent(fixtureId, away.id, 2)}>
-              Goal Event 2nd Half
+          <td className="py-3 px-8">
+            <button
+              onClick={() => awayGoalEvent(fixtureId, away.id, 2)}
+              className="hover:bg-gray-400"
+            >
+              Goal Event
             </button>
           </td>
         </tr>
-        <tr>
-          <button onClick={() => homeYellowEvent(fixtureId, home.id, 2)}>
-            Yellow Card 2nd Half
-          </button>
+        <tr className="bg-gray-100 ">
+          <td className="py-3 px-8">
+            <button
+              onClick={() => homeYellowEvent(fixtureId, home.id, 2)}
+              className="hover:bg-gray-400"
+            >
+              Yellow Card
+            </button>
+          </td>
           <td className="py-3 px-8">
             <GiCardPlay className="fill-yellow-500" />
           </td>
-          <button onClick={() => awayYellowEvent(fixtureId, away.id, 2)}>
-            Yellow Card 2nd Half
-          </button>
+          <td className="py-3 px-8">
+            <button
+              onClick={() => awayYellowEvent(fixtureId, away.id, 2)}
+              className="hover:bg-gray-400"
+            >
+              Yellow Card
+            </button>
+          </td>
         </tr>
-        <tr>
-          <button onClick={() => homeRedEvent(fixtureId, home.id, 2)}>
-            Red Card 2nd Half
-          </button>
+        <tr className="bg-gray-100 ">
+          <td className="py-3 px-8">
+            <button
+              onClick={() => homeRedEvent(fixtureId, home.id, 2)}
+              className="hover:bg-gray-400"
+            >
+              Red Card
+            </button>
+          </td>
           <td className="py-3 px-8">
             <GiCardPlay className="fill-red-500" />
           </td>
-          <button onClick={() => awayRedEvent(fixtureId, away.id, 2)}>
-            Red Card 2nd Half
-          </button>
+          <td className="py-3 px-8">
+            <button
+              onClick={() => awayRedEvent(fixtureId, away.id, 2)}
+              className="hover:bg-gray-400"
+            >
+              Red Card
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>

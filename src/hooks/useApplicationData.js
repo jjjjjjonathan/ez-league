@@ -15,11 +15,13 @@ const useApplicationData = () => {
 
   const addNewFixtures = (fixturesState, newFixturesArray) => {
     const updatedFixturesState = [...fixturesState];
-    newFixturesArray.forEach(newFixture => updatedFixturesState.push(newFixture));
-    setState(prev => {
+    newFixturesArray.forEach((newFixture) =>
+      updatedFixturesState.push(newFixture)
+    );
+    setState((prev) => {
       return {
         ...prev,
-        fixtures: updatedFixturesState
+        fixtures: updatedFixturesState,
       };
     });
   };

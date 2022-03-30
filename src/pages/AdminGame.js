@@ -63,7 +63,7 @@ const AdminGame = (props) => {
       timer1 = setInterval(() => {
         let minutes = 0;
         let seconds = Math.floor(
-          (Date.now() - Date.parse(fixture.first_half_start_time)) / 1000
+          (Date.now() - Date.parse(fixture.first_half_start_time)) / 1000 + 1
         );
         if (seconds >= 60) {
           minutes = Math.floor(seconds / 60);
@@ -87,7 +87,7 @@ const AdminGame = (props) => {
         let seconds =
           Math.floor(
             (Date.now() - Date.parse(fixture.second_half_start_time)) / 1000
-          ) + 2700;
+          ) + 2701;
 
         if (seconds >= 60) {
           minutes = Math.floor(seconds / 60);
@@ -276,9 +276,9 @@ const AdminGame = (props) => {
   return (
     <main>
       <section>
-        <ScoreBoard home={home} away={away} />
+        <ScoreBoard home={home} away={away} timer={time} />
       </section>
-      <section>
+      <section className="mt-4">
         <GameConsole
           home={home}
           away={away}
@@ -293,7 +293,7 @@ const AdminGame = (props) => {
           awayYellowEvent={updateAwayYellowEvent}
         />
       </section>
-      <section>
+      <section className="mx-auto">
         <EventTable
           fixtureId={fixture.id}
           firstHalfTime={fixture.first_half_start_time}

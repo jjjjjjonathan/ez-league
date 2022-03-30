@@ -106,13 +106,15 @@ const EventTable = (props) => {
   });
   return (
     <form onSubmit={(event) => preventSubmit(event)}>
-      <table>
+      <table className="mx-auto mt-4 border">
         <thead>
-          <tr>
-            <th>Team</th>
-            <th>Time</th>
-            <th>Event</th>
-            <th>Player</th>
+          <tr className="bg-gray-400">
+            <th className="px-2">Team</th>
+            <th className="px-2">Time</th>
+            <th className="px-2">Event</th>
+            <th className="px-2">Player</th>
+            <th className="px-2">Edit</th>
+            <th className="px-2">Delete</th>
           </tr>
         </thead>
         <tbody>{events}</tbody>
