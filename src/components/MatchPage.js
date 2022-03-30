@@ -95,48 +95,50 @@ const MatchPage = (props) => {
   ]);
 
   return (
-    <div className="h-screen bg-cover bg-no-repeat bg-center" >
-      <div className="container absolute p-4 w-6/12 bg-gray-100 text-center rounded uppercase ">
-        <h1>ScoreBoard</h1>
-        <div className="title-box">
-          <p>Local Team</p>
-          <p id="elapsed">{time.minutes.toLocaleString('en-US', {
-            minimumIntegerDigits: 2,
-            useGrouping: false,
-          })}:{time.seconds.toLocaleString('en-US', {
-            minimumIntegerDigits: 2,
-            useGrouping: false,
-          })}</p>
-          <p>Visitor Team</p>
-        </div>
-        <div className="title-box flex flex-row flex-no-wrap justify-around items-center w-full">
-          <div clasName="team w-24">
-            {/* <img  id="homeLogo" > */}
-            <p id="homeName">{homeTeam.name}</p>
+    <table className="mx-auto justify-center items-center text-2xl border-4 border-gray-200 rounded-lg py-10 ">
+      <div className="h-screen bg-cover bg-no-repeat bg-center" >
+        <div className="mx-auto justify-center items-center text-2xl border-4 border-gray-200 rounded-lg py-10 ">
+          <h1>ScoreBoard</h1>
+          <div className="title-box">
+            <p>Local Team</p>
+            <p id="elapsed">{time.minutes.toLocaleString('en-US', {
+              minimumIntegerDigits: 2,
+              useGrouping: false,
+            })}:{time.seconds.toLocaleString('en-US', {
+              minimumIntegerDigits: 2,
+              useGrouping: false,
+            })}</p>
+
           </div>
-          <p id="Score">{fixture.home_team_score}-{fixture.away_team_score}</p>
-          <div className="team">
-            {/* <img id="awayLogo"> */}
-            <p id="awayName">{awayTeam.name}</p>
+          <div className="title-box flex flex-row flex-no-wrap justify-around items-center w-full">
+            <div clasName="team w-24">
+              {/* <img  id="homeLogo" > */}
+              <p id="homeName">{homeTeam.name}</p>
+            </div>
+            <p id="Score">{fixture.home_team_score}-{fixture.away_team_score}</p>
+            <div className="team">
+              {/* <img id="awayLogo"> */}
+              <p id="awayName">{awayTeam.name}</p>
+            </div>
           </div>
+          <div className="matchTable" class="matches-table mt-12 flex flex-col">
+            <div style={{ borderTop: "2px solid #fff ", marginLeft: 20, marginRight: 20 }}></div>
+          </div>  <section>
+            <EventTable
+              fixtureId={fixture.id}
+              firstHalfTime={fixture.first_half_start_time}
+              fixtureEvents={state.fixtureEvents}
+              eventTypes={state.fixtureTypes}
+              teams={state.teams}
+              players={state.players}
+              fixtureStatus={fixture.status}
+              secondHalfTime={fixture.second_half_start_time}
+              admin={false}
+            />
+          </section>
         </div>
-        <div className="matchTable" class="matches-table mt-12 flex flex-col">
-          <div style={{ borderTop: "2px solid #fff ", marginLeft: 20, marginRight: 20 }}></div>
-        </div>  <section>
-          <EventTable
-            fixtureId={fixture.id}
-            firstHalfTime={fixture.first_half_start_time}
-            fixtureEvents={state.fixtureEvents}
-            eventTypes={state.fixtureTypes}
-            teams={state.teams}
-            players={state.players}
-            fixtureStatus={fixture.status}
-            secondHalfTime={fixture.second_half_start_time}
-            admin={false}
-          />
-        </section>
       </div>
-    </div>
+    </table>
 
   );
 };

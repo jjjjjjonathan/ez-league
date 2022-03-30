@@ -3,6 +3,7 @@ import Loading from "../components/Loading";
 import { Link } from "react-router-dom";
 
 const Home = () => {
+  //
   return (
     <div className="container mx-auto">
       <header className="container sm:mt-40 mx-auto flex flex-col m-0  justify-center  cursor-pointer items-center">

@@ -1,5 +1,5 @@
-import SelectSportItem from './SelectSportItem';
-import { Fragment } from 'react';
+import SelectSportItem from "./SelectSportItem";
+import { Fragment } from "react";
 
 const SelectSport = (props) => {
   const { sports, onClick } = props;
@@ -13,10 +13,10 @@ const SelectSport = (props) => {
     />
   ));
   return (
-    <Fragment>
-      <h1>What sport is your league for?</h1>
-      {parsedSports}
-    </Fragment>
+    <section className="container  m-4">
+      <h1 className="ml-2 mb-4">What sport is your league for?</h1>
+      <aside className="mx-auto"> {parsedSports}</aside>
+    </section>
   );
 };
 
