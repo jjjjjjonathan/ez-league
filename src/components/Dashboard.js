@@ -12,7 +12,7 @@ const DashBoard = (props) => {
   const thisLeague = leagues.find(league => league.id === id);
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="container mx-auto px-4 py-6 w-3/4">
 
       <h1 className="text-xl">Welcome to the Admin Dashboard for your league: <strong>{thisLeague.name}</strong></h1>
 

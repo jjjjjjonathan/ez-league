@@ -1,7 +1,7 @@
 const PlayerListItem = (props) => {
   const { name, shirtNumber, goals, yellowCards, redCards, photoUrl } = props;
   return (
-    <tr className=" odd:bg-gray-100 even:bg-gray-200 cursor-pointer duration-300 hover:bg-b-100 hover:scale-105 cursor-pointer">
+    <tr className=" odd:bg-gray-100 even:bg-gray-200 cursor-pointer duration-300 hover:bg-b-100 scale:90 hover:scale-105 cursor-pointer">
       <td className="text-center">
         <img src={photoUrl} alt="pict" className="rounded-full w-12 h-12" />
       </td>
