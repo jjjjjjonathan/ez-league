@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div>
-      <header className="container sm:mt-40 mx-auto flex flex-col m-0 scale-125 scale-125 justify-center m-10  cursor-pointer items-center">
+    <div className="container mx-auto">
+      <header className="container sm:mt-40 mx-auto flex flex-col m-0  justify-center  cursor-pointer items-center">
 
-        <h1 className="text-3xl pb-10 my-5">Welcome to ez-league</h1>
-        <h3>The app to give your league the pro-sports feel</h3>
+        <h1 className="text-6xl pb-5">Welcome to ez-league</h1>
+        <h3 className="text-2xl">The app to give your league the pro-sports feel</h3>
 
       </header>
-      <section className="container mt-20 sm:mt-40 mx-auto flex flex-col m-0 scale-125 sm:flex-row scale-125 justify-center m-20  cursor-pointer">
+      <section className="container mt-20 sm:mt-40 mx-auto flex flex-col m-0  sm:flex-row  justify-center cursor-pointer">
 
         <HomeButton
           text={"As a Manager"}

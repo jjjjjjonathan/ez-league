@@ -1,13 +1,18 @@
-import LeagueListItems from "./LeagueListItems";
+import LeagueListItems from './LeagueListItems';
 
 const LeagueList = (props) => {
   const { leagues } = props;
 
   const leagueLists = leagues.map((league) => (
-    <LeagueListItems logo={league.logo} name={league.name} id={league.id} />
+    <LeagueListItems
+      logo={league.logo}
+      name={league.name}
+      id={league.id}
+      key={league.id}
+    />
   ));
 
-  return <h1>{leagueLists}</h1>;
+  return <div className="container mx-auto">{leagueLists}</div>;
 };
 
 export default LeagueList;
