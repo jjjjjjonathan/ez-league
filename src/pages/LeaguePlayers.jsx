@@ -1,13 +1,13 @@
-import { useParams } from "react-router-dom";
-import playersLeagueGenerator from "../helpers/playerGenerator";
-import PlayerListItem from "../components/PlayerListItem";
+import { useParams } from 'react-router-dom';
+import playersLeagueGenerator from '../helpers/playerGenerator';
+import PlayerListItem from '../components/PlayerListItem';
 
 const LeaguePlayers = (props) => {
   const id = useParams();
   const leagueId = parseInt(id.id);
   const { players, teams } = props;
   const playersInLeague = playersLeagueGenerator(leagueId, teams, players);
-  console.log("this is players", players);
+  console.log('this is players', players);
 
   const mappedPlayers = playersInLeague.map((player) => {
     return (
@@ -18,13 +18,13 @@ const LeaguePlayers = (props) => {
         goals={player.goals}
         yellowCards={player.yellow_cards}
         redCards={player.red_cards}
-        photoUrl={player.photo_url ? player.photo_url : "/images/lego.png"}
+        photoUrl={player.photo_url ? player.photo_url : '/images/lego.png'}
       />
     );
   });
 
   return (
-    <table className="container m-5 mx-auto">
+    <table className="container m-5 mx-auto w-5/6">
       <thead className="text-center">
         <tr>
           <th className="text-center">Image</th>

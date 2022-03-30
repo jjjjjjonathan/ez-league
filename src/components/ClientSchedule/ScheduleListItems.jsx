@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 
 const ScheduleListItems = (props) => {
   const { game, teams } = props;
-  console.log(teams);
 
   const homeTeam = teams.find((team) => game.home_team_id === team.id);
   const awayTeam = teams.find((team) => game.away_team_id === team.id);
@@ -12,7 +11,7 @@ const ScheduleListItems = (props) => {
       <section className="m-2 flex flex-row">
         <h1 className="text-gray-800">{game.scheduled_date}</h1>
 
-        <div className="flex flex-row ml-2 text-gray-800">
+        <div className="flex flex-row ml-2 text-gray-800 ">
           {game.status === 'Upcoming' && (
             <section>
               <h1> - {game.scheduled_timestamp}</h1>
