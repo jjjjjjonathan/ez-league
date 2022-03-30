@@ -92,6 +92,7 @@ function App() {
             <Route exact path="/admin/game/:fixture_id">
               <AdminGame
                 state={state}
+                setState={setState}
                 updateFixtures={updateFixtures}
                 newFixturesEvent={newFixturesEvent}
                 updateFixturesEvent={updateFixturesEvent}

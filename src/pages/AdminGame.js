@@ -9,12 +9,12 @@ import axios from "axios";
 import { GiConsoleController, GiJetPack } from "react-icons/gi";
 import useAdminGameHooks from "../hooks/useAdminGameHooks"
 // import useAdminGameHooks from "../hooks/useAdminGameHooks";
-// import useApplicationData from "../hooks/useApplicationData";
 
 const AdminGame = (props) => {
   //fetch fixture data and store it into a state
   const {
     state,
+    setState,
     updateFixtures,
     newFixturesEvent,
     updateFixturesEvent,
@@ -22,16 +22,11 @@ const AdminGame = (props) => {
     updateMultipleTeam,
   } = props;
 
-
-  const { updateHomeGoals, gameScore } = useAdminGameHooks(1, state.fixtures);
-
+  const { updateHomeGoals, gameScore } = useAdminGameHooks(1, state, setState);
+  console.log("gameScore", gameScore)
 
   //param to check fixture_id
   let { fixture_id } = useParams();
-
-  // console.log("abc", updateHomeGoals(1, 2))
-
-  // const { homeScore, awayScore, updateHomeGoals } = useAdminGameHooks(fixture_id, state.fixtures);
 
   const eventsInGame = state.fixtureEvents.filter(
     (event) => event.fixture_id === parseInt(fixture_id, 10)
@@ -411,11 +406,12 @@ const AdminGame = (props) => {
   return (
     <main>
       <section>
-        <ScoreBoard home={home} away={away} event={event} />
+        <ScoreBoard home={home} away={away} event={event} {...state} />
       </section>
       <section>
         <GameConsole
-          {...state}
+          state={state}
+          setState={setState}
           home={home}
           away={away}
           updateGoalHome={updateGoalHome}

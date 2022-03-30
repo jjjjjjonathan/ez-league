@@ -11,6 +11,10 @@ const useApplicationData = () => {
     fixtureTypes: [],
     sports: [],
     isReady: false,
+    gameScore: {
+      homeScore: 0,
+      awayScore: 0,
+    },
   });
 
   const addNewFixtures = (fixturesState, newFixturesArray) => {

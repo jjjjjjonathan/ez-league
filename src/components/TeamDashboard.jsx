@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import useTeamDashboardMode from '../hooks/useTeamDashboardMode';
 import Players from './GameAdmin/Players';
 import PlayerForm from './PlayerForm';
-import Start from './TeamDashboard/Start';
+import Start from './LeagueForm/Start';
 
 const TeamDashboard = (props) => {
   const START = 'START';

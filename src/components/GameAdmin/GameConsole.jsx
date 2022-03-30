@@ -3,6 +3,8 @@ import useAdminGameHooks from "../../hooks/useAdminGameHooks";
 
 const GameConsole = (props) => {
   const {
+    state,
+    setState, 
     updateGoalHome,
     fixtures,
     updateGoalAway,
@@ -16,8 +18,8 @@ const GameConsole = (props) => {
     awayRedEvent,
     awayYellowEvent,
   } = props;
-  console.log("fixtures", fixtures)
-  const { updateHomeGoals } = useAdminGameHooks(fixtureId, fixtures)
+  // console.log("fixtures", fixtures)
+  const { updateHomeGoals, updateAwayGoals } = useAdminGameHooks(fixtureId, state, setState)
   return (
     <table className="mx-auto justify-center items-center text-2xl border-4 border-gray-200 rounded-lg py-10 ">
       <thead className="mx-auto justify-center items-center text-2xl border-4 border-gray-200 rounded-lg py-10 ">
@@ -39,7 +41,7 @@ const GameConsole = (props) => {
             <GiSoccerBall className="fill-green-500 " />
           </th>
           <th>
-            <button onClick={() => updateGoalAway(fixtureId, 1)}>
+            <button onClick={() => updateAwayGoals(fixtureId, 1)}>
               Goal +1
             </button>
           </th>
@@ -55,7 +57,7 @@ const GameConsole = (props) => {
             <GiSoccerBall className="fill-red-500" />
           </th>
           <th>
-            <button onClick={() => updateGoalAway(fixtureId, -1)}>
+            <button onClick={() => updateAwayGoals(fixtureId, -1)}>
               Goal -1
             </button>
           </th>
