@@ -9,6 +9,7 @@ import axios from "axios";
 // import useApplicationData from "../hooks/useApplicationData";
 
 const AdminGame = (props) => {
+  const adminClasses = "odd:bg-gray-100 even:bg-gray-200  duration-300 hover:bg-b-100 hover:scale-105 cursor-pointer"
   //fetch fixture data and store it into a state
   const {
     state,
@@ -295,6 +296,7 @@ const AdminGame = (props) => {
       </section>
       <section className="mx-auto">
         <EventTable
+          classes={adminClasses}
           fixtureId={fixture.id}
           firstHalfTime={fixture.first_half_start_time}
           fixtureEvents={state.fixtureEvents}

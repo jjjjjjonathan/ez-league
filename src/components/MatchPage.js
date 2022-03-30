@@ -95,51 +95,71 @@ const MatchPage = (props) => {
   ]);
 
   return (
-    <table className="mx-auto justify-center items-center text-2xl border-4 border-gray-200 rounded-lg py-10 ">
-      <div className="h-screen bg-cover bg-no-repeat bg-center" >
-        <div className="mx-auto justify-center items-center text-2xl border-4 border-gray-200 rounded-lg py-10 ">
-          <h1>ScoreBoard</h1>
-          <div className="title-box">
-            <p>Local Team</p>
-            <p id="elapsed">{time.minutes.toLocaleString('en-US', {
-              minimumIntegerDigits: 2,
-              useGrouping: false,
-            })}:{time.seconds.toLocaleString('en-US', {
-              minimumIntegerDigits: 2,
-              useGrouping: false,
-            })}</p>
+    <article className="flex flex-col justify-center items-center text-2xl font-mono border-2  border-gray-200 rounded py-10 bg-black text-white ">
+
+      <section className="mx-auto justify-center items-center text-2xl ">
+        <div className="h-screen bg-cover bg-no-repeat bg-center" >
+          <div className="mx-auto justify-center items-center text-2xl border-4 border-gray-200 rounded-lg py-10 ">
+            <section className="text-6xl text-white font-mono gap-x-px mx-auto">
+              <p className="text-center">{time.minutes.toLocaleString('en-US', {
+                minimumIntegerDigits: 2,
+                useGrouping: false,
+              })}:{time.seconds.toLocaleString('en-US', {
+                minimumIntegerDigits: 2,
+                useGrouping: false,
+              })}</p>
+            </section>
+
+            <div className="title-box flex flex-row flex-no-wrap justify-around items-center w-full">
+              <section className="py-3 px-2 flex flex-row ">
+                <img
+                  src={homeTeam.thumbnail_logo}
+                  alt="team-logo"
+                  className="object-contain mr-2"
+                />
+                <p className="sm:w-2/2 lg:w-4/4 p-4 whitespace-nowrap">
+                  {homeTeam.name}
+                </p>
+              </section>
+              <p id="Score">
+                {fixture.home_team_score}:{fixture.away_team_score}</p>
+              <div className="team">
+                <div className="py-3 px-2 flex flex-row  font-mono">
+                  <img
+                    src={awayTeam.thumbnail_logo}
+                    alt="team-logo"
+                    className="object-contain ml-2"
+                  />
+                  <p className="sm:w-2/3 lg:w-3/4 p-4 whitespace-nowrap">
+                    {awayTeam.name}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="matchTable" class="matches-table mt-12 flex flex-col">
+              <div style={{ borderTop: "2px solid #fff ", marginLeft: 20, marginRight: 20 }}>
+              </div>
+            </div>
+
+            <section>
+              <EventTable
+                fixtureId={fixture.id}
+                firstHalfTime={fixture.first_half_start_time}
+                fixtureEvents={state.fixtureEvents}
+                eventTypes={state.fixtureTypes}
+                teams={state.teams}
+                players={state.players}
+                fixtureStatus={fixture.status}
+                secondHalfTime={fixture.second_half_start_time}
+                admin={false}
+              />
+            </section>
 
           </div>
-          <div className="title-box flex flex-row flex-no-wrap justify-around items-center w-full">
-            <div clasName="team w-24">
-              {/* <img  id="homeLogo" > */}
-              <p id="homeName">{homeTeam.name}</p>
-            </div>
-            <p id="Score">{fixture.home_team_score}-{fixture.away_team_score}</p>
-            <div className="team">
-              {/* <img id="awayLogo"> */}
-              <p id="awayName">{awayTeam.name}</p>
-            </div>
-          </div>
-          <div className="matchTable" class="matches-table mt-12 flex flex-col">
-            <div style={{ borderTop: "2px solid #fff ", marginLeft: 20, marginRight: 20 }}></div>
-          </div>  <section>
-            <EventTable
-              fixtureId={fixture.id}
-              firstHalfTime={fixture.first_half_start_time}
-              fixtureEvents={state.fixtureEvents}
-              eventTypes={state.fixtureTypes}
-              teams={state.teams}
-              players={state.players}
-              fixtureStatus={fixture.status}
-              secondHalfTime={fixture.second_half_start_time}
-              admin={false}
-            />
-          </section>
         </div>
-      </div>
-    </table>
-
+      </section>
+    </article>
   );
 };
 

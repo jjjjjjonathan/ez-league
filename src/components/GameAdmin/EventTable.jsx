@@ -1,6 +1,6 @@
 import EventTableItem from "./EventTableItem";
 import EditEventTableItem from "./EditEventTableItem";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import axios from "axios";
 
 const EventTable = (props) => {
@@ -15,6 +15,7 @@ const EventTable = (props) => {
     secondHalfTime,
     updateFixturesEvent,
     admin,
+    classes,
     deleteFixtureEvent,
   } = props;
   const [editEventId, setEditEventId] = useState(null);
@@ -82,6 +83,7 @@ const EventTable = (props) => {
       />
     ) : (
       <EventTableItem
+        classes={classes}
         key={event.id}
         value={event.id}
         type={event.fixture_event_type_id}
@@ -113,8 +115,9 @@ const EventTable = (props) => {
             <th className="px-2">Time</th>
             <th className="px-2">Event</th>
             <th className="px-2">Player</th>
-            <th className="px-2">Edit</th>
-            <th className="px-2">Delete</th>
+            { admin && <Fragment><th className="px-2">Edit</th>
+            <th className="px-2">Delete</th></Fragment>}
+            
           </tr>
         </thead>
         <tbody>{events}</tbody>
