@@ -38,7 +38,7 @@ function App() {
   return !state.isReady ? (
     <Loading />
   ) : (
-    <div className="min-h-screen flex-grow bg-gradient-to-b from-gray-50 via-gray-600 to-gray-200 font-sans font-semibold ">
+    <div className="min-h-screen flex-grow bg-gray-300 font-sans font-semibold ">
       <Router>
         <Navbar />
         <div className="min-h-screen">
@@ -77,7 +77,7 @@ function App() {
             <Route
               exact
               path="/leagues/team/:id"
-              children={<TeamProfile state={state} setState={setState} />}
+              children={<TeamProfile state={state} />}
             />
             <Route exact path="/leagues/:id/table">
               <LeagueStanding teams={state.teams} />

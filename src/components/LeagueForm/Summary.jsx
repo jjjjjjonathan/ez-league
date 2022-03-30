@@ -1,5 +1,4 @@
-import { Fragment } from 'react';
-import classNames from 'classnames';
+import classNames from "classnames";
 
 const Summary = (props) => {
   const { sports, selectedSport, leagueName, startOver, onSubmit } = props;
@@ -7,18 +6,20 @@ const Summary = (props) => {
   const nameOfSport = sports.find((sport) => sport.id === selectedSport);
 
   const classes = classNames(
-    'bg-gray-300',
-    'hover:bg-gray-400',
-    'text-gray-800',
-    'font-bold',
-    'py-2',
-    'px-4',
-    'rounded',
-    'md:items-center'
+    "bg-gray-400",
+    "hover:bg-gray-200",
+    "text-gray-800",
+    "font-bold",
+    "py-2",
+    "px-4",
+    "mt-4",
+    "mr-4",
+    "rounded",
+    "md:items-center"
   );
 
   return (
-    <Fragment>
+    <section className="m-4">
       <p>
         Your league name is {leagueName} and the sport is {nameOfSport.name}.
         Correct?
@@ -32,7 +33,7 @@ const Summary = (props) => {
       >
         Submit
       </button>
-    </Fragment>
+    </section>
   );
 };
 

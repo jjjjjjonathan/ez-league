@@ -6,7 +6,7 @@ const Navbar = () => {
       <ul className="flex flex-col cursor-pointer  md:flex-row md:items-center ">
         <Link to="/">
           <img
-            src="/images/logoNav.png"
+            src="/images/Nav_logo.png"
             alt="ez-league-logo"
             className="w-20"
           />
