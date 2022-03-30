@@ -3,7 +3,7 @@ import EditFixtureListItem from './EditFixtureListItem';
 import { useState } from 'react';
 
 const FixtureList = (props) => {
-  const { leagueFixtures, leagueTeams, onClickBack } = props;
+  const { leagueFixtures, leagueTeams, transition } = props;
 
   const [editFixtureId, setEditFixtureId] = useState(null);
 
@@ -50,7 +50,7 @@ const FixtureList = (props) => {
       <table>
         <tbody>{mappedLeagueFixtures}</tbody>
       </table>
-      <button onClick={() => onClickBack()}>Go Back</button>
+      <button onClick={() => transition('START')}>Go Back</button>
     </div>
   );
 };

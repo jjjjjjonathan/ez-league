@@ -15,6 +15,7 @@ const CSVReader = (props) => {
       setSuccessList(newTeamNames);
       setSuccess(true);
       callback(data.data, teams);
+      setList([]);
     });
   };
 

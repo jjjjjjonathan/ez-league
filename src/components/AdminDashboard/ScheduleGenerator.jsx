@@ -5,7 +5,6 @@ const robin = require('roundrobin');
 const ScheduleGenerator = (props) => {
   const validate = (leagueTeams, leagueId) => {
     if (leagueTeams.length >= 2) {
-      console.log('Validated');
       return axios
         .put(
           '/api/fixtures/generate',
@@ -15,7 +14,6 @@ const ScheduleGenerator = (props) => {
           addNewFixtures(fixtures, data.data.rows);
         });
     } else {
-      console.log('Rejected');
     }
   };
 
@@ -36,11 +34,9 @@ const ScheduleGenerator = (props) => {
         newQuery += `$${queryParams.length.toString(
           10
         )}, now() + INTERVAL '${counter} DAYS')`;
-        // queryParams.push(`now() + INTERVAL '${counter.toString(10)} DAYS'`);
-        // newQuery += `$${queryParams.length.toString(10)})`;
         conditions.push(newQuery);
       });
-      // counter += 7;
+      counter += 7;
     });
     queryString += `${conditions.join(
       ', '
@@ -48,8 +44,7 @@ const ScheduleGenerator = (props) => {
     return { queryString, queryParams };
   };
 
-  const { leagueId, leagueTeams, addNewFixtures, fixtures, onClickBack } =
-    props;
+  const { leagueId, leagueTeams, addNewFixtures, fixtures, transition } = props;
 
   return (
     <div>
@@ -58,7 +53,7 @@ const ScheduleGenerator = (props) => {
         one!
       </h1>
       <button onClick={() => validate(leagueTeams, leagueId)}>Generate</button>
-      <button onClick={() => onClickBack()}>Go Back</button>
+      <button onClick={() => transition('START')}>Go Back</button>
     </div>
   );
 };
