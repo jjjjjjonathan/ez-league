@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import NavLeague from '../components/NavLeague';
 import TeamCards from '../components/HomeLeagueCards/TeamCards';
+import useDocumentTitle from '../hooks/useDocumentTitle';
 
 const LeagueHome = (props) => {
   const { state } = props;
@@ -10,6 +11,9 @@ const LeagueHome = (props) => {
   const teamInTheLeague = state.teams.filter(
     (team) => team.league_id === league.id
   );
+
+  const leagueName = league.name;
+  useDocumentTitle(`${leagueName} -  by ez-league`);
 
   const teamCards = teamInTheLeague.map((team) => (
     <TeamCards key={team.id} team={team} />
