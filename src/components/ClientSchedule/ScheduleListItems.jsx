@@ -21,7 +21,7 @@ const ScheduleListItems = (props) => {
             game.status === 'Halftime' ||
             game.status === 'Second Half') && (
             <section>
-              <h1> - Ongoing</h1>
+              <h1>{game.scheduled_timestamp} - Ongoing</h1>
             </section>
           )}
           {game.status === 'Final' && (
