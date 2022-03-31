@@ -99,7 +99,7 @@ const MatchPage = (props) => {
   return (
 
     <div className="container mx-auto py-10">
-      <div className="mx-auto my-2 max-w-md rounded overflow-hidden shadow-md text-xs">
+      <div className="mx-auto my-2 max-w-xl rounded overflow-hidden shadow-md text-xs">
 
         <div className="flex bg-gray-200 px-2 py-2">
           { }
@@ -185,11 +185,11 @@ const MatchPage = (props) => {
 
         {thisFixtureEvents.length > 0 && (
           <Fragment>
-            <div className="border-t bg-gray-200 text-center px-1 py-1">
+            <div className="border-t bg-gray-200 text-center px-1 py-5">
               <p className="text-gray-600">MATCH EVENTS</p>
             </div>
 
-            <section className="flex border-t bg-gray-200 w-full">
+            <section className="flex border-t bg-gray-200 w-full pb-5">
               <EventTable
                 fixtureId={fixture.id}
                 firstHalfTime={fixture.first_half_start_time}
