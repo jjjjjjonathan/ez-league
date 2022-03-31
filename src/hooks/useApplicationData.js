@@ -75,6 +75,7 @@ const useApplicationData = () => {
   };
 
   const updateFixtures = (oldFixturesArray, newFixtureObj) => {
+    debugger;
     const newFixturesArray = oldFixturesArray.map((fixture) =>
       fixture.id === newFixtureObj.id ? newFixtureObj : fixture
     );

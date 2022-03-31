@@ -15,11 +15,11 @@ const MatchPage = (props) => {
     setTimerRef(seconds);
   };
 
-  const fixture = fixtures.find(fixture => fixture.id === parseInt(id))
+  const fixture = fixtures.find(fixture => fixture.id === parseInt(id));
 
-  const homeTeam = teams.find(team => team.id === fixture.home_team_id)
+  const homeTeam = teams.find(team => team.id === fixture.home_team_id);
 
-  const awayTeam = teams.find(team => team.id === fixture.away_team_id)
+  const awayTeam = teams.find(team => team.id === fixture.away_team_id);
 
   const [timerOn, setTimerOn] = useState(false);
 
@@ -113,9 +113,9 @@ const MatchPage = (props) => {
             <div className="title-box flex flex-row flex-no-wrap justify-around items-center w-full">
               <section className="py-3 px-2 flex flex-row ">
                 <img
-                  src={homeTeam.thumbnail_logo}
+                  src={homeTeam.thumbnail_logo ? homeTeam.thumbnail_logo : "/images/ez-team.png"}
                   alt="team-logo"
-                  className="object-contain mr-2"
+                  className="object-contain mr-2 w-10 h-10 justify-center items-center"
                 />
                 <p className="sm:w-2/2 lg:w-4/4 p-4 whitespace-nowrap">
                   {homeTeam.name}
@@ -126,9 +126,9 @@ const MatchPage = (props) => {
               <div className="team">
                 <div className="py-3 px-2 flex flex-row  font-mono">
                   <img
-                    src={awayTeam.thumbnail_logo}
+                    src={awayTeam.thumbnail_logo ? awayTeam.thumbnail_logo : "/images/ez-team.png"}
                     alt="team-logo"
-                    className="object-contain ml-2"
+                    className="object-contain mr-2 w-10 h-10 justify-center items-center"
                   />
                   <p className="sm:w-2/3 lg:w-3/4 p-4 whitespace-nowrap">
                     {awayTeam.name}
