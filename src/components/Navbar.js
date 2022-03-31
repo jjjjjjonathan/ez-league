@@ -13,17 +13,12 @@ const Navbar = () => {
         </Link>
 
         <li className="md:mx-4 hover:text-gray-400">
-          <Link to="/">Home</Link>
+          <Link to="/leagueform">Manager Mode</Link>
         </li>
         <li className="md:mx-4 hover:text-gray-400">
-          <Link to="/standing">League Table</Link>
+          <Link to="/leagues">Supporter Mode</Link>
         </li>
-        <li className="md:mx-4 hover:text-gray-400">
-          <Link to="/teamform">Team Form</Link>
-        </li>
-        <li className="md:mx-4 hover:text-gray-400">
-          <Link to="/leagueform">Create a New League</Link>
-        </li>
+
       </ul>
     </nav>
   );

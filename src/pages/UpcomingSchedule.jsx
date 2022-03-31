@@ -9,9 +9,7 @@ const UpcomingSchedule = (props) => {
   const fixtureLeague = fixtures.filter(
     (fixture) => fixture.league_id === parseInt(id)
   );
-  const resultsGame = fixtureLeague.filter(
-    (game) => game.scheduled_time > currentDate.toISOString()
-  );
+  const resultsGame = fixtureLeague.filter((game) => game.status !== 'Final');
 
   const eachResult = resultsGame.map((game) => {
     return <ScheduleListItems game={game} id={id} teams={teams} />;
