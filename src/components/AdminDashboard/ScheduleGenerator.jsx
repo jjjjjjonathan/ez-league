@@ -4,7 +4,6 @@ const robin = require('roundrobin');
 
 const ScheduleGenerator = (props) => {
   const validate = (leagueTeams, leagueId) => {
-    debugger;
     if (leagueTeams.length >= 2) {
       return axios
         .put(
