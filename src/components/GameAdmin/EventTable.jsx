@@ -1,7 +1,7 @@
-import EventTableItem from "./EventTableItem";
-import EditEventTableItem from "./EditEventTableItem";
-import { Fragment, useState } from "react";
-import axios from "axios";
+import EventTableItem from './EventTableItem';
+import EditEventTableItem from './EditEventTableItem';
+import { Fragment, useState } from 'react';
+import axios from 'axios';
 
 const EventTable = (props) => {
   const {
@@ -107,7 +107,7 @@ const EventTable = (props) => {
     );
   });
   return (
-    <form onSubmit={(event) => preventSubmit(event)}>
+    <form className="w-full" onSubmit={(event) => preventSubmit(event)}>
       <table className="mx-auto mt-4 border">
         <thead>
           <tr className="bg-gray-400">
@@ -115,9 +115,12 @@ const EventTable = (props) => {
             <th className="px-2">Time</th>
             <th className="px-2">Event</th>
             <th className="px-2">Player</th>
-            { admin && <Fragment><th className="px-2">Edit</th>
-            <th className="px-2">Delete</th></Fragment>}
-            
+            {admin && (
+              <Fragment>
+                <th className="px-2">Edit</th>
+                <th className="px-2">Delete</th>
+              </Fragment>
+            )}
           </tr>
         </thead>
         <tbody>{events}</tbody>

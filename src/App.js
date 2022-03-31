@@ -95,6 +95,7 @@ function App() {
                 teams={state.teams}
                 players={state.players}
                 state={state}
+                fixtureEvents={state.fixtureEvents}
               />
             </Route>
             <Route exact path="/parse">
