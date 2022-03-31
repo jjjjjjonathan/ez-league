@@ -183,7 +183,7 @@ const MatchPage = (props) => {
           </div>
         </div> */}
 
-        {thisFixtureEvents.length > 0 ? (
+        {thisFixtureEvents.length > 0 && (
           <Fragment>
             <div className="border-t bg-gray-200 text-center px-1 py-1">
               <p className="text-gray-600">MATCH EVENTS</p>
@@ -202,12 +202,6 @@ const MatchPage = (props) => {
                 admin={false}
               />
             </section>
-          </Fragment>
-        ) : (
-          <Fragment>
-            <div className="border-t bg-gray-200 text-center px-1 py-1">
-              <p className="text-gray-600">Nothing has happened yet...</p>
-            </div>
           </Fragment>
         )}
 
