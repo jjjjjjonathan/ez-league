@@ -1,4 +1,4 @@
 INSERT INTO leagues (name, sport_type_id, year, logo, cover_photo)
-VALUES ('Barclays Premier League', 1, '2011-12', 'https://w7.pngwing.com/pngs/431/737/png-transparent-2011-12-premier-league-arsenal-f-c-england-english-football-league-sport-arsenal-f-c-sport-team-dog-like-mammal-thumbnail.png', 'https://www.footballcritic.com/images/general/copy_723x397/fcd77f8a5c11be79dfd2829bd90bb32776b4a889.jpg'),
-('La Liga', 1, '2019-20', 'https://images.beinsports.com/ayZbLtmX1nnRrYjDWXtlwXgQdt8=/full-fit-in/1000x0/laliga-logo_f3zs4lz259e41uaqsqoif4cat.jpg', 'https://www.thestatesman.com/wp-content/uploads/2020/07/madrid-1-e1594964950955.jpg'),
-('Bundesliga', 1, '2021-22', 'https://p7.hiclipart.com/preview/489/415/777/5bbc307b8739e.jpg', 'https://img.bundesliga.com/tachyon/sites/2/2021/10/2021_MD34_FCBFCA_SW_321-scaled.jpg?crop=0px,0px,2560px,1441px&fit=1140');
+VALUES ('Barclays Premier League', 1, '2011-12', 'https://seeklogo.com/images/P/premier-league-logo-64B77E2F2E-seeklogo.com.png', 'https://www.footballcritic.com/images/general/copy_723x397/fcd77f8a5c11be79dfd2829bd90bb32776b4a889.jpg'),
+('La Liga', 1, '2019-20', 'https://iscreativestudio.com/wp-content/uploads/2016/08/logotipos5.jpg', 'https://www.thestatesman.com/wp-content/uploads/2020/07/madrid-1-e1594964950955.jpg'),
+('Bundesliga', 1, '2021-22', 'https://i.pinimg.com/originals/6b/a3/18/6ba318474e4cab7cef32a965fd6b982c.png', 'https://img.bundesliga.com/tachyon/sites/2/2021/10/2021_MD34_FCBFCA_SW_321-scaled.jpg?crop=0px,0px,2560px,1441px&fit=1140');
