@@ -23,7 +23,6 @@ const useApplicationData = () => {
     },
 
     UPDATE_FIXTURES(state2, action) {
-      console.log("this is action", action);
       const updateFixtures2 = (oldFixturesArray, newFixtureObj) => {
         const newFixturesArray = oldFixturesArray.map((fixture) =>
           fixture.id === newFixtureObj.id ? newFixtureObj : fixture
@@ -33,7 +32,7 @@ const useApplicationData = () => {
       console.log(updateFixtures2(state2.fixtures, action.content));
       return {
         ...state2,
-        fixtures: [updateFixtures2(state2.fixtures, action.content)]
+        fixtures: updateFixtures2(state2.fixtures, action.content)
       };
     }
   };
@@ -217,7 +216,9 @@ const useApplicationData = () => {
 
     connection.on('UPDATESTATE', (data) => {
       if (data.type === 'UPDATE_FIXTURES') {
+        // console.log("this is data.content", data.content);
         dispatch({ type: UPDATE_FIXTURES, content: data.content });
+        // console.log("hello this is working");
       }
       // updateFixtures(state.fixtures, data.content.rows[0]);
     });
