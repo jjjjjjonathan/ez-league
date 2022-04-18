@@ -140,7 +140,7 @@ module.exports = (db) => {
   // Get whole schedule of all leagues to put into state
   router.get("/", (req, res) => {
     return db
-      .query("SELECT * FROM fixtures ORDER BY scheduled_time;")
+      .query("SELECT *, TO_CHAR(scheduled_time, 'Mon. DD, YYYY') scheduled_date, TO_CHAR(scheduled_time, 'HH24:MI') scheduled_timestamp FROM fixtures ORDER BY scheduled_time;")
       .then((data) => {
         res.json(data.rows);
       });
