@@ -1,15 +1,18 @@
-import classNames from 'classnames';
+import classNames from "classnames";
 
 const SelectSportItem = (props) => {
   const selectSportClasses = classNames(
-    'bg-gray-300',
-    'hover:bg-gray-400',
-    'text-gray-800',
-    'font-bold',
-    'py-2',
-    'px-4',
-    'rounded',
-    'md:items-center'
+    "bg-gray-400",
+    "hover:bg-gray-400",
+    "text-gray-800",
+    "font-bold",
+    "py-2",
+    "px-4",
+    "rounded",
+    "m-2",
+    "justify-center",
+    "hover:bg-gray-200",
+    "md:items-center"
   );
 
   const { value, name, onClick } = props;

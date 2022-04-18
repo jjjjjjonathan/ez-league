@@ -15,11 +15,11 @@ const MatchPage = (props) => {
     setTimerRef(seconds);
   };
 
-  const fixture = fixtures.find(fixture => fixture.id === parseInt(id))
+  const fixture = fixtures.find(fixture => fixture.id === parseInt(id));
 
-  const homeTeam = teams.find(team => team.id === fixture.home_team_id)
+  const homeTeam = teams.find(team => team.id === fixture.home_team_id);
 
-  const awayTeam = teams.find(team => team.id === fixture.away_team_id)
+  const awayTeam = teams.find(team => team.id === fixture.away_team_id);
 
   const [timerOn, setTimerOn] = useState(false);
 
@@ -95,49 +95,71 @@ const MatchPage = (props) => {
   ]);
 
   return (
-    <div className="h-screen bg-cover bg-no-repeat bg-center" >
-      <div className="container absolute p-4 w-6/12 bg-gray-100 text-center rounded uppercase ">
-        <h1>ScoreBoard</h1>
-        <div className="title-box">
-          <p>Local Team</p>
-          <p id="elapsed">{time.minutes.toLocaleString('en-US', {
-            minimumIntegerDigits: 2,
-            useGrouping: false,
-          })}:{time.seconds.toLocaleString('en-US', {
-            minimumIntegerDigits: 2,
-            useGrouping: false,
-          })}</p>
-          <p>Visitor Team</p>
-        </div>
-        <div className="title-box flex flex-row flex-no-wrap justify-around items-center w-full">
-          <div clasName="team w-24">
-            {/* <img  id="homeLogo" > */}
-            <p id="homeName">{homeTeam.name}</p>
-          </div>
-          <p id="Score">{fixture.home_team_score}-{fixture.away_team_score}</p>
-          <div className="team">
-            {/* <img id="awayLogo"> */}
-            <p id="awayName">{awayTeam.name}</p>
-          </div>
-        </div>
-        <div className="matchTable" class="matches-table mt-12 flex flex-col">
-          <div style={{ borderTop: "2px solid #fff ", marginLeft: 20, marginRight: 20 }}></div>
-        </div>  <section>
-          <EventTable
-            fixtureId={fixture.id}
-            firstHalfTime={fixture.first_half_start_time}
-            fixtureEvents={state.fixtureEvents}
-            eventTypes={state.fixtureTypes}
-            teams={state.teams}
-            players={state.players}
-            fixtureStatus={fixture.status}
-            secondHalfTime={fixture.second_half_start_time}
-            admin={false}
-          />
-        </section>
-      </div>
-    </div>
+    <article className="flex flex-col justify-center items-center text-2xl font-mono border-2  border-gray-200 rounded py-10 bg-black text-white ">
 
+      <section className="mx-auto justify-center items-center text-2xl ">
+        <div className="h-screen bg-cover bg-no-repeat bg-center" >
+          <div className="mx-auto justify-center items-center text-2xl border-4 border-gray-200 rounded-lg py-10 ">
+            <section className="text-6xl text-white font-mono gap-x-px mx-auto">
+              <p className="text-center">{time.minutes.toLocaleString('en-US', {
+                minimumIntegerDigits: 2,
+                useGrouping: false,
+              })}:{time.seconds.toLocaleString('en-US', {
+                minimumIntegerDigits: 2,
+                useGrouping: false,
+              })}</p>
+            </section>
+
+            <div className="title-box flex flex-row flex-no-wrap justify-around items-center w-full">
+              <section className="py-3 px-2 flex flex-row ">
+                <img
+                  src={homeTeam.thumbnail_logo ? homeTeam.thumbnail_logo : "/images/ez-team.png"}
+                  alt="team-logo"
+                  className="object-contain mr-2 w-10 h-10 justify-center items-center"
+                />
+                <p className="sm:w-2/2 lg:w-4/4 p-4 whitespace-nowrap">
+                  {homeTeam.name}
+                </p>
+              </section>
+              <p id="Score">
+                {fixture.home_team_score}:{fixture.away_team_score}</p>
+              <div className="team">
+                <div className="py-3 px-2 flex flex-row  font-mono">
+                  <img
+                    src={awayTeam.thumbnail_logo ? awayTeam.thumbnail_logo : "/images/ez-team.png"}
+                    alt="team-logo"
+                    className="object-contain mr-2 w-10 h-10 justify-center items-center"
+                  />
+                  <p className="sm:w-2/3 lg:w-3/4 p-4 whitespace-nowrap">
+                    {awayTeam.name}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="matchTable" class="matches-table mt-12 flex flex-col">
+              <div style={{ borderTop: "2px solid #fff ", marginLeft: 20, marginRight: 20 }}>
+              </div>
+            </div>
+
+            <section>
+              <EventTable
+                fixtureId={fixture.id}
+                firstHalfTime={fixture.first_half_start_time}
+                fixtureEvents={state.fixtureEvents}
+                eventTypes={state.fixtureTypes}
+                teams={state.teams}
+                players={state.players}
+                fixtureStatus={fixture.status}
+                secondHalfTime={fixture.second_half_start_time}
+                admin={false}
+              />
+            </section>
+
+          </div>
+        </div>
+      </section>
+    </article>
   );
 };
 

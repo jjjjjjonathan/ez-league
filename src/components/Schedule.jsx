@@ -2,7 +2,8 @@ import ScheduleGenerator from './AdminDashboard/ScheduleGenerator';
 import FixtureList from './FixtureList';
 
 const Schedule = (props) => {
-  const { fixtures, id, teams, addNewFixtures, onClickBack } = props;
+  const { fixtures, id, teams, addNewFixtures, onClickBack, transition } =
+    props;
 
   const leagueFixtures = fixtures.filter((fixture) => fixture.league_id === id);
 

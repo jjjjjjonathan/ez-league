@@ -18,7 +18,7 @@ const LeagueForm = (props) => {
   };
 
   return (
-    <Fragment>
+    <div className="container w-50 mx-auto">
       <form autoComplete="off" onSubmit={submit}>
         <input
           type="text"
@@ -37,8 +37,10 @@ const LeagueForm = (props) => {
           <option value="basketball">Basketball</option>
         </select>
       </form>
-      <button onClick={() => validate(leagueName, sport)}>Submit</button>
-    </Fragment>
+      <button onClick={() => validate(leagueName, sport)} className="">
+        Submit
+      </button>
+    </div>
   );
 };
 

@@ -2,33 +2,36 @@ import axios from 'axios';
 import { useState, Fragment } from 'react';
 
 const PlayerForm = (props) => {
-  const { id, set1Player, players } = props;
+  const { id, set1Player, players, transition } = props;
   const [playerName, setPlayerName] = useState('');
   const [shirtNumber, setShirtNumber] = useState(null);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
+  const [successName, setSuccessName] = useState('');
+
   const submit = (event) => {
     event.preventDefault();
   };
 
   const save = (teamId, playerName, shirtNumber) => {
-    axios.put('/api/players/add', { teamId, playerName, shirtNumber }).then((data) => {
-      console.log(data)
-      set1Player(players, data.data.rows[0]);
-    });
+    axios
+      .put('/api/players/add', { teamId, playerName, shirtNumber })
+      .then((data) => {
+        set1Player(players, data.data.rows[0]);
+        setSuccess(true);
+        setSuccessName(playerName);
+        setPlayerName('');
+      });
   };
   const validate = (event, teamId, playerName, shirtNumber) => {
     event.preventDefault();
-    console.log('validating...');
     if (playerName) {
-      console.log('saving...');
       save(teamId, playerName, shirtNumber);
     }
   };
 
   return (
     <Fragment>
-      <h1 className="flex items-center justify-center mt-5 text-2xl ">
-        Add Your Player
-      </h1>
       <article className="flex justify-center mt-10 ">
         <section className="w-full max-w-sm flex-col">
           <form
@@ -64,6 +67,11 @@ const PlayerForm = (props) => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none "
               />
             </div>
+            {success && (
+              <p className="text-green-600">
+                Congrats you just added {successName} to the team!
+              </p>
+            )}
           </form>
           <div className="md:flex md:justify-center mb-6">
             <button
@@ -71,6 +79,12 @@ const PlayerForm = (props) => {
               className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded md:items-center"
             >
               Submit
+            </button>
+            <button
+              onClick={() => transition('ADDBULK')}
+              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded md:items-center"
+            >
+              Add Bulk
             </button>
           </div>
         </section>

@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment } from "react";
 
 const EventTableItem = (props) => {
   const {
@@ -19,6 +19,7 @@ const EventTableItem = (props) => {
     eventHalf,
     admin,
     onClick,
+    classes,
     onClickDelete,
   } = props;
 
@@ -56,7 +57,7 @@ const EventTableItem = (props) => {
   };
 
   return (
-    <tr className="bg-white-200 cursor-pointer duration-300 hover:bg-b-100 hover:scale-105 cursor-pointer">
+    <tr className={classes}>
       <td className="py-3 px-6 ">{findTeamName(team, listOfTeams)}</td>
       <td className="py-3 px-6 ">
         {eventHalf === 2
@@ -75,7 +76,9 @@ const EventTableItem = (props) => {
           type
         )}
       </td>
-      <td>
+      {admin && (
+        <Fragment><td className="py-3 px-6">
+
         <button
           onClick={(event) => {
             onClick(event, value);
@@ -84,9 +87,10 @@ const EventTableItem = (props) => {
           Edit
         </button>
       </td>
-      <td>
+      <td className="py-3 px-6 ">
         <button onClick={(event) => onClickDelete(event, value)}>Delete</button>
-      </td>
+      </td></Fragment>
+      )}
     </tr>
   );
 };

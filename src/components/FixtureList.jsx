@@ -1,34 +1,56 @@
 import FixtureListItem from './FixtureListItem';
+import EditFixtureListItem from './EditFixtureListItem';
+import { useState } from 'react';
 
 const FixtureList = (props) => {
-  const { leagueFixtures, leagueTeams, onClickBack } = props;
+  const { leagueFixtures, leagueTeams, transition } = props;
 
-  const mappedLeagueFixtures = leagueFixtures.map((fixture) => (
-    <FixtureListItem
-      key={fixture.id}
-      leagueTeams={leagueTeams}
-      homeTeamId={fixture.home_team_id}
-      awayTeamId={fixture.away_team_id}
-      status={fixture.status}
-      fixtureId={fixture.id}
-      scheduledTime={fixture.scheduled_time}
-    />
-  ));
+  const [editFixtureId, setEditFixtureId] = useState(null);
+
+  const onClickEdit = (event, eventValue) => {
+    event.preventDefault();
+    setEditFixtureId(eventValue);
+  };
+
+  const onClickEditBack = () => {
+    setEditFixtureId(null);
+  };
+
+  const mappedLeagueFixtures = leagueFixtures.map((fixture) => {
+    return editFixtureId === fixture.id ? (
+      <EditFixtureListItem
+        key={fixture.id}
+        leagueTeams={leagueTeams}
+        homeTeamId={fixture.home_team_id}
+        awayTeamId={fixture.away_team_id}
+        status={fixture.status}
+        fixtureId={fixture.id}
+        scheduledTime={fixture.scheduledTime}
+        setEditFixtureId={setEditFixtureId}
+        onClickEditBack={onClickEditBack}
+      />
+    ) : (
+      <FixtureListItem
+        key={fixture.id}
+        leagueTeams={leagueTeams}
+        homeTeamId={fixture.home_team_id}
+        awayTeamId={fixture.away_team_id}
+        status={fixture.status}
+        fixtureId={fixture.id}
+        scheduledDate={fixture.scheduled_date}
+        scheduledTimestamp={fixture.scheduled_timestamp}
+        setEditFixtureId={setEditFixtureId}
+        onClickEdit={onClickEdit}
+      />
+    );
+  });
 
   return (
     <div>
       <table>
-        <thead>
-          <tr>
-            <th>Home</th>
-            <th>Away</th>
-            <th>Status</th>
-            <th>Scheduled for</th>
-          </tr>
-        </thead>
         <tbody>{mappedLeagueFixtures}</tbody>
       </table>
-      <button onClick={() => onClickBack()}>Go Back</button>
+      <button onClick={() => transition('START')}>Go Back</button>
     </div>
   );
 };
