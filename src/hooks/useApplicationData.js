@@ -90,6 +90,13 @@ const useApplicationData = () => {
         ...state2,
         players: playersArrayCopy
       };
+    },
+
+    'UPDATE_TEAMS_RESULTS'(state2, action) {
+      return {
+        ...state2,
+        teams: state2.teams.map(team => team.id === action.content.id ? action.content : team)
+      };
     }
   };
 

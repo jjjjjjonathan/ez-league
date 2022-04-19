@@ -36,11 +36,12 @@ const Timer = (props) => {
           fixtureId: fixture.id,
           string: 'Final',
         }),
-      ]).then((all) => {
-        const [homeTeam, awayTeam, fixture] = all;
-        updateMultipleTeam(teams, homeTeam.data.rows[0], awayTeam.data.rows[0]);
-        updateFixtures(fixtures, fixture.data.rows[0]);
-      });
+      ]);
+      // .then((all) => {
+      //   const [homeTeam, awayTeam, fixture] = all;
+      //   updateMultipleTeam(teams, homeTeam.data.rows[0], awayTeam.data.rows[0]);
+      //   updateFixtures(fixtures, fixture.data.rows[0]);
+      // });
     } else if (fixture.away_team_score > fixture.home_team_score) {
       Promise.all([
         axios.put('/api/teams/wins', {
@@ -59,11 +60,12 @@ const Timer = (props) => {
           fixtureId: fixture.id,
           string: 'Final',
         }),
-      ]).then((all) => {
-        const [homeTeam, awayTeam, fixture] = all;
-        updateMultipleTeam(teams, homeTeam.data.rows[0], awayTeam.data.rows[0]);
-        updateFixtures(fixtures, fixture.data.rows[0]);
-      });
+      ]);
+      // .then((all) => {
+      //   const [homeTeam, awayTeam, fixture] = all;
+      //   updateMultipleTeam(teams, homeTeam.data.rows[0], awayTeam.data.rows[0]);
+      //   updateFixtures(fixtures, fixture.data.rows[0]);
+      // });
     } else if (fixture.away_team_score === fixture.home_team_score) {
       Promise.all([
         axios.put('/api/teams/draws', {
@@ -82,11 +84,12 @@ const Timer = (props) => {
           fixtureId: fixture.id,
           string: 'Final',
         }),
-      ]).then((all) => {
-        const [homeTeam, awayTeam, fixture] = all;
-        updateMultipleTeam(teams, homeTeam.data.rows[0], awayTeam.data.rows[0]);
-        updateFixtures(fixtures, fixture.data.rows[0]);
-      });
+      ]);
+      // .then((all) => {
+      //   const [homeTeam, awayTeam, fixture] = all;
+      //   updateMultipleTeam(teams, homeTeam.data.rows[0], awayTeam.data.rows[0]);
+      //   updateFixtures(fixtures, fixture.data.rows[0]);
+      // });
     }
   };
 
