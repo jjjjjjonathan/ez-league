@@ -15,6 +15,7 @@ module.exports = db => {
     const { leagueName, sport } = req.body;
     return db.query(`INSERT INTO leagues (name, sport_type_id) VALUES ($1, $2) RETURNING *;`, [leagueName, sport.toString(10)])
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: 'CREATE_NEW_LEAGUE', content: data.rows[0] });
         res.status(201).json(data.rows);
       })
       .catch(error => console.log(error));
