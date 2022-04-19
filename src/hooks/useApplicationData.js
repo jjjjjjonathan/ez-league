@@ -4,14 +4,8 @@ import socketIoClient from 'socket.io-client';
 
 const useApplicationData = () => {
 
-  const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
-  const UPDATE_FIXTURES = "UPDATE_FIXTURES";
-  const INSERT_FIXTURE_EVENTS = "INSERT_FIXTURE_EVENTS";
-  const EDIT_FIXTURE_EVENTS = "EDIT_FIXTURE_EVENTS";
-  const DELETE_FIXTURE_EVENTS = "DELETE_FIXTURE_EVENTS";
-
   const reducers = {
-    SET_APPLICATION_DATA(state2, action) {
+    'SET_APPLICATION_DATA'(state2, action) {
       return {
         ...state2,
         sports: action.sports.data,
@@ -25,21 +19,20 @@ const useApplicationData = () => {
       };
     },
 
-    UPDATE_FIXTURES(state2, action) {
+    'UPDATE_FIXTURES'(state2, action) {
       const updateFixtures2 = (oldFixturesArray, newFixtureObj) => {
         const newFixturesArray = oldFixturesArray.map((fixture) =>
           fixture.id === newFixtureObj.id ? newFixtureObj : fixture
         );
         return newFixturesArray;
       };
-      console.log(updateFixtures2(state2.fixtures, action.content));
       return {
         ...state2,
         fixtures: updateFixtures2(state2.fixtures, action.content)
       };
     },
 
-    INSERT_FIXTURE_EVENTS(state2, action) {
+    'INSERT_FIXTURE_EVENTS'(state2, action) {
       const newFixtureEventsArray = [...state2.fixtureEvents, action.content];
       return {
         ...state2,
@@ -47,7 +40,7 @@ const useApplicationData = () => {
       };
     },
 
-    EDIT_FIXTURE_EVENTS(state2, action) {
+    'EDIT_FIXTURE_EVENTS'(state2, action) {
       const editedFixtureEventsArray = state2.fixtureEvents.map((fixtureEvent) => fixtureEvent.id === action.content.id ? action.content : fixtureEvent);
       return {
         ...state2,
@@ -55,11 +48,23 @@ const useApplicationData = () => {
       };
     },
 
-    DELETE_FIXTURE_EVENTS(state2, action) {
+    'DELETE_FIXTURE_EVENTS'(state2, action) {
       const updatedFixtureEventsArray = state2.fixtureEvents.filter((fixtureEvent) => fixtureEvent.id !== action.content.id);
       return {
         ...state2,
         fixtureEvents: updatedFixtureEventsArray
+      };
+    },
+
+    'GENERATE_NEW_FIXTURES'(state2, action) {
+      console.log('checking if i made it here');
+      const updatedFixturesState = [...state2.fixtures];
+      action.content.forEach(newFixture =>
+        updatedFixturesState.push(newFixture)
+      );
+      return {
+        ...state2,
+        fixtures: updatedFixturesState
       };
     }
   };
@@ -238,7 +243,7 @@ const useApplicationData = () => {
       //   isReady: true,
       // }));
       dispatch({
-        type: SET_APPLICATION_DATA,
+        type: 'SET_APPLICATION_DATA',
         sports,
         leagues,
         teams,
@@ -255,18 +260,7 @@ const useApplicationData = () => {
     const connection = socketIoClient(ENDPOINT);
 
     connection.on('UPDATESTATE', (data) => {
-      if (data.type === 'UPDATE_FIXTURES') {
-        dispatch({ type: UPDATE_FIXTURES, content: data.content });
-      }
-      if (data.type === 'INSERT_FIXTURE_EVENTS') {
-        dispatch({ type: INSERT_FIXTURE_EVENTS, content: data.content });
-      }
-      if (data.type === 'EDIT_FIXTURE_EVENTS') {
-        dispatch({ type: EDIT_FIXTURE_EVENTS, content: data.content });
-      }
-      if (data.type === 'DELETE_FIXTURE_EVENTS') {
-        dispatch({ type: DELETE_FIXTURE_EVENTS, content: data.content });
-      }
+      dispatch({ type: data.type, content: data.content });
     });
 
   }, []);
