@@ -76,6 +76,7 @@ module.exports = (db) => {
         [fixtureId, teamId, time, type, half]
       )
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "INSERT_FIXTURE_EVENTS", content: data.rows[0] });
         res.status(201).json(data);
       });
   });
@@ -88,6 +89,7 @@ module.exports = (db) => {
         [fixtureId, teamId, time, type, half]
       )
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "INSERT_FIXTURE_EVENTS", content: data.rows[0] });
         res.status(201).json(data);
       });
   });
@@ -100,6 +102,7 @@ module.exports = (db) => {
         [fixtureId, teamId, time, type, half]
       )
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "INSERT_FIXTURE_EVENTS", content: data.rows[0] });
         res.status(201).json(data);
       });
   });
@@ -112,6 +115,7 @@ module.exports = (db) => {
         [fixtureId, teamId, time, type, half]
       )
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "INSERT_FIXTURE_EVENTS", content: data.rows[0] });
         res.status(201).json(data);
       });
   });
@@ -124,6 +128,7 @@ module.exports = (db) => {
         [fixtureId, teamId, time, type, half]
       )
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "INSERT_FIXTURE_EVENTS", content: data.rows[0] });
         res.status(201).json(data);
       });
   });
@@ -136,6 +141,7 @@ module.exports = (db) => {
         [fixtureId, teamId, time, type, half]
       )
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "INSERT_FIXTURE_EVENTS", content: data.rows[0] });
         res.status(201).json(data);
       });
   });
