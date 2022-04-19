@@ -20,7 +20,6 @@ const useApplicationData = () => {
     },
 
     'CREATE_NEW_LEAGUE'(state2, action) {
-      console.log("hope the league gets created");
       return {
         ...state2,
         leagues: [...state2.leagues, action.content]
