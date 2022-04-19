@@ -14,7 +14,7 @@ const TeamForm = (props) => {
 
   const save = (leagueId, teamName, logo) => {
     axios.put('/api/teams/add', { leagueId, teamName, logo }).then((data) => {
-      setMultipleTeams(teams, data.data.rows);
+      // setMultipleTeams(teams, data.data.rows);
       setSuccessName(teamName);
       setSuccess(true);
       setTeamName('');

@@ -72,6 +72,16 @@ const useApplicationData = () => {
         ...state2,
         fixtures: updatedFixturesState
       };
+    },
+
+    'ADD_NEW_TEAMS'(state2, action) {
+      console.log("made it here");
+      const teamsArrayCopy = [...state2.teams];
+      action.content.forEach(newTeam => teamsArrayCopy.push(newTeam));
+      return {
+        ...state2,
+        teams: teamsArrayCopy
+      };
     }
   };
 
