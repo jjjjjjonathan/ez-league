@@ -13,6 +13,7 @@ module.exports = db => {
     const { teamId, playerName, shirtNumber } = req.body;
     return db.query(`INSERT into players (team_id, name, shirt_number) VALUES($1,$2,$3) RETURNING *;`, [teamId, playerName, shirtNumber])
       .then(data => {
+        req.io.emit("UPDATESTATE", { type: 'ADD_NEW_PLAYERS', content: data.rows });
         res.status(201).json(data);
       });
   });
@@ -21,6 +22,7 @@ module.exports = db => {
     const { queryString, queryParams } = req.body;
     return db.query(queryString, queryParams)
       .then(data => {
+        req.io.emit("UPDATESTATE", { type: 'ADD_NEW_PLAYERS', content: data.rows });
         res.status(201).json(data);
       });
   });
