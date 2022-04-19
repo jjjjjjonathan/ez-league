@@ -17,7 +17,7 @@ const PlayerForm = (props) => {
     axios
       .put('/api/players/add', { teamId, playerName, shirtNumber })
       .then((data) => {
-        set1Player(players, data.data.rows[0]);
+        // set1Player(players, data.data.rows[0]);
         setSuccess(true);
         setSuccessName(playerName);
         setPlayerName('');

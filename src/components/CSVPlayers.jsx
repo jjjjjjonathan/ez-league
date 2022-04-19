@@ -14,7 +14,7 @@ const CSVReader = (props) => {
       const newTeamNames = data.data.rows.map((newTeam) => newTeam.name);
       setSuccessList(newTeamNames);
       setSuccess(true);
-      callback(data.data.rows, players);
+      // callback(data.data.rows, players);
       setList([]);
     });
   };
