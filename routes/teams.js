@@ -20,6 +20,7 @@ module.exports = (db) => {
   router.put("/", (req, res) => {
     const { queryString, queryParams } = req.body;
     return db.query(queryString, queryParams).then((data) => {
+      req.io.emit("UPDATESTATE", { type: "ADD_NEW_TEAMS", content: data.rows });
       res.status(201).json(data.rows);
     });
   });
@@ -64,6 +65,7 @@ module.exports = (db) => {
     const { leagueId, teamName, logo } = req.body;
     return db.query("INSERT INTO teams (league_id, name, thumbnail_logo) VALUES ($1, $2, $3) RETURNING *;", [leagueId, teamName, logo])
       .then(data => {
+        req.io.emit("UPDATESTATE", { type: "ADD_NEW_TEAMS", content: data.rows });
         res.status(201).json(data);
       });
   });
