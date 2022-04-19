@@ -1,5 +1,5 @@
-import axios from "axios";
-import { useState } from "react";
+import axios from 'axios';
+import { useState } from 'react';
 
 const EditEventTableItem = (props) => {
   const {
@@ -26,17 +26,16 @@ const EditEventTableItem = (props) => {
 
   const submitEventEdit = (event, eventType, eventId, playerId) => {
     event.preventDefault();
-    console.log(event.target.value);
-    let string = "";
+    let string = '';
     if (eventType === 1) {
-      string = "goal_scorer_id";
+      string = 'goal_scorer_id';
     } else if (eventType === 3) {
-      string = "yellow_card_id";
+      string = 'yellow_card_id';
     } else if (eventType === 4) {
-      string = "red_card_id";
+      string = 'red_card_id';
     }
     return axios
-      .put("/api/fixtures/update_events", {
+      .put('/api/fixtures/update_events', {
         playerId,
         eventId,
         string,
@@ -49,7 +48,6 @@ const EditEventTableItem = (props) => {
   };
 
   const selectPlayer = (event) => {
-    console.log(event.target.value);
     setSelectedPlayerId(event.target.value);
   };
 
@@ -58,7 +56,11 @@ const EditEventTableItem = (props) => {
   );
 
   const mapPlayers = filteredPlayers.map((player) => {
-    return <option value={player.id}>{player.name}</option>;
+    return (
+      <option key={player.id} value={player.id}>
+        {player.name}
+      </option>
+    );
   });
 
   const findTeamName = (team, listOfTeams) => {
