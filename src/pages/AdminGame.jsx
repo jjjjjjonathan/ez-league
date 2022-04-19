@@ -12,14 +12,7 @@ const AdminGame = (props) => {
   const adminClasses =
     'odd:bg-gray-100 even:bg-gray-200  duration-300 hover:bg-b-100 hover:scale-105 cursor-pointer';
   //fetch fixture data and store it into a state
-  const {
-    state,
-    updateFixtures,
-    newFixturesEvent,
-    updateFixturesEvent,
-    deleteFixtureEvent,
-    updateMultipleTeam,
-  } = props;
+  const { state } = props;
 
   //param to check fixture_id
   const { fixture_id } = useParams();
@@ -103,7 +96,6 @@ const AdminGame = (props) => {
         });
 
         if (minutes === 90 || fixture.status === 'Final') {
-          // clearInterval(timer1);
           setTimerOn(false);
         }
       }, 1000);
@@ -134,25 +126,15 @@ const AdminGame = (props) => {
       .put('/api/fixtures/end', { fixtureId, string })
       .then((data) => {
         setTimerOn(false);
-        updateFixtures(state.fixtures, data.data.rows[0]);
       });
   };
 
   const startHalf1 = (fixtureId, string) => {
-    return axios
-      .put('/api/fixtures/start1', { fixtureId, string })
-      .then((data) => {
-        updateFixtures(state.fixtures, data.data.rows[0]);
-      });
+    return axios.put('/api/fixtures/start1', { fixtureId, string });
   };
 
   const startHalf2 = (fixtureId, string) => {
-    return axios
-      .put('/api/fixtures/start2', { fixtureId, string })
-      .then((data) => {
-        console.log(data);
-        updateFixtures(state.fixtures, data.data.rows[0]);
-      });
+    return axios.put('/api/fixtures/start2', { fixtureId, string });
   };
 
   const updateGoalHome = (fixtureId, number) => {
@@ -168,9 +150,6 @@ const AdminGame = (props) => {
         number > 0 ? home.score + 1 : home.score - 1 < 0 ? 0 : home.score - 1,
       fixtureId,
     });
-    // .then((data) => {
-    //   updateFixtures(state.fixtures, data.data.rows[0]);
-    // });
   };
 
   const updateGoalAway = (fixtureId, number) => {
@@ -185,9 +164,6 @@ const AdminGame = (props) => {
         number > 0 ? away.score + 1 : away.score - 1 < 0 ? 0 : away.score - 1,
       fixtureId,
     });
-    // .then((data) => {
-    //   updateFixtures(state.fixtures, data.data.rows[0]);
-    // });
   };
 
   const updateHomeGoalEvent = (fixtureId, teamId, half) => {
@@ -198,9 +174,6 @@ const AdminGame = (props) => {
       type: 1,
       half,
     });
-    // .then((data) => {
-    //   newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
-    // });
   };
 
   const updateAwayGoalEvent = (fixtureId, teamId, half) => {
@@ -211,9 +184,6 @@ const AdminGame = (props) => {
       type: 1,
       half,
     });
-    // .then((data) => {
-    //   newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
-    // });
   };
 
   const updateHomeYellowEvent = (fixtureId, teamId, half) => {
@@ -224,9 +194,6 @@ const AdminGame = (props) => {
       type: 3,
       half,
     });
-    // .then((data) => {
-    //   newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
-    // });
   };
 
   const updateHomeRedEvent = (fixtureId, teamId, half) => {
@@ -237,9 +204,6 @@ const AdminGame = (props) => {
       type: 4,
       half,
     });
-    // .then((data) => {
-    //   newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
-    // });
   };
 
   const updateAwayYellowEvent = (fixtureId, teamId, half) => {
@@ -250,9 +214,6 @@ const AdminGame = (props) => {
       type: 3,
       half,
     });
-    // .then((data) => {
-    //   newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
-    // });
   };
 
   const updateAwayRedEvent = (fixtureId, teamId, half) => {
@@ -263,9 +224,6 @@ const AdminGame = (props) => {
       type: 4,
       half,
     });
-    // .then((data) => {
-    //   newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
-    // });
   };
 
   return (
@@ -305,9 +263,7 @@ const AdminGame = (props) => {
           players={state.players}
           fixtureStatus={fixture.status}
           secondHalfTime={fixture.second_half_start_time}
-          updateFixturesEvent={updateFixturesEvent}
           admin={true}
-          deleteFixtureEvent={deleteFixtureEvent}
         />
       </section>
       <section>
@@ -322,8 +278,6 @@ const AdminGame = (props) => {
           teams={state.teams}
           home={homeTeam}
           away={awayTeam}
-          updateMultipleTeam={updateMultipleTeam}
-          updateFixtures={updateFixtures}
           fixtures={state.fixtures}
         />
       </section>

@@ -9,9 +9,6 @@ const ScheduleGenerator = (props) => {
         '/api/fixtures/generate',
         scheduleGenerator(robin(leagueTeams.length, leagueTeams), leagueId)
       );
-      // .then((data) => {
-      //   addNewFixtures(fixtures, data.data.rows);
-      // });
     }
   };
 
@@ -42,7 +39,7 @@ const ScheduleGenerator = (props) => {
     return { queryString, queryParams };
   };
 
-  const { leagueId, leagueTeams, addNewFixtures, fixtures, transition } = props;
+  const { leagueId, leagueTeams, fixtures, transition } = props;
 
   return (
     <div>

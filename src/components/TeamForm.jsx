@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState, Fragment } from 'react';
 
 const TeamForm = (props) => {
-  const { id, setMultipleTeams, teams, transition } = props;
+  const { id, transition } = props;
   const [teamName, setTeamName] = useState('');
   const [logo, setLogo] = useState(null);
   const [error, setError] = useState('');
@@ -14,7 +14,6 @@ const TeamForm = (props) => {
 
   const save = (leagueId, teamName, logo) => {
     axios.put('/api/teams/add', { leagueId, teamName, logo }).then((data) => {
-      // setMultipleTeams(teams, data.data.rows);
       setSuccessName(teamName);
       setSuccess(true);
       setTeamName('');

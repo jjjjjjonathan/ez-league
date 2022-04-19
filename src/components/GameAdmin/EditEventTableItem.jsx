@@ -18,7 +18,6 @@ const EditEventTableItem = (props) => {
     fixtureStatus,
     secondHalfTime,
     eventHalf,
-    updateFixturesEvent,
     fixtureEvents,
     setEditEventId,
     onClickBack,

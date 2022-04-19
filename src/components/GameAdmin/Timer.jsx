@@ -9,12 +9,8 @@ const Timer = (props) => {
     startHalf2,
     onStop,
     fixture,
-    teams,
     home,
     away,
-    updateMultipleTeam,
-    updateFixtures,
-    fixtures,
   } = props;
 
   const determineResult = (fixture, home, away) => {
@@ -37,11 +33,6 @@ const Timer = (props) => {
           string: 'Final',
         }),
       ]);
-      // .then((all) => {
-      //   const [homeTeam, awayTeam, fixture] = all;
-      //   updateMultipleTeam(teams, homeTeam.data.rows[0], awayTeam.data.rows[0]);
-      //   updateFixtures(fixtures, fixture.data.rows[0]);
-      // });
     } else if (fixture.away_team_score > fixture.home_team_score) {
       Promise.all([
         axios.put('/api/teams/wins', {
@@ -61,11 +52,6 @@ const Timer = (props) => {
           string: 'Final',
         }),
       ]);
-      // .then((all) => {
-      //   const [homeTeam, awayTeam, fixture] = all;
-      //   updateMultipleTeam(teams, homeTeam.data.rows[0], awayTeam.data.rows[0]);
-      //   updateFixtures(fixtures, fixture.data.rows[0]);
-      // });
     } else if (fixture.away_team_score === fixture.home_team_score) {
       Promise.all([
         axios.put('/api/teams/draws', {
@@ -85,11 +71,6 @@ const Timer = (props) => {
           string: 'Final',
         }),
       ]);
-      // .then((all) => {
-      //   const [homeTeam, awayTeam, fixture] = all;
-      //   updateMultipleTeam(teams, homeTeam.data.rows[0], awayTeam.data.rows[0]);
-      //   updateFixtures(fixtures, fixture.data.rows[0]);
-      // });
     }
   };
 

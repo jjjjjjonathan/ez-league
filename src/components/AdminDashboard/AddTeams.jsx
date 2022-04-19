@@ -4,7 +4,7 @@ import CSVReader from '../CSVReader';
 import TeamForm from '../TeamForm';
 
 const AddTeams = (props) => {
-  const { id, teams, setMultipleTeams } = props;
+  const { id, teams } = props;
 
   const teamsInLeagueCount = teams.filter(
     (team) => team.league_id === id
@@ -38,22 +38,8 @@ const AddTeams = (props) => {
           Add Teams
         </button>
       )}
-      {mode === SINGLE && (
-        <TeamForm
-          id={id}
-          setMultipleTeams={setMultipleTeams}
-          teams={teams}
-          transition={transition}
-        />
-      )}
-      {mode === BULK && (
-        <CSVReader
-          id={id}
-          teams={teams}
-          setMultipleTeams={setMultipleTeams}
-          transition={transition}
-        />
-      )}
+      {mode === SINGLE && <TeamForm id={id} transition={transition} />}
+      {mode === BULK && <CSVReader id={id} transition={transition} />}
     </Fragment>
   );
 };

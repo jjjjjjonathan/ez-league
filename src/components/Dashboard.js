@@ -7,7 +7,7 @@ const DashBoard = (props) => {
 
   const id = parseInt(useParams().id, 10);
 
-  const { teams, fixtures, setMultipleTeams, addNewFixtures, leagues } = props;
+  const { teams, fixtures, leagues } = props;
 
   const thisLeague = leagues.find(league => league.id === id);
 
@@ -24,7 +24,6 @@ const DashBoard = (props) => {
         <AddTeams
           id={id}
           teams={teams}
-          setMultipleTeams={setMultipleTeams}
         />
       </div>
 
@@ -37,7 +36,7 @@ const DashBoard = (props) => {
       <p className="text-center">---</p>
 
       <div className="league-schedule container px-4 py-3">
-        <AdminSchedule id={id} teams={teams} addNewFixtures={addNewFixtures} fixtures={fixtures} />
+        <AdminSchedule id={id} teams={teams} fixtures={fixtures} />
       </div>
     </div>
   );

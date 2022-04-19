@@ -13,10 +13,8 @@ const EventTable = (props) => {
     firstHalfTime,
     fixtureStatus,
     secondHalfTime,
-    updateFixturesEvent,
     admin,
     classes,
-    deleteFixtureEvent,
   } = props;
   const [editEventId, setEditEventId] = useState(null);
 
@@ -38,17 +36,17 @@ const EventTable = (props) => {
     (fixture) => fixture.fixture_id === fixtureId
   );
 
-  const findTeamName = (id) => {
-    return teams.find((team) => team.id === id).name;
-  };
+  // const findTeamName = (id) => {
+  //   return teams.find((team) => team.id === id).name;
+  // };
 
-  const findEventType = (id) => {
-    return eventTypes.find((eventType) => eventType.id === id).name;
-  };
+  // const findEventType = (id) => {
+  //   return eventTypes.find((eventType) => eventType.id === id).name;
+  // };
 
-  const findGoalScorerName = (id) => {
-    return players.find((player) => player.id === id).name;
-  };
+  // const findGoalScorerName = (id) => {
+  //   return players.find((player) => player.id === id).name;
+  // };
 
   const preventSubmit = (event) => {
     event.preventDefault();
@@ -74,7 +72,6 @@ const EventTable = (props) => {
         fixtureStatus={fixtureStatus}
         secondHalfTime={secondHalfTime}
         eventHalf={event.half}
-        updateFixturesEvent={updateFixturesEvent}
         fixtureEvents={fixtureEvents}
         setEditEventId={setEditEventId}
         onClickBack={onClickBack}
