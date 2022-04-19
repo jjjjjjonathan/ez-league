@@ -6,6 +6,7 @@ const useApplicationData = () => {
 
   const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
   const UPDATE_FIXTURES = "UPDATE_FIXTURES";
+  const INSERT_FIXTURE_EVENTS = "INSERT_FIXTURE_EVENTS";
 
   const reducers = {
     SET_APPLICATION_DATA(state2, action) {
@@ -33,6 +34,14 @@ const useApplicationData = () => {
       return {
         ...state2,
         fixtures: updateFixtures2(state2.fixtures, action.content)
+      };
+    },
+
+    INSERT_FIXTURE_EVENTS(state2, action) {
+      const newFixtureEventsArray = [...state2.fixtureEvents, action.content];
+      return {
+        ...state2,
+        fixtureEvents: newFixtureEventsArray
       };
     }
   };
@@ -229,11 +238,11 @@ const useApplicationData = () => {
 
     connection.on('UPDATESTATE', (data) => {
       if (data.type === 'UPDATE_FIXTURES') {
-        // console.log("this is data.content", data.content);
         dispatch({ type: UPDATE_FIXTURES, content: data.content });
-        // console.log("hello this is working");
       }
-      // updateFixtures(state.fixtures, data.content.rows[0]);
+      if (data.type === 'INSERT_FIXTURE_EVENTS') {
+        dispatch({ type: INSERT_FIXTURE_EVENTS, content: data.content });
+      }
     });
 
   }, []);

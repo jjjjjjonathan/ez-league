@@ -163,15 +163,14 @@ const AdminGame = (props) => {
       };
     });
 
-    return axios
-      .put('/api/fixtures/homegoals', {
-        score:
-          number > 0 ? home.score + 1 : home.score - 1 < 0 ? 0 : home.score - 1,
-        fixtureId,
-      })
-      .then((data) => {
-        updateFixtures(state.fixtures, data.data.rows[0]);
-      });
+    return axios.put('/api/fixtures/homegoals', {
+      score:
+        number > 0 ? home.score + 1 : home.score - 1 < 0 ? 0 : home.score - 1,
+      fixtureId,
+    });
+    // .then((data) => {
+    //   updateFixtures(state.fixtures, data.data.rows[0]);
+    // });
   };
 
   const updateGoalAway = (fixtureId, number) => {
@@ -181,99 +180,92 @@ const AdminGame = (props) => {
         score: prev.score + number < 0 ? 0 : prev.score + number,
       };
     });
-    return axios
-      .put('/api/fixtures/awaygoals', {
-        score:
-          number > 0 ? away.score + 1 : away.score - 1 < 0 ? 0 : away.score - 1,
-        fixtureId,
-      })
-      .then((data) => {
-        updateFixtures(state.fixtures, data.data.rows[0]);
-      });
+    return axios.put('/api/fixtures/awaygoals', {
+      score:
+        number > 0 ? away.score + 1 : away.score - 1 < 0 ? 0 : away.score - 1,
+      fixtureId,
+    });
+    // .then((data) => {
+    //   updateFixtures(state.fixtures, data.data.rows[0]);
+    // });
   };
 
   const updateHomeGoalEvent = (fixtureId, teamId, half) => {
-    return axios
-      .put('/api/fixtures/new_home_goal', {
-        fixtureId,
-        teamId,
-        time: 'NOW()',
-        type: 1,
-        half,
-      })
-      .then((data) => {
-        newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
-      });
+    return axios.put('/api/fixtures/new_home_goal', {
+      fixtureId,
+      teamId,
+      time: 'NOW()',
+      type: 1,
+      half,
+    });
+    // .then((data) => {
+    //   newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
+    // });
   };
 
   const updateAwayGoalEvent = (fixtureId, teamId, half) => {
-    return axios
-      .put('/api/fixtures/new_away_goal', {
-        fixtureId,
-        teamId,
-        time: 'NOW()',
-        type: 1,
-        half,
-      })
-      .then((data) => {
-        newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
-      });
+    return axios.put('/api/fixtures/new_away_goal', {
+      fixtureId,
+      teamId,
+      time: 'NOW()',
+      type: 1,
+      half,
+    });
+    // .then((data) => {
+    //   newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
+    // });
   };
 
   const updateHomeYellowEvent = (fixtureId, teamId, half) => {
-    return axios
-      .put('/api/fixtures/yellow_home_card', {
-        fixtureId,
-        teamId,
-        time: 'NOW()',
-        type: 3,
-        half,
-      })
-      .then((data) => {
-        newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
-      });
+    return axios.put('/api/fixtures/yellow_home_card', {
+      fixtureId,
+      teamId,
+      time: 'NOW()',
+      type: 3,
+      half,
+    });
+    // .then((data) => {
+    //   newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
+    // });
   };
 
   const updateHomeRedEvent = (fixtureId, teamId, half) => {
-    return axios
-      .put('/api/fixtures/red_home_card', {
-        fixtureId,
-        teamId,
-        time: 'NOW()',
-        type: 4,
-        half,
-      })
-      .then((data) => {
-        newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
-      });
+    return axios.put('/api/fixtures/red_home_card', {
+      fixtureId,
+      teamId,
+      time: 'NOW()',
+      type: 4,
+      half,
+    });
+    // .then((data) => {
+    //   newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
+    // });
   };
 
   const updateAwayYellowEvent = (fixtureId, teamId, half) => {
-    return axios
-      .put('/api/fixtures/yellow_away_card', {
-        fixtureId,
-        teamId,
-        time: 'NOW()',
-        type: 3,
-        half,
-      })
-      .then((data) => {
-        newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
-      });
+    return axios.put('/api/fixtures/yellow_away_card', {
+      fixtureId,
+      teamId,
+      time: 'NOW()',
+      type: 3,
+      half,
+    });
+    // .then((data) => {
+    //   newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
+    // });
   };
 
   const updateAwayRedEvent = (fixtureId, teamId, half) => {
-    return axios
-      .put('/api/fixtures/red_away_card', {
-        fixtureId,
-        teamId,
-        time: 'NOW()',
-        type: 4,
-        half,
-      })
-      .then((data) => {
-        newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
-      });
+    return axios.put('/api/fixtures/red_away_card', {
+      fixtureId,
+      teamId,
+      time: 'NOW()',
+      type: 4,
+      half,
+    });
+    // .then((data) => {
+    //   newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
+    // });
   };
 
   return (
