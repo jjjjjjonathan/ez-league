@@ -164,7 +164,7 @@ module.exports = (db) => {
       });
   });
 
-  // Goal scored EVENT
+  // Goal scored EVENT (where is this being used i can't find it)
   router.put("/events", (req, res) => {
     const { fixtureId, teamId, eventTypeId } = req.body;
     return db
@@ -186,6 +186,7 @@ module.exports = (db) => {
         [playerId, eventId]
       )
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "EDIT_FIXTURE_EVENTS", content: data.rows[0] });
         res.status(201).json(data.rows);
       });
   });
