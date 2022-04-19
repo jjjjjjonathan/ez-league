@@ -202,6 +202,7 @@ module.exports = (db) => {
     const { queryString, queryParams } = req.body;
     return db.query(queryString, queryParams)
       .then(data => {
+        req.io.emit("UPDATESTATE", { type: "GENERATE_NEW_FIXTURES", content: data.rows });
         res.status(201).json(data);
       });
   });
