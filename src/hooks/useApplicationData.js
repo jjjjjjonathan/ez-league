@@ -8,6 +8,7 @@ const useApplicationData = () => {
   const UPDATE_FIXTURES = "UPDATE_FIXTURES";
   const INSERT_FIXTURE_EVENTS = "INSERT_FIXTURE_EVENTS";
   const EDIT_FIXTURE_EVENTS = "EDIT_FIXTURE_EVENTS";
+  const DELETE_FIXTURE_EVENTS = "DELETE_FIXTURE_EVENTS";
 
   const reducers = {
     SET_APPLICATION_DATA(state2, action) {
@@ -47,28 +48,19 @@ const useApplicationData = () => {
     },
 
     EDIT_FIXTURE_EVENTS(state2, action) {
-
       const editedFixtureEventsArray = state2.fixtureEvents.map((fixtureEvent) => fixtureEvent.id === action.content.id ? action.content : fixtureEvent);
-
       return {
         ...state2,
         fixtureEvents: editedFixtureEventsArray
       };
+    },
 
-      // const updateFixturesEvent = (oldFixtureEventsArray, newFixtureEventObj) => {
-      //   const newFixtureEventsArray = oldFixtureEventsArray.map((fixtureEvent) =>
-      //     fixtureEvent.id === newFixtureEventObj.id
-      //       ? newFixtureEventObj
-      //       : fixtureEvent
-      //   );
-      //   setState((prev) => {
-      //     return {
-      //       ...prev,
-      //       fixtureEvents: newFixtureEventsArray,
-      //     };
-      //   });
-      // };
-
+    DELETE_FIXTURE_EVENTS(state2, action) {
+      const updatedFixtureEventsArray = state2.fixtureEvents.filter((fixtureEvent) => fixtureEvent.id !== action.content.id);
+      return {
+        ...state2,
+        fixtureEvents: updatedFixtureEventsArray
+      };
     }
   };
 
@@ -271,6 +263,9 @@ const useApplicationData = () => {
       }
       if (data.type === 'EDIT_FIXTURE_EVENTS') {
         dispatch({ type: EDIT_FIXTURE_EVENTS, content: data.content });
+      }
+      if (data.type === 'DELETE_FIXTURE_EVENTS') {
+        dispatch({ type: DELETE_FIXTURE_EVENTS, content: data.content });
       }
     });
 

@@ -41,7 +41,6 @@ const EditEventTableItem = (props) => {
         string,
       })
       .then((data) => {
-        updateFixturesEvent(fixtureEvents, data.data[0]);
         setSelectedPlayerId(filteredPlayers[0].id);
         setEditEventId(null);
       });

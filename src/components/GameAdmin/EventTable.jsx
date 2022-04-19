@@ -1,7 +1,7 @@
-import EventTableItem from "./EventTableItem";
-import EditEventTableItem from "./EditEventTableItem";
-import { Fragment, useState } from "react";
-import axios from "axios";
+import EventTableItem from './EventTableItem';
+import EditEventTableItem from './EditEventTableItem';
+import { Fragment, useState } from 'react';
+import axios from 'axios';
 
 const EventTable = (props) => {
   const {
@@ -27,9 +27,7 @@ const EventTable = (props) => {
 
   const onClickDelete = (event, eventId) => {
     event.preventDefault();
-    return axios.delete(`/api/fixtures/events/${eventId}`).then((data) => {
-      deleteFixtureEvent(fixtureEvents, data.data[0]);
-    });
+    return axios.delete(`/api/fixtures/events/${eventId}`);
   };
 
   const onClickBack = () => {
@@ -115,9 +113,12 @@ const EventTable = (props) => {
             <th className="px-2">Time</th>
             <th className="px-2">Event</th>
             <th className="px-2">Player</th>
-            { admin && <Fragment><th className="px-2">Edit</th>
-            <th className="px-2">Delete</th></Fragment>}
-            
+            {admin && (
+              <Fragment>
+                <th className="px-2">Edit</th>
+                <th className="px-2">Delete</th>
+              </Fragment>
+            )}
           </tr>
         </thead>
         <tbody>{events}</tbody>
