@@ -28,23 +28,23 @@ const LeagueForm2 = (props) => {
       .put('/api/leagues', { leagueName, sport })
       .then((data) => {
         const id = data.data[0].id;
-        setState((prev) => {
-          const updatedLeagues = [
-            ...prev.leagues,
-            {
-              id: id,
-              cover_photo: null,
-              logo: null,
-              name: leagueName,
-              sport_type_id: sport,
-              year: null,
-            },
-          ];
-          return {
-            ...prev,
-            leagues: updatedLeagues,
-          };
-        });
+        // setState((prev) => {
+        //   const updatedLeagues = [
+        //     ...prev.leagues,
+        //     {
+        //       id: id,
+        //       cover_photo: null,
+        //       logo: null,
+        //       name: leagueName,
+        //       sport_type_id: sport,
+        //       year: null,
+        //     },
+        //   ];
+        //   return {
+        //     ...prev,
+        //     leagues: updatedLeagues,
+        //   };
+        // });
         history.push({
           pathname: `leagues/${id}/admin`,
           newLeague: true,

@@ -19,6 +19,14 @@ const useApplicationData = () => {
       };
     },
 
+    'CREATE_NEW_LEAGUE'(state2, action) {
+      console.log("hope the league gets created");
+      return {
+        ...state2,
+        leagues: [...state2.leagues, action.content]
+      };
+    },
+
     'UPDATE_FIXTURES'(state2, action) {
       const updateFixtures2 = (oldFixturesArray, newFixtureObj) => {
         const newFixturesArray = oldFixturesArray.map((fixture) =>
@@ -57,7 +65,6 @@ const useApplicationData = () => {
     },
 
     'GENERATE_NEW_FIXTURES'(state2, action) {
-      console.log('checking if i made it here');
       const updatedFixturesState = [...state2.fixtures];
       action.content.forEach(newFixture =>
         updatedFixturesState.push(newFixture)
