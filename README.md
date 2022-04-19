@@ -1,3 +1,35 @@
+!["EZ-LEAGUE MAIN MENU"](https://github.com/jjjjjjonathan/ez-league/blob/main/docs/Screenshot%20by%20Snip%20My%20at%20Apr%2016%2C%202022%20at%2023:14:53.png)
+
+!["Suporter and Manager mode"](https://github.com/jjjjjjonathan/ez-league/blob/main/docs/Screenshot%20by%20Snip%20My%20at%20Apr%2016%2C%202022%20at%2023:15:20.png)
+
+!["Create Your Own League"](https://github.com/jjjjjjonathan/ez-league/blob/main/docs/Screenshot%20by%20Snip%20My%20at%20Apr%2016%2C%202022%20at%2023:19:08.png)
+
+!["admin dashboard"](https://github.com/jjjjjjonathan/ez-league/blob/main/docs/Screenshot%20by%20Snip%20My%20at%20Apr%2016%2C%202022%20at%2023:21:49.png)
+
+!["add teams"](https://github.com/jjjjjjonathan/ez-league/blob/main/docs/Screenshot%20by%20Snip%20My%20at%20Apr%2016%2C%202022%20at%2023:20:41.png)
+
+!["team list that we created](https://github.com/jjjjjjonathan/ez-league/blob/main/docs/Screenshot%20by%20Snip%20My%20at%20Apr%2016%2C%202022%20at%2023:22:19.png)
+
+!["add players to the team"](https://github.com/jjjjjjonathan/ez-league/blob/main/docs/Screenshot%20by%20Snip%20My%20at%20Apr%2016%2C%202022%20at%2023:30:07.png)
+
+!["schedule generator with weekly interval"](https://github.com/jjjjjjonathan/ez-league/blob/main/docs/Screenshot%20by%20Snip%20My%20at%20Apr%2016%2C%202022%20at%2023:23:20.png)
+
+!["list of the league"](https://github.com/jjjjjjonathan/ez-league/blob/main/docs/Screenshot%20by%20Snip%20My%20at%20Apr%2016%2C%202022%20at%2023:24:02.png)
+
+!["list of the team in specific League"](https://github.com/jjjjjjonathan/ez-league/blob/main/docs/Screenshot%20by%20Snip%20My%20at%20Apr%2016%2C%202022%20at%2023:24:44.png)
+
+!["upcoming schedule and list of player for specific team"](https://github.com/jjjjjjonathan/ez-league/blob/main/docs/Screenshot%20by%20Snip%20My%20at%20Apr%2016%2C%202022%20at%2023:25:24.png)
+
+!["all schedule in the league"](https://github.com/jjjjjjonathan/ez-league/blob/main/docs/Screenshot%20by%20Snip%20My%20at%20Apr%2016%2C%202022%20at%2023:26:08.png)
+
+!["league table"](https://github.com/jjjjjjonathan/ez-league/blob/main/docs/Screenshot%20by%20Snip%20My%20at%20Apr%2016%2C%202022%20at%2023:27:30.png)
+
+!["game dashboard"](https://github.com/jjjjjjonathan/ez-league/blob/main/docs/Screenshot%20by%20Snip%20My%20at%20Apr%2016%2C%202022%20at%2023:31:13.png)
+
+!["game event and console"](https://github.com/jjjjjjonathan/ez-league/blob/main/docs/Screenshot%20by%20Snip%20My%20at%20Apr%2016%2C%202022%20at%2023:34:35.png)
+
+!["final result"](https://github.com/jjjjjjonathan/ez-league/blob/main/docs/Screenshot%20by%20Snip%20My%20at%20Apr%2016%2C%202022%20at%2023:35:07.png)
+
 # ez-league
 
 ez-league helps users create their own sports leagues with the ability to add teams and players for stats tracking, along with a round-robin schedule generator. Along with the administrator sides, links are created for each league to be shared with the public for whoever wants to follow along with a bookmark in the browser.
