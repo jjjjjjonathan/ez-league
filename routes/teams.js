@@ -33,6 +33,7 @@ module.exports = (db) => {
         [wins, goalsFor, goalsAgainst, teamId]
       )
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "UPDATE_TEAMS_RESULTS", content: data.rows[0] });
         res.status(200).json(data);
       });
   });
@@ -45,6 +46,7 @@ module.exports = (db) => {
         [losses, goalsFor, goalsAgainst, teamId]
       )
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "UPDATE_TEAMS_RESULTS", content: data.rows[0] });
         res.status(200).json(data);
       });
   });
@@ -57,6 +59,7 @@ module.exports = (db) => {
         [draws, goalsFor, goalsAgainst, teamId]
       )
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "UPDATE_TEAMS_RESULTS", content: data.rows[0] });
         res.status(200).json(data);
       });
   });
