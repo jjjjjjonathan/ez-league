@@ -1,6 +1,7 @@
 import TeamCards from '../HomeLeagueCards/TeamCards';
 
 const ScoreBoard = (props) => {
+  const { homeScore, awayScore } = props;
   return (
     <article className="text-2xl font-mono border-2  border-gray-200 rounded py-10 bg-black text-white ">
       <h1 className="text-center ">
@@ -50,7 +51,7 @@ const ScoreBoard = (props) => {
       </div>
       <section className=" bg-black flex flex-row border-2 text-white border-gray-500 rounded shadow-2xl font-mono  gap-x-px">
         <h1 className="text-center mx-auto">
-          {props.home.score} : {props.away.score}
+          {homeScore} : {awayScore}
         </h1>
       </section>
     </article>
