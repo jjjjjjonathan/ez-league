@@ -209,6 +209,7 @@ module.exports = (db) => {
   router.delete("/events/:id", (req, res) => {
     return db.query("DELETE FROM fixture_events WHERE id = $1 RETURNING *;", [req.params.id])
       .then(data => {
+        req.io.emit("UPDATESTATE", { type: "DELETE_FIXTURE_EVENTS", content: data.rows[0] });
         res.status(200).json(data.rows);
       });
   });
