@@ -4,7 +4,8 @@ import { Fragment } from "react";
 const TableList = (props) => {
   const { teams, id, transition } = props;
 
-  const filteredTeams = teams.filter((team) => team.league_id === id);
+  const filteredTeams = teams.filter((team) => team.league_id === id).sort((a, b) => b.points - a.points || b.goal_difference - a.goal_difference || b.goals_for - a.goals_for);
+
   const teamList = filteredTeams.map((team, index) => {
     return <TableListItem key={team.id} rank={index + 1} {...team} />;
   });
