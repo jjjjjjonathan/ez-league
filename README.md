@@ -47,6 +47,6 @@ For the front end, we went with ReactJS to build our components, and Tailwind CS
 
 ## Future Plans
 
-- Finish implemention of socket-io to create real-time updates of match and player stats without the need to refresh the app.
+- (COMPLETED APRIL 19, 2022) ~~Finish implemention of socket-io to create real-time updates of match and player stats without the need to refresh the app.~~
 - Work on creating a more cohesive styling across the whole app.
 - Refactor to DRY up the code with more tests with Jest.
