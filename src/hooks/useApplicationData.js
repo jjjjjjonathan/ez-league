@@ -157,9 +157,7 @@ const useApplicationData = () => {
 
   }, []);
 
-  return {
-    state
-  };
+  return { state };
 };
 
 export default useApplicationData;
