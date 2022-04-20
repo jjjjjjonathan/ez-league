@@ -10,6 +10,7 @@ module.exports = (db) => {
         [score, fixtureId]
       )
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "UPDATE_FIXTURES", content: data.rows[0] });
         res.status(200).json(data);
       });
   });
@@ -22,6 +23,7 @@ module.exports = (db) => {
         [score, fixtureId]
       )
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "UPDATE_FIXTURES", content: data.rows[0] });
         res.status(200).json(data);
       });
   });
@@ -35,6 +37,7 @@ module.exports = (db) => {
         [string, fixtureId]
       )
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "UPDATE_FIXTURES", content: data.rows[0] });
         res.status(200).json(data);
       });
   });
@@ -47,6 +50,7 @@ module.exports = (db) => {
         [string, fixtureId]
       )
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "UPDATE_FIXTURES", content: data.rows[0] });
         res.status(200).json(data);
       });
   });
@@ -59,6 +63,7 @@ module.exports = (db) => {
         fixtureId,
       ])
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "UPDATE_FIXTURES", content: data.rows[0] });
         res.status(200).json(data);
       });
   });
@@ -71,6 +76,7 @@ module.exports = (db) => {
         [fixtureId, teamId, time, type, half]
       )
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "INSERT_FIXTURE_EVENTS", content: data.rows[0] });
         res.status(201).json(data);
       });
   });
@@ -83,6 +89,7 @@ module.exports = (db) => {
         [fixtureId, teamId, time, type, half]
       )
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "INSERT_FIXTURE_EVENTS", content: data.rows[0] });
         res.status(201).json(data);
       });
   });
@@ -95,6 +102,7 @@ module.exports = (db) => {
         [fixtureId, teamId, time, type, half]
       )
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "INSERT_FIXTURE_EVENTS", content: data.rows[0] });
         res.status(201).json(data);
       });
   });
@@ -107,6 +115,7 @@ module.exports = (db) => {
         [fixtureId, teamId, time, type, half]
       )
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "INSERT_FIXTURE_EVENTS", content: data.rows[0] });
         res.status(201).json(data);
       });
   });
@@ -119,6 +128,7 @@ module.exports = (db) => {
         [fixtureId, teamId, time, type, half]
       )
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "INSERT_FIXTURE_EVENTS", content: data.rows[0] });
         res.status(201).json(data);
       });
   });
@@ -131,6 +141,7 @@ module.exports = (db) => {
         [fixtureId, teamId, time, type, half]
       )
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "INSERT_FIXTURE_EVENTS", content: data.rows[0] });
         res.status(201).json(data);
       });
   });
@@ -153,7 +164,7 @@ module.exports = (db) => {
       });
   });
 
-  // Goal scored EVENT
+  // Goal scored EVENT (where is this being used i can't find it)
   router.put("/events", (req, res) => {
     const { fixtureId, teamId, eventTypeId } = req.body;
     return db
@@ -175,6 +186,7 @@ module.exports = (db) => {
         [playerId, eventId]
       )
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "EDIT_FIXTURE_EVENTS", content: data.rows[0] });
         res.status(201).json(data.rows);
       });
   });
@@ -190,6 +202,7 @@ module.exports = (db) => {
     const { queryString, queryParams } = req.body;
     return db.query(queryString, queryParams)
       .then(data => {
+        req.io.emit("UPDATESTATE", { type: "GENERATE_NEW_FIXTURES", content: data.rows });
         res.status(201).json(data);
       });
   });
@@ -197,6 +210,7 @@ module.exports = (db) => {
   router.delete("/events/:id", (req, res) => {
     return db.query("DELETE FROM fixture_events WHERE id = $1 RETURNING *;", [req.params.id])
       .then(data => {
+        req.io.emit("UPDATESTATE", { type: "DELETE_FIXTURE_EVENTS", content: data.rows[0] });
         res.status(200).json(data.rows);
       });
   });

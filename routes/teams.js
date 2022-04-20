@@ -20,6 +20,7 @@ module.exports = (db) => {
   router.put("/", (req, res) => {
     const { queryString, queryParams } = req.body;
     return db.query(queryString, queryParams).then((data) => {
+      req.io.emit("UPDATESTATE", { type: "ADD_NEW_TEAMS", content: data.rows });
       res.status(201).json(data.rows);
     });
   });
@@ -28,10 +29,13 @@ module.exports = (db) => {
     const { wins, goalsFor, goalsAgainst, teamId } = req.body;
     return db
       .query(
-        `UPDATE teams SET wins = $1, goals_for = $2, goals_against= $3 WHERE id = $4 RETURNING *;`,
+        `UPDATE teams SET wins = $1, goals_for = $2, goals_against= $3 WHERE id = $4 RETURNING *, teams.wins + teams.draws + teams.losses AS matches_played,
+        teams.wins * 3 + teams.draws AS points,
+        teams.goals_for - teams.goals_against AS goal_difference;`,
         [wins, goalsFor, goalsAgainst, teamId]
       )
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "UPDATE_TEAMS_RESULTS", content: data.rows[0] });
         res.status(200).json(data);
       });
   });
@@ -40,10 +44,13 @@ module.exports = (db) => {
     const { losses, goalsFor, goalsAgainst, teamId } = req.body;
     return db
       .query(
-        `UPDATE teams SET losses = $1, goals_for = $2, goals_against= $3 WHERE id = $4 RETURNING *;`,
+        `UPDATE teams SET losses = $1, goals_for = $2, goals_against= $3 WHERE id = $4 RETURNING *, teams.wins + teams.draws + teams.losses AS matches_played,
+        teams.wins * 3 + teams.draws AS points,
+        teams.goals_for - teams.goals_against AS goal_difference;`,
         [losses, goalsFor, goalsAgainst, teamId]
       )
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "UPDATE_TEAMS_RESULTS", content: data.rows[0] });
         res.status(200).json(data);
       });
   });
@@ -52,10 +59,13 @@ module.exports = (db) => {
     const { draws, goalsFor, goalsAgainst, teamId } = req.body;
     return db
       .query(
-        `UPDATE teams SET draws = $1, goals_for = $2, goals_against= $3 WHERE id = $4 RETURNING *;`,
+        `UPDATE teams SET draws = $1, goals_for = $2, goals_against= $3 WHERE id = $4 RETURNING *, teams.wins + teams.draws + teams.losses AS matches_played,
+        teams.wins * 3 + teams.draws AS points,
+        teams.goals_for - teams.goals_against AS goal_difference;`,
         [draws, goalsFor, goalsAgainst, teamId]
       )
       .then((data) => {
+        req.io.emit("UPDATESTATE", { type: "UPDATE_TEAMS_RESULTS", content: data.rows[0] });
         res.status(200).json(data);
       });
   });
@@ -64,6 +74,7 @@ module.exports = (db) => {
     const { leagueId, teamName, logo } = req.body;
     return db.query("INSERT INTO teams (league_id, name, thumbnail_logo) VALUES ($1, $2, $3) RETURNING *;", [leagueId, teamName, logo])
       .then(data => {
+        req.io.emit("UPDATESTATE", { type: "ADD_NEW_TEAMS", content: data.rows });
         res.status(201).json(data);
       });
   });
