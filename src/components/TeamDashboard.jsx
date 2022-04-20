@@ -1,18 +1,14 @@
-import { Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 import useTeamDashboardMode from '../hooks/useTeamDashboardMode';
 import CSVPlayers from './CSVPlayers';
-import Players from './GameAdmin/Players';
 import PlayerForm from './PlayerForm';
-import Start from './TeamDashboard/Start';
 import PlayerListItem from './PlayerListItem';
 
 const TeamDashboard = (props) => {
-  const START = 'START';
   const ADD1PLAYER = 'ADD1PLAYER';
   const ADDBULK = 'ADDBULK';
   const { players, teams } = props;
-  const { mode, transition, reset, back } = useTeamDashboardMode(ADD1PLAYER);
+  const { mode, transition } = useTeamDashboardMode(ADD1PLAYER);
   const id = parseInt(useParams().id, 10);
   const thisTeamName = teams.find((team) => team.id === id).name;
   const playersInTeam = players.filter((player) => player.team_id === id);

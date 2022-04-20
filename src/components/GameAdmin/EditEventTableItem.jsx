@@ -5,20 +5,14 @@ const EditEventTableItem = (props) => {
   const {
     value,
     type,
-    goalScorer,
     team,
     listOfTeams,
     listOfPlayers,
     time,
     listOfTypes,
-    yellowCarder,
-    redCarder,
-    subIn,
     firstHalfTime,
-    fixtureStatus,
     secondHalfTime,
     eventHalf,
-    fixtureEvents,
     setEditEventId,
     onClickBack,
   } = props;
@@ -71,28 +65,6 @@ const EditEventTableItem = (props) => {
     return selectedType.name;
   };
 
-  const findPlayerName = (playerObj, listOfPlayers, type) => {
-    if (
-      !playerObj.goalScorer &&
-      !playerObj.subIn &&
-      !playerObj.yellowCarder &&
-      !playerObj.redCarder
-    ) {
-      return null;
-    }
-    let selectedPlayer = listOfPlayers.find((player) => {
-      if (type === 1) {
-        return player.id === playerObj.goalScorer;
-      } else if (type === 2) {
-        return player.id === playerObj.subIn;
-      } else if (type === 3) {
-        return player.id === playerObj.yellowCarder;
-      } else {
-        return player.id === playerObj.redCarder;
-      }
-    });
-    return selectedPlayer.name;
-  };
   const [selectedPlayerId, setSelectedPlayerId] = useState(
     filteredPlayers[0].id
   );

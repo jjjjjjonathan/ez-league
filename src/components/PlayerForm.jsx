@@ -2,10 +2,10 @@ import axios from 'axios';
 import { useState, Fragment } from 'react';
 
 const PlayerForm = (props) => {
-  const { id, players, transition } = props;
+  const { id, transition } = props;
   const [playerName, setPlayerName] = useState('');
   const [shirtNumber, setShirtNumber] = useState(null);
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const [successName, setSuccessName] = useState('');
 

@@ -39,7 +39,7 @@ const ScheduleGenerator = (props) => {
     return { queryString, queryParams };
   };
 
-  const { leagueId, leagueTeams, fixtures, transition } = props;
+  const { leagueId, leagueTeams, transition } = props;
 
   return (
     <div>
