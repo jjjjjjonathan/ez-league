@@ -1,6 +1,6 @@
-import { useParams } from "react-router-dom";
-import ScheduleListItems from "../components/ClientSchedule/ScheduleListItems";
-import PlayerListItem from "../components/PlayerListItem";
+import { useParams } from 'react-router-dom';
+import ScheduleListItems from '../components/ClientSchedule/ScheduleListItems';
+import PlayerListItem from '../components/PlayerListItem';
 const TeamProfile = (props) => {
   const { teams, players, fixtures } = props.state;
   const { id } = useParams();
@@ -12,10 +12,9 @@ const TeamProfile = (props) => {
   const clubFixtures = leagueFixtures.filter(
     (fixture) =>
       (fixture.home_team_id === club.id || fixture.away_team_id === club.id) &&
-      fixture.status === "Upcoming"
+      fixture.status === 'Upcoming'
   );
   const clubPlayers = players.filter((player) => player.team_id === club.id);
-  console.log("this is clubfixture", clubFixtures);
 
   const games = clubFixtures.map((game) => {
     return <ScheduleListItems game={game} teams={teams} />;
@@ -29,7 +28,7 @@ const TeamProfile = (props) => {
         goals={player.goals}
         yellowCards={player.yellow_cards}
         redCards={player.red_cards}
-        photoUrl={player.photo_url ? player.photo_url : "/images/lego.png"}
+        photoUrl={player.photo_url ? player.photo_url : '/images/lego.png'}
       />
     );
   });

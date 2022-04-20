@@ -2,7 +2,7 @@ import TableListItem from "./TableListItem";
 import { Fragment } from "react";
 
 const TableList = (props) => {
-  const { teams, id, transition } = props;
+  const { teams, id } = props;
 
   const filteredTeams = teams.filter((team) => team.league_id === id).sort((a, b) => b.points - a.points || b.goal_difference - a.goal_difference || b.goals_for - a.goals_for);
 

@@ -1,8 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const NavLeague = (props) => {
-  console.log("this is porps", props);
-
   return (
     <article className="text-white bg-gradient-to-r from-gray-400 via-gray-800 to-gray-600 flex flex-row">
       <Link to={`${props.id}/table`}>

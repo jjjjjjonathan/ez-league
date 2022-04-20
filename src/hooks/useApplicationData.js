@@ -83,7 +83,7 @@ const useApplicationData = () => {
       };
     },
 
-    'ADD_NEW_PLAYERS'(state2, action) {
+    'ADD_NEW_PLAYERS'(state, action) {
       const playersArrayCopy = [...state.players];
       action.content.forEach(newPlayer => playersArrayCopy.push(newPlayer));
       return {

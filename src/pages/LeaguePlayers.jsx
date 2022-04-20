@@ -7,7 +7,6 @@ const LeaguePlayers = (props) => {
   const leagueId = parseInt(id.id);
   const { players, teams } = props;
   const playersInLeague = playersLeagueGenerator(leagueId, teams, players);
-  console.log('this is players', players);
 
   const mappedPlayers = playersInLeague.map((player) => {
     return (
