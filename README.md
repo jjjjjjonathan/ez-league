@@ -36,7 +36,7 @@ ez-league helps users create their own sports leagues with the ability to add te
 
 ## Tech Stack
 
-For the front end, we went with ReactJS to build our components, and Tailwind CSS to style everything. We used Express on the accompanied [back-end server](https://github.com/jjjjjjonathan/ez-league-api). We are currently testing our application with Jest.
+For the front end, we went with [ReactJS](https://reactjs.org/) to build our components, and [Tailwind CSS](https://tailwindcss.com/) to style everything. We used [Express](https://expressjs.com/) on the accompanied [back-end server](https://github.com/jjjjjjonathan/ez-league-api). We used [socket-io](https://socket.io/) for our web sockets to create real-time updates. We are currently testing our application with Jest.
 
 ## Getting started
 
