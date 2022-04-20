@@ -1,6 +1,6 @@
 import "./App.css";
 import useApplicationData from "./hooks/useApplicationData";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -22,17 +22,7 @@ import TeamProfile from "./pages/TeamProfile";
 
 function App() {
   const {
-    state,
-    setState,
-    setMultipleTeams,
-    updateFixtures,
-    newFixturesEvent,
-    updateFixturesEvent,
-    deleteFixtureEvent,
-    updateMultipleTeam,
-    set1Player,
-    addNewFixtures,
-    setMultiplePlayers
+    state
   } = useApplicationData();
 
   return !state.isReady ? (
@@ -51,12 +41,10 @@ function App() {
                 leagues={state.leagues}
                 teams={state.teams}
                 fixtures={state.fixtures}
-                setMultipleTeams={setMultipleTeams}
-                addNewFixtures={addNewFixtures}
               />
             </Route>
             <Route exact path="/teams/:id/admin">
-              <TeamDashboard players={state.players} set1Player={set1Player} teams={state.teams} setMultiplePlayers={setMultiplePlayers} />
+              <TeamDashboard players={state.players} teams={state.teams} />
             </Route>
 
             <Route
@@ -67,7 +55,7 @@ function App() {
             <Route
               exact
               path="/leagues/:id"
-              children={<LeagueHome state={state} setState={setState} />}
+              children={<LeagueHome state={state} />}
             />
             <Route
               exact
@@ -101,16 +89,11 @@ function App() {
               <CSVReader />
             </Route>
             <Route exact path="/leagueform">
-              <LeagueForm2 state={state} setState={setState} />
+              <LeagueForm2 state={state} />
             </Route>
             <Route exact path="/admin/game/:fixture_id">
               <AdminGame
                 state={state}
-                updateFixtures={updateFixtures}
-                newFixturesEvent={newFixturesEvent}
-                updateFixturesEvent={updateFixturesEvent}
-                deleteFixtureEvent={deleteFixtureEvent}
-                updateMultipleTeam={updateMultipleTeam}
               />
             </Route>
           </Switch>

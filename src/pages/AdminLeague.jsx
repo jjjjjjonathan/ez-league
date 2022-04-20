@@ -5,7 +5,7 @@ import TeamForm from '../components/TeamForm';
 
 const AdminLeague = (props) => {
   let { id } = useParams();
-  const { leagues, fixtures, teams, setMultipleTeams } = props;
+  const { leagues, teams } = props;
 
   const checkEmptyLeague = (id, teams) => {
     if (
@@ -14,12 +14,8 @@ const AdminLeague = (props) => {
       return (
         <Fragment>
           <p>You don't seem to have any teams. Why don't you add some?</p>
-          <TeamForm id={id} setMultipleTeams={setMultipleTeams} teams={teams} />
-          <CSVReader
-            id={id}
-            setMultipleTeams={setMultipleTeams}
-            teams={teams}
-          />
+          <TeamForm id={id} teams={teams} />
+          <CSVReader id={id} teams={teams} />
         </Fragment>
       );
     }

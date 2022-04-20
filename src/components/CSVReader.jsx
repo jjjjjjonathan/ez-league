@@ -7,14 +7,13 @@ const CSVReader = (props) => {
   const [list, setList] = useState([]);
   const [successList, setSuccessList] = useState([]);
   const [success, setSuccess] = useState(false);
-  const { id, setMultipleTeams, teams, transition } = props;
+  const { id, transition } = props;
 
-  const save = (list, id, teams, callback) => {
+  const save = (list, id) => {
     return axios.put('/api/teams', addBulkTeams(list, id)).then((data) => {
       const newTeamNames = data.data.map((newTeam) => newTeam.name);
       setSuccessList(newTeamNames);
       setSuccess(true);
-      callback(data.data, teams);
       setList([]);
     });
   };
@@ -91,7 +90,7 @@ const CSVReader = (props) => {
       </div>
       <div className="flex flex-row justify-items-center mt-4">
         <button
-          onClick={() => save(list[0].data, id, teams, setMultipleTeams)}
+          onClick={() => save(list[0].data, id)}
           className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded md:items-center mt-2 mx-auto"
         >
           Submit

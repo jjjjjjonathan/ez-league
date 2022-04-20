@@ -5,15 +5,10 @@ const robin = require('roundrobin');
 const ScheduleGenerator = (props) => {
   const validate = (leagueTeams, leagueId) => {
     if (leagueTeams.length >= 2) {
-      return axios
-        .put(
-          '/api/fixtures/generate',
-          scheduleGenerator(robin(leagueTeams.length, leagueTeams), leagueId)
-        )
-        .then((data) => {
-          addNewFixtures(fixtures, data.data.rows);
-        });
-    } else {
+      return axios.put(
+        '/api/fixtures/generate',
+        scheduleGenerator(robin(leagueTeams.length, leagueTeams), leagueId)
+      );
     }
   };
 
@@ -44,7 +39,7 @@ const ScheduleGenerator = (props) => {
     return { queryString, queryParams };
   };
 
-  const { leagueId, leagueTeams, addNewFixtures, fixtures, transition } = props;
+  const { leagueId, leagueTeams, transition } = props;
 
   return (
     <div>

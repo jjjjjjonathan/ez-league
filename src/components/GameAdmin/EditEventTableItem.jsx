@@ -1,55 +1,45 @@
-import axios from "axios";
-import { useState } from "react";
+import axios from 'axios';
+import { useState } from 'react';
 
 const EditEventTableItem = (props) => {
   const {
     value,
     type,
-    goalScorer,
     team,
     listOfTeams,
     listOfPlayers,
     time,
     listOfTypes,
-    yellowCarder,
-    redCarder,
-    subIn,
     firstHalfTime,
-    fixtureStatus,
     secondHalfTime,
     eventHalf,
-    updateFixturesEvent,
-    fixtureEvents,
     setEditEventId,
     onClickBack,
   } = props;
 
   const submitEventEdit = (event, eventType, eventId, playerId) => {
     event.preventDefault();
-    console.log(event.target.value);
-    let string = "";
+    let string = '';
     if (eventType === 1) {
-      string = "goal_scorer_id";
+      string = 'goal_scorer_id';
     } else if (eventType === 3) {
-      string = "yellow_card_id";
+      string = 'yellow_card_id';
     } else if (eventType === 4) {
-      string = "red_card_id";
+      string = 'red_card_id';
     }
     return axios
-      .put("/api/fixtures/update_events", {
+      .put('/api/fixtures/update_events', {
         playerId,
         eventId,
         string,
       })
       .then((data) => {
-        updateFixturesEvent(fixtureEvents, data.data[0]);
         setSelectedPlayerId(filteredPlayers[0].id);
         setEditEventId(null);
       });
   };
 
   const selectPlayer = (event) => {
-    console.log(event.target.value);
     setSelectedPlayerId(event.target.value);
   };
 
@@ -58,7 +48,11 @@ const EditEventTableItem = (props) => {
   );
 
   const mapPlayers = filteredPlayers.map((player) => {
-    return <option value={player.id}>{player.name}</option>;
+    return (
+      <option key={player.id} value={player.id}>
+        {player.name}
+      </option>
+    );
   });
 
   const findTeamName = (team, listOfTeams) => {
@@ -71,28 +65,6 @@ const EditEventTableItem = (props) => {
     return selectedType.name;
   };
 
-  const findPlayerName = (playerObj, listOfPlayers, type) => {
-    if (
-      !playerObj.goalScorer &&
-      !playerObj.subIn &&
-      !playerObj.yellowCarder &&
-      !playerObj.redCarder
-    ) {
-      return null;
-    }
-    let selectedPlayer = listOfPlayers.find((player) => {
-      if (type === 1) {
-        return player.id === playerObj.goalScorer;
-      } else if (type === 2) {
-        return player.id === playerObj.subIn;
-      } else if (type === 3) {
-        return player.id === playerObj.yellowCarder;
-      } else {
-        return player.id === playerObj.redCarder;
-      }
-    });
-    return selectedPlayer.name;
-  };
   const [selectedPlayerId, setSelectedPlayerId] = useState(
     filteredPlayers[0].id
   );

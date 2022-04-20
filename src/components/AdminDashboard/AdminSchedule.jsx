@@ -4,7 +4,7 @@ import ScheduleGenerator from './ScheduleGenerator';
 import FixtureList from '../FixtureList';
 
 const AdminSchedule = (props) => {
-  const { id, teams, addNewFixtures, fixtures } = props;
+  const { id, teams, fixtures } = props;
   const START = 'START';
   const SCHEDULE = 'SCHEDULE';
   const { mode, transition } = useLeagueAdminHooks(START);
@@ -36,7 +36,6 @@ const AdminSchedule = (props) => {
           leagueTeams={leagueTeams}
           leagueFixtures={leagueFixtures}
           transition={transition}
-          addNewFixtures={addNewFixtures}
           fixtures={fixtures}
         />
       )}

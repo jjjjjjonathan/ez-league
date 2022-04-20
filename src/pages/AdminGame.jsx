@@ -1,27 +1,22 @@
-import { useEffect, useState } from "react";
-import ScoreBoard from "../components/GameAdmin/ScoreBoard";
-import Timer from "../components/GameAdmin/Timer";
-import GameConsole from "../components/GameAdmin/GameConsole";
-import EventTable from "../components/GameAdmin/EventTable";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import { useEffect, useState } from 'react';
+import ScoreBoard from '../components/GameAdmin/ScoreBoard';
+import Timer from '../components/GameAdmin/Timer';
+import GameConsole from '../components/GameAdmin/GameConsole';
+import EventTable from '../components/GameAdmin/EventTable';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 // import useAdminGameHooks from "../hooks/useAdminGameHooks";
 // import useApplicationData from "../hooks/useApplicationData";
 
 const AdminGame = (props) => {
-  const adminClasses = "odd:bg-gray-100 even:bg-gray-200  duration-300 hover:bg-b-100 hover:scale-105 cursor-pointer";
+  const adminClasses =
+    'odd:bg-gray-100 even:bg-gray-200  duration-300 hover:bg-b-100 hover:scale-105 cursor-pointer';
   //fetch fixture data and store it into a state
-  const {
-    state,
-    updateFixtures,
-    newFixturesEvent,
-    updateFixturesEvent,
-    deleteFixtureEvent,
-    updateMultipleTeam,
-  } = props;
+  const { state } = props;
 
   //param to check fixture_id
   const { fixture_id } = useParams();
+  // const fixtureId = parseInt(fixture_id, 10);
 
   const fixture = state.fixtures.find(
     (fixture) => fixture.id === parseInt(fixture_id, 10)
@@ -59,12 +54,12 @@ const AdminGame = (props) => {
 
   useEffect(() => {
     let timer1;
-    if (fixture.status === "First Half") {
+    if (fixture.status === 'First Half') {
       setTimerOn(true);
       timer1 = setInterval(() => {
         let minutes = 0;
         let seconds = Math.floor(
-          (Date.now() - Date.parse(fixture.first_half_start_time)) / 1000 + 1
+          (Date.now() - Date.parse(fixture.first_half_start_time)) / 1000
         );
         if (seconds >= 60) {
           minutes = Math.floor(seconds / 60);
@@ -74,21 +69,21 @@ const AdminGame = (props) => {
           minutes,
           seconds,
         });
-        if (minutes === 45 || fixture.status === "Halftime") {
+        if (minutes === 45 || fixture.status === 'Halftime') {
           setTimerOn(false);
         }
       }, 1000);
     }
     let timer2;
 
-    if (fixture.status === "Second Half") {
+    if (fixture.status === 'Second Half') {
       setTimerOn(true);
       timer2 = setInterval(() => {
         let minutes = 0;
         let seconds =
           Math.floor(
             (Date.now() - Date.parse(fixture.second_half_start_time)) / 1000
-          ) + 2701;
+          ) + 2700;
 
         if (seconds >= 60) {
           minutes = Math.floor(seconds / 60);
@@ -100,8 +95,7 @@ const AdminGame = (props) => {
           seconds,
         });
 
-        if (minutes === 90 || fixture.status === "Final") {
-          // clearInterval(timer1);
+        if (minutes === 90 || fixture.status === 'Final') {
           setTimerOn(false);
         }
       }, 1000);
@@ -127,30 +121,20 @@ const AdminGame = (props) => {
     setTimerOn(true);
   };
   const stopTimer = (fixtureId, halftime = false) => {
-    const string = halftime ? "Halftime" : "Final";
+    const string = halftime ? 'Halftime' : 'Final';
     return axios
-      .put("/api/fixtures/end", { fixtureId, string })
+      .put('/api/fixtures/end', { fixtureId, string })
       .then((data) => {
         setTimerOn(false);
-        updateFixtures(state.fixtures, data.data.rows[0]);
       });
   };
 
   const startHalf1 = (fixtureId, string) => {
-    return axios
-      .put("/api/fixtures/start1", { fixtureId, string })
-      .then((data) => {
-        updateFixtures(state.fixtures, data.data.rows[0]);
-      });
+    return axios.put('/api/fixtures/start1', { fixtureId, string });
   };
 
   const startHalf2 = (fixtureId, string) => {
-    return axios
-      .put("/api/fixtures/start2", { fixtureId, string })
-      .then((data) => {
-        console.log(data);
-        updateFixtures(state.fixtures, data.data.rows[0]);
-      });
+    return axios.put('/api/fixtures/start2', { fixtureId, string });
   };
 
   const updateGoalHome = (fixtureId, number) => {
@@ -161,15 +145,11 @@ const AdminGame = (props) => {
       };
     });
 
-    return axios
-      .put("/api/fixtures/homegoals", {
-        score:
-          number > 0 ? home.score + 1 : home.score - 1 < 0 ? 0 : home.score - 1,
-        fixtureId,
-      })
-      .then((data) => {
-        updateFixtures(state.fixtures, data.data.rows[0]);
-      });
+    return axios.put('/api/fixtures/homegoals', {
+      score:
+        number > 0 ? home.score + 1 : home.score - 1 < 0 ? 0 : home.score - 1,
+      fixtureId,
+    });
   };
 
   const updateGoalAway = (fixtureId, number) => {
@@ -179,105 +159,83 @@ const AdminGame = (props) => {
         score: prev.score + number < 0 ? 0 : prev.score + number,
       };
     });
-    return axios
-      .put("/api/fixtures/awaygoals", {
-        score:
-          number > 0 ? away.score + 1 : away.score - 1 < 0 ? 0 : away.score - 1,
-        fixtureId,
-      })
-      .then((data) => {
-        updateFixtures(state.fixtures, data.data.rows[0]);
-      });
+    return axios.put('/api/fixtures/awaygoals', {
+      score:
+        number > 0 ? away.score + 1 : away.score - 1 < 0 ? 0 : away.score - 1,
+      fixtureId,
+    });
   };
 
   const updateHomeGoalEvent = (fixtureId, teamId, half) => {
-    return axios
-      .put("/api/fixtures/new_home_goal", {
-        fixtureId,
-        teamId,
-        time: "NOW()",
-        type: 1,
-        half,
-      })
-      .then((data) => {
-        newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
-      });
+    return axios.put('/api/fixtures/new_home_goal', {
+      fixtureId,
+      teamId,
+      time: 'NOW()',
+      type: 1,
+      half,
+    });
   };
 
   const updateAwayGoalEvent = (fixtureId, teamId, half) => {
-    return axios
-      .put("/api/fixtures/new_away_goal", {
-        fixtureId,
-        teamId,
-        time: "NOW()",
-        type: 1,
-        half,
-      })
-      .then((data) => {
-        newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
-      });
+    return axios.put('/api/fixtures/new_away_goal', {
+      fixtureId,
+      teamId,
+      time: 'NOW()',
+      type: 1,
+      half,
+    });
   };
 
   const updateHomeYellowEvent = (fixtureId, teamId, half) => {
-    return axios
-      .put("/api/fixtures/yellow_home_card", {
-        fixtureId,
-        teamId,
-        time: "NOW()",
-        type: 3,
-        half,
-      })
-      .then((data) => {
-        newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
-      });
+    return axios.put('/api/fixtures/yellow_home_card', {
+      fixtureId,
+      teamId,
+      time: 'NOW()',
+      type: 3,
+      half,
+    });
   };
 
   const updateHomeRedEvent = (fixtureId, teamId, half) => {
-    return axios
-      .put("/api/fixtures/red_home_card", {
-        fixtureId,
-        teamId,
-        time: "NOW()",
-        type: 4,
-        half,
-      })
-      .then((data) => {
-        newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
-      });
+    return axios.put('/api/fixtures/red_home_card', {
+      fixtureId,
+      teamId,
+      time: 'NOW()',
+      type: 4,
+      half,
+    });
   };
 
   const updateAwayYellowEvent = (fixtureId, teamId, half) => {
-    return axios
-      .put("/api/fixtures/yellow_away_card", {
-        fixtureId,
-        teamId,
-        time: "NOW()",
-        type: 3,
-        half,
-      })
-      .then((data) => {
-        newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
-      });
+    return axios.put('/api/fixtures/yellow_away_card', {
+      fixtureId,
+      teamId,
+      time: 'NOW()',
+      type: 3,
+      half,
+    });
   };
 
   const updateAwayRedEvent = (fixtureId, teamId, half) => {
-    return axios
-      .put("/api/fixtures/red_away_card", {
-        fixtureId,
-        teamId,
-        time: "NOW()",
-        type: 4,
-        half,
-      })
-      .then((data) => {
-        newFixturesEvent(state.fixtureEvents, data.data.rows[0]);
-      });
+    return axios.put('/api/fixtures/red_away_card', {
+      fixtureId,
+      teamId,
+      time: 'NOW()',
+      type: 4,
+      half,
+    });
   };
 
   return (
     <main>
       <section>
-        <ScoreBoard home={home} away={away} timer={time} />
+        <ScoreBoard
+          home={home}
+          away={away}
+          timer={time}
+          homeScore={fixture.home_team_score}
+          awayScore={fixture.away_team_score}
+        />
       </section>
       <section className="mt-4">
         <GameConsole
@@ -305,9 +263,7 @@ const AdminGame = (props) => {
           players={state.players}
           fixtureStatus={fixture.status}
           secondHalfTime={fixture.second_half_start_time}
-          updateFixturesEvent={updateFixturesEvent}
           admin={true}
-          deleteFixtureEvent={deleteFixtureEvent}
         />
       </section>
       <section>
@@ -322,8 +278,6 @@ const AdminGame = (props) => {
           teams={state.teams}
           home={homeTeam}
           away={awayTeam}
-          updateMultipleTeam={updateMultipleTeam}
-          updateFixtures={updateFixtures}
           fixtures={state.fixtures}
         />
       </section>

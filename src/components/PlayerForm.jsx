@@ -2,10 +2,10 @@ import axios from 'axios';
 import { useState, Fragment } from 'react';
 
 const PlayerForm = (props) => {
-  const { id, set1Player, players, transition } = props;
+  const { id, transition } = props;
   const [playerName, setPlayerName] = useState('');
   const [shirtNumber, setShirtNumber] = useState(null);
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const [successName, setSuccessName] = useState('');
 
@@ -17,7 +17,6 @@ const PlayerForm = (props) => {
     axios
       .put('/api/players/add', { teamId, playerName, shirtNumber })
       .then((data) => {
-        set1Player(players, data.data.rows[0]);
         setSuccess(true);
         setSuccessName(playerName);
         setPlayerName('');

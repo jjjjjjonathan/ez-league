@@ -1,7 +1,7 @@
-import EventTableItem from "./EventTableItem";
-import EditEventTableItem from "./EditEventTableItem";
-import { Fragment, useState } from "react";
-import axios from "axios";
+import EventTableItem from './EventTableItem';
+import EditEventTableItem from './EditEventTableItem';
+import { Fragment, useState } from 'react';
+import axios from 'axios';
 
 const EventTable = (props) => {
   const {
@@ -13,10 +13,8 @@ const EventTable = (props) => {
     firstHalfTime,
     fixtureStatus,
     secondHalfTime,
-    updateFixturesEvent,
     admin,
     classes,
-    deleteFixtureEvent,
   } = props;
   const [editEventId, setEditEventId] = useState(null);
 
@@ -27,9 +25,7 @@ const EventTable = (props) => {
 
   const onClickDelete = (event, eventId) => {
     event.preventDefault();
-    return axios.delete(`/api/fixtures/events/${eventId}`).then((data) => {
-      deleteFixtureEvent(fixtureEvents, data.data[0]);
-    });
+    return axios.delete(`/api/fixtures/events/${eventId}`);
   };
 
   const onClickBack = () => {
@@ -40,17 +36,17 @@ const EventTable = (props) => {
     (fixture) => fixture.fixture_id === fixtureId
   );
 
-  const findTeamName = (id) => {
-    return teams.find((team) => team.id === id).name;
-  };
+  // const findTeamName = (id) => {
+  //   return teams.find((team) => team.id === id).name;
+  // };
 
-  const findEventType = (id) => {
-    return eventTypes.find((eventType) => eventType.id === id).name;
-  };
+  // const findEventType = (id) => {
+  //   return eventTypes.find((eventType) => eventType.id === id).name;
+  // };
 
-  const findGoalScorerName = (id) => {
-    return players.find((player) => player.id === id).name;
-  };
+  // const findGoalScorerName = (id) => {
+  //   return players.find((player) => player.id === id).name;
+  // };
 
   const preventSubmit = (event) => {
     event.preventDefault();
@@ -76,7 +72,6 @@ const EventTable = (props) => {
         fixtureStatus={fixtureStatus}
         secondHalfTime={secondHalfTime}
         eventHalf={event.half}
-        updateFixturesEvent={updateFixturesEvent}
         fixtureEvents={fixtureEvents}
         setEditEventId={setEditEventId}
         onClickBack={onClickBack}
@@ -115,9 +110,12 @@ const EventTable = (props) => {
             <th className="px-2">Time</th>
             <th className="px-2">Event</th>
             <th className="px-2">Player</th>
-            { admin && <Fragment><th className="px-2">Edit</th>
-            <th className="px-2">Delete</th></Fragment>}
-            
+            {admin && (
+              <Fragment>
+                <th className="px-2">Edit</th>
+                <th className="px-2">Delete</th>
+              </Fragment>
+            )}
           </tr>
         </thead>
         <tbody>{events}</tbody>

@@ -4,11 +4,11 @@ import Start from './Start';
 import SelectSport from './SelectSport';
 import Summary from './Summary';
 import axios from 'axios';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const LeagueForm2 = (props) => {
   let history = useHistory();
-  const { state, setState } = props;
+  const { state } = props;
   const [leagueName, setLeagueName] = useState('');
   const [sport, setSport] = useState(null);
 
@@ -16,7 +16,7 @@ const LeagueForm2 = (props) => {
   const SPORT = 'SPORT';
   const SUMMARY = 'SUMMARY';
 
-  const { mode, transition, back, reset } = useLeagueVisualMode(START);
+  const { mode, transition, reset } = useLeagueVisualMode(START);
 
   const chooseSport = (selectedSport) => {
     setSport(selectedSport);
@@ -28,23 +28,6 @@ const LeagueForm2 = (props) => {
       .put('/api/leagues', { leagueName, sport })
       .then((data) => {
         const id = data.data[0].id;
-        setState((prev) => {
-          const updatedLeagues = [
-            ...prev.leagues,
-            {
-              id: id,
-              cover_photo: null,
-              logo: null,
-              name: leagueName,
-              sport_type_id: sport,
-              year: null,
-            },
-          ];
-          return {
-            ...prev,
-            leagues: updatedLeagues,
-          };
-        });
         history.push({
           pathname: `leagues/${id}/admin`,
           newLeague: true,

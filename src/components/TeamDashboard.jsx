@@ -1,18 +1,14 @@
-import { Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 import useTeamDashboardMode from '../hooks/useTeamDashboardMode';
 import CSVPlayers from './CSVPlayers';
-import Players from './GameAdmin/Players';
 import PlayerForm from './PlayerForm';
-import Start from './TeamDashboard/Start';
 import PlayerListItem from './PlayerListItem';
 
 const TeamDashboard = (props) => {
-  const START = 'START';
   const ADD1PLAYER = 'ADD1PLAYER';
   const ADDBULK = 'ADDBULK';
-  const { set1Player, players, teams, setMultiplePlayers } = props;
-  const { mode, transition, reset, back } = useTeamDashboardMode(ADD1PLAYER);
+  const { players, teams } = props;
+  const { mode, transition } = useTeamDashboardMode(ADD1PLAYER);
   const id = parseInt(useParams().id, 10);
   const thisTeamName = teams.find((team) => team.id === id).name;
   const playersInTeam = players.filter((player) => player.team_id === id);
@@ -42,21 +38,9 @@ const TeamDashboard = (props) => {
             Add Players
           </h1>
           {mode === ADD1PLAYER && (
-            <PlayerForm
-              id={id}
-              set1Player={set1Player}
-              players={players}
-              transition={transition}
-            />
+            <PlayerForm id={id} players={players} transition={transition} />
           )}
-          {mode === ADDBULK && (
-            <CSVPlayers
-              setMultiplePlayers={setMultiplePlayers}
-              id={id}
-              players={players}
-              transition={transition}
-            />
-          )}
+          {mode === ADDBULK && <CSVPlayers id={id} transition={transition} />}
         </aside>
         <aside>
           <h1 className="text-center text-gray-600 text-xl mt-4">
@@ -78,18 +62,6 @@ const TeamDashboard = (props) => {
         </aside>
       </section>
     </div>
-
-    // <Fragment>
-    //   {mode === START && <Start onClick={transition} />}
-    //   {mode === ADDPLAYERS && (
-    //     <PlayerForm
-    //       id={parseInt(id)}
-    //       set1Player={set1Player}
-    //       players={players}
-    //     />
-    //   )}
-    //   {mode === SEEPLAYERS && <Players teamId={id} players={players} />}
-    // </Fragment>
   );
 };
 
