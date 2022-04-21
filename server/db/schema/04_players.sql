@@ -1,0 +1,14 @@
+DROP TABLE IF EXISTS players CASCADE;
+CREATE TABLE players (
+  id SERIAL PRIMARY KEY NOT NULL,
+  team_id INTEGER REFERENCES teams(id) ON DELETE CASCADE,
+  name VARCHAR(255) NOT NULL,
+  shirt_number INTEGER,
+  photo_url VARCHAR(255),
+  appearances INTEGER DEFAULT 0,
+  minutes INTEGER DEFAULT 0,
+  goals INTEGER DEFAULT 0,
+  assists INTEGER DEFAULT 0,
+  yellow_cards INTEGER DEFAULT 0,
+  red_cards INTEGER DEFAULT 0
+)
