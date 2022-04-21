@@ -1,0 +1,15 @@
+DROP TABLE IF EXISTS fixture_events CASCADE;
+CREATE TABLE fixture_events (
+  id SERIAL PRIMARY KEY NOT NULL,
+  fixture_id INTEGER REFERENCES fixtures(id) ON DELETE CASCADE NOT NULL,
+  team_id INTEGER REFERENCES teams(id) ON DELETE CASCADE NOT NULL,
+  time TIMESTAMP,
+  fixture_event_type_id INTEGER REFERENCES fixture_event_types(id) ON DELETE CASCADE NOT NULL,
+  goal_scorer_id INTEGER REFERENCES players(id) ON DELETE CASCADE,
+  assist_id INTEGER REFERENCES players(id) ON DELETE CASCADE,
+  sub_in_id INTEGER REFERENCES players(id) ON DELETE CASCADE,
+  sub_out_id INTEGER REFERENCES players(id) ON DELETE CASCADE,
+  yellow_card_id INTEGER REFERENCES players(id) ON DELETE CASCADE,
+  red_card_id INTEGER REFERENCES players(id) ON DELETE CASCADE,
+  half INTEGER
+);
